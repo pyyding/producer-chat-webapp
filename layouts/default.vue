@@ -2,7 +2,7 @@
   <v-app class="background">
     <v-toolbar>
       <v-spacer/>
-      <v-avatar v-if="user" class="mr-2" size="36px"><img :src="user.photoURL72" alt="avatar"></v-avatar>
+      <v-avatar v-if="user" class="mr-2" size="36px"><img :src="user.photoURL" alt="avatar"></v-avatar>
       <v-btn flat v-if="user" @click="signOut">Sign Out</v-btn>
     </v-toolbar>
     <v-navigation-drawer

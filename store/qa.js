@@ -18,10 +18,22 @@ export const actions = {
     const snapshot = await db.collection('questions').get()
 		let questions = []
 		snapshot.forEach(doc => {
-			questions.push(doc.data())
+			let question = doc.data()
+			question.id = doc.id
+			questions.push(question)
 		})
-    commit('setQuestions', questions)
-  }
+	  commit('setQuestions', questions)
+  },
+	async ask ({ commit, dispatch }, question) {
+		const newQuestionRef = await db.collection('questions').doc()
+		const snapshot = await newQuestionRef.set(question)
+		dispatch('getQuestions')
+		return snapshot
+	},
+	async deleteQuestion ({ commit, dispatch }, id) {
+		await db.collection('questions').doc(id).delete()
+		dispatch('getQuestions')
+	}
 }
 
 export const getters = {

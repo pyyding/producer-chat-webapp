@@ -1,16 +1,16 @@
 <template>
-  <v-layout centered>
-    <v-card width="500px">
-      <v-card-title>
-
-      </v-card-title>
-      <v-card-text>
-        <v-btn color="primary" @click="authWithGoogle">
+  <v-container>
+    <v-layout row>
+      <v-flex xs10>
+        <h2>
+          Log in to view your dashboard
+        </h2>
+        <v-btn class="mt-4" color="primary" @click="authWithGoogle">
           Sign in with Google
         </v-btn>
-      </v-card-text>
-    </v-card>
-  </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>

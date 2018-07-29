@@ -1,5 +1,13 @@
 // Import Vuetify styling
 @require '~vuetify/src/stylus/main.styl'
+@require 'colors.styl'
 
 .page
   @extend .fade-transition
+
+
+h2 > a
+  color inherit
+  text-decoration none
+  &:hover
+    text-decoration underline

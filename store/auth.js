@@ -45,6 +45,7 @@ export const actions = {
 	  if (!userExistsSnapshot.empty) {
 		  userExistsSnapshot.forEach(function (doc) {
 			  const user = doc.data()
+			  user.id = doc.id
 			  commit('setUser', user)
 			  return user
 		  })
