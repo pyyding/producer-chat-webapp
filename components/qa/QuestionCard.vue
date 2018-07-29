@@ -1,21 +1,20 @@
 <template>
-  <v-card color="" class="mt-2">
+  <v-card color="" class="mt-2" flat>
       <v-card-title>
-        <h3>
-          {{question.title}}
-        </h3>
-        <v-spacer></v-spacer>
-        <strong>{{question.username}}</strong>
-        <v-avatar class="ml-2" size="36px"><img src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460" alt="avatar"></v-avatar>
-  
+        <v-avatar class="mr-2" size="36px"><img :src="question.user.photoURL72" alt="avatar"></v-avatar>
+        <strong class="">{{question.user.displayName}}</strong>
       </v-card-title>
-      <v-card-text>
-        <a @click="extended = !extended" flat>{{`${question.answers.length} answer${question.answers.length === 1 ? '' : 's'} `}}</a>
-
+    <v-card-text>
+      <h2>
+          {{question.title}}
+      </h2>
+      <p>
+        <a class="grey--text" @click="extended = !extended" flat>{{`${question.answerCount} answer${question.answerCount === 1 ? '' : 's'} `}}</a>
+      </p>
       <v-slide-y-transition>
         <div class="mt-4" v-show="extended">
           <div v-for="answer in question.answers" :key="answer.id">
-            <strong>{{ answer.username }}</strong>
+            <strong>{{ answer.displayName }}</strong>
             <p>
               {{ answer.text }}
             </p>
@@ -46,6 +45,9 @@
   }
 </script>
 
-<style scoped>
-
+<style scoped lang="stylus">
+  .v-card__text
+    padding 0 16px
+  .v-card__actions
+    padding 0px 8px 8px 8px
 </style>

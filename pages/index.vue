@@ -10,9 +10,6 @@
       return {}
     },
     methods: {
-      authWithGoogle: function () {
-        this.$store.dispatch('auth/loginWithGoogle')
-      }
     }
   }
 </script>

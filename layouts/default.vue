@@ -1,6 +1,15 @@
 <template>
-  <v-app>
+  <v-app class="background">
+    <v-toolbar>
+      <v-spacer/>
+      <v-avatar v-if="user" class="mr-2" size="36px"><img :src="user.photoURL72" alt="avatar"></v-avatar>
+      <v-btn flat v-if="user" @click="signOut">Sign Out</v-btn>
+    </v-toolbar>
     <v-navigation-drawer
+      class="blue lighten-2"
+      dark
+      flat
+      permanent
       :mini-variant.sync="miniVariant"
       v-model="drawer"
       fixed
@@ -23,10 +32,6 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app>
-      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-    </v-toolbar>
     <v-content>
       <v-container>
         <nuxt />
@@ -40,19 +45,33 @@
 
 <script>
   export default {
+  	computed: {
+      user () {
+        return this.$store.getters['auth/user']
+      }
+    },
     data () {
       return {
         drawer: true,
         fixed: false,
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { icon: 'apps', title: 'Dashboard', to: '/dashboard' },
+          { icon: 'bubble_chart', title: 'Q&A', to: '/qa' }
         ],
         miniVariant: false,
         right: true,
         rightDrawer: false,
         title: 'producer.chat'
       }
+    },
+    methods: {
+  		signOut () {
+  			this.$store.dispatch('auth/signOut')
+      }
     }
   }
 </script>
+
+<style lang="stylus" scoped>
+
+</style>
