@@ -27,8 +27,8 @@ export default {
 			return this.$store.getters['qa/questions']
 		}
 	},
-  asyncData ({store}) {
-    store.dispatch('qa/getQuestions')
+  beforeCreate() {
+  	this.$store.dispatch('qa/getQuestions')
   }
 }
 </script>

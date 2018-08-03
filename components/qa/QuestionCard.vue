@@ -2,7 +2,7 @@
   <v-card color="" class="mt-2" flat>
       <v-card-title>
         <h2>
-          <nuxt-link :to="`/question/${question.id}`">
+          <nuxt-link :to="`/ask/${question.id}`">
             {{question.title}}
           </nuxt-link>
         </h2>

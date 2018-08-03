@@ -56,7 +56,7 @@
         fixed: false,
         items: [
           { icon: 'apps', title: 'Dashboard', to: '/dashboard' },
-          { icon: 'bubble_chart', title: 'Q&A', to: '/qa' }
+          { icon: 'bubble_chart', title: 'ask', to: '/ask' }
         ],
         miniVariant: false,
         right: true,
