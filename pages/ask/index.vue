@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <v-layout row>
-    <v-flex xs10 >
+    <v-layout justify-center row>
+    <v-flex xl6 >
       <ask-card/>
     </v-flex>
     </v-layout>
-    <v-layout row>
-      <v-flex xs10 >
+    <v-layout justify-center row>
+      <v-flex xl6 >
         <question-card
           v-for="question in questions"
           :key="question.id"

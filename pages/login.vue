@@ -1,13 +1,21 @@
 <template>
   <v-container>
-    <v-layout row>
-      <v-flex xs10>
-        <h2>
-          Log in to view your dashboard
-        </h2>
-        <v-btn class="mt-4" color="primary" @click="authWithGoogle">
-          Sign in with Google
-        </v-btn>
+    <v-layout row justify-center>
+      <v-flex xl4>
+        <v-card flat>
+          <v-card-text class="pa-5">
+            <h2 style="text-align: center">
+              log in to producer chat.
+            </h2>
+            <v-card-actions>
+              <v-spacer/>
+                <v-btn class="mt-5 text-xl-center" color="primary" flat @click="authWithGoogle">
+                  sign in with Google
+                </v-btn>
+              <v-spacer/>
+            </v-card-actions>
+          </v-card-text>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>

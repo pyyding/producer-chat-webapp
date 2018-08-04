@@ -1,9 +1,11 @@
-import firebase from '~/plugins/firebase'
+import fb from '~/plugins/firebase'
 
 export default function (context) {
-	firebase.auth().onAuthStateChanged((googleUser) => {
-		if (googleUser) {
-			context.store.dispatch('auth/initUserWithEmail', googleUser.email)
-		}
-	})
+	if (fb) {
+		fb.firebase.auth().onAuthStateChanged((googleUser) => {
+			if (googleUser) {
+				context.store.dispatch('auth/initUserWithEmail', googleUser.email)
+			}
+		})
+	}
 }

@@ -1,44 +1,31 @@
 <template>
   <v-app class="background">
-    <v-toolbar>
+    <v-toolbar dark dense flat>
+      <v-toolbar-title>
+        producer chat
+      </v-toolbar-title>
       <v-spacer/>
-      <v-avatar v-if="user" class="mr-2" size="36px"><img :src="user.photoURL" alt="avatar"></v-avatar>
-      <v-btn flat v-if="user" @click="signOut">Sign Out</v-btn>
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn flat to="/ask">
+          <v-icon left small>question_answer</v-icon>
+          ask
+        </v-btn>
+        <v-btn v-if="user" flat :to="`/producers/${user.id}`">
+          <v-avatar size="36px"><img :src="user.photoURL" alt="avatar"></v-avatar>
+        </v-btn>
+        <v-btn flat to="/login" v-if="!user">
+          <v-icon left small>account_circle</v-icon>
+          login
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
-    <v-navigation-drawer
-      class="blue lighten-2"
-      dark
-      flat
-      permanent
-      :mini-variant.sync="miniVariant"
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          router
-          :to="item.to"
-          :key="i"
-          v-for="(item, i) in items"
-          exact
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+      <span>&copy; 2018</span>
     </v-footer>
   </v-app>
 </template>
@@ -65,9 +52,6 @@
       }
     },
     methods: {
-  		signOut () {
-  			this.$store.dispatch('auth/signOut')
-      }
     }
   }
 </script>

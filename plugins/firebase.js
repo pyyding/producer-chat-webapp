@@ -1,5 +1,15 @@
 import firebase from 'firebase'
 
+class FirebaseInstance {
+	constructor (firebase, db, providers) {
+		this.firebase = firebase
+		this.db = db
+		this.providers = providers
+	}
+}
+
+let firebaseInstance
+
 if (!firebase.apps.length) {
   firebase.initializeApp(
     {
@@ -11,6 +21,13 @@ if (!firebase.apps.length) {
       messagingSenderId: '958668948594'
     }
   )
+	const db = firebase.firestore()
+	const settings = {/* your settings... */ timestampsInSnapshots: true }
+	db.settings(settings)
+
+	const googleProvider = new firebase.auth.GoogleAuthProvider()
+
+	firebaseInstance = new FirebaseInstance(firebase, db, {googleProvider: googleProvider})
 }
 
-export default firebase
+export default firebaseInstance

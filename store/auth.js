@@ -1,9 +1,4 @@
-import firebase from '~/plugins/firebase'
-const googleProvider = new firebase.auth.GoogleAuthProvider()
-
-const db = firebase.firestore()
-const settings = {/* your settings... */ timestampsInSnapshots: true }
-db.settings(settings)
+import fb from '~/plugins/firebase'
 
 export const state = () => ({
   user: null
@@ -18,11 +13,11 @@ export const mutations = {
 }
 export const actions = {
   async loginWithGoogle ({ commit }) {
-    const signInResponse = await firebase.auth().signInWithPopup(googleProvider)
+    const signInResponse = await fb.firebase.auth().signInWithPopup(fb.providers.googleProvider)
 
     const googleUser = signInResponse.user
 
-    const users = db.collection('users')
+    const users = fb.db.collection('users')
 
     const userExistsSnapshot = await users.where('email', '==', googleUser.email).get()
     if (!userExistsSnapshot.empty) {
@@ -35,13 +30,13 @@ export const actions = {
     }
   },
   signOut ({ commit }) {
-    firebase.auth().signOut()
+    fb.firebase.auth().signOut()
       .then(() => {
 	      commit('resetUser')
       })
   },
   async initUserWithEmail ({ commit }, email) {
-	  const users = db.collection('users')
+	  const users = fb.db.collection('users')
 	  const userExistsSnapshot = await users.where('email', '==', email).get()
 	  if (!userExistsSnapshot.empty) {
 		  userExistsSnapshot.forEach(function (doc) {

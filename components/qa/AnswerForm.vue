@@ -1,17 +1,21 @@
 <template>
-
-	<v-card>
-		<v-card-text>
-			<v-layout row>
-				<v-flex>
-					<v-textarea v-model="answerText"/>
-				</v-flex>
-			</v-layout>
-			<v-layout row >
-				<v-btn @click="submit" class="ml-0" color="success" flat>Submit</v-btn>
-			</v-layout>
-		</v-card-text>
-	</v-card>
+	<div>
+		<v-btn class="ml-0" color="primary" @click="showForm = ! showForm" flat><v-icon left>create</v-icon>answer</v-btn>
+		<v-card v-if="showForm" flat color="">
+			<v-card-text>
+				<v-layout row>
+					<v-flex>
+						<v-textarea label="Write your answer here..." v-model="answerText"/>
+					</v-flex>
+				</v-layout>
+			</v-card-text>
+			<v-card-actions>
+				<v-spacer/>
+				<v-btn @click="showForm = false" color="error" flat>cancel</v-btn>
+				<v-btn @click="submit" class="ml-0" color="success" flat>answer</v-btn>
+			</v-card-actions>
+		</v-card>
+	</div>
 </template>
 
 <script>
@@ -19,6 +23,7 @@
 		props: ['questionID', 'user'],
 		data () {
 			return {
+				showForm: false,
 				answerText: ''
 			}
 		},
