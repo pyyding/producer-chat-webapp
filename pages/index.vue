@@ -10,6 +10,9 @@
       return {}
     },
     methods: {
-    }
+    },
+    beforeCreate () {
+	    this.$router.push('/ask')
+		}
   }
 </script>

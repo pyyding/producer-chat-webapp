@@ -17,6 +17,10 @@
           <v-icon left small>account_circle</v-icon>
           login
         </v-btn>
+        <v-btn flat @click="signOut" v-if="user">
+          <v-icon left small>power_settings_new</v-icon>
+          sign out
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -52,6 +56,9 @@
       }
     },
     methods: {
+  		signOut () {
+  			this.$store.dispatch('auth/signOut')
+      }
     }
   }
 </script>

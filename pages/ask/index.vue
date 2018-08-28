@@ -6,7 +6,7 @@
     </v-flex>
     </v-layout>
     <v-layout justify-center row>
-      <v-flex xl6 >
+      <v-flex xl6 align-center>
         <question-card
           v-for="question in questions"
           :key="question.id"
