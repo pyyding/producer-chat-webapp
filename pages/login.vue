@@ -9,7 +9,7 @@
             </h2>
             <v-card-actions>
               <v-spacer/>
-                <v-btn class="mt-5 text-xl-center" color="primary" flat @click="authWithGoogle">
+                <v-btn :loading="loading" class="mt-5 text-xl-center" color="primary" flat @click="authWithGoogle">
                   sign in with Google
                 </v-btn>
               <v-spacer/>
@@ -28,7 +28,7 @@
     },
   	data () {
   		return {
-
+        loading: false
       }
     },
     watch: {
@@ -38,7 +38,11 @@
     },
     methods: {
 			authWithGoogle: function () {
+				this.loading = true
 				this.$store.dispatch('auth/loginWithGoogle')
+          .then(() => {
+          	this.loading = false
+          })
 			}
     }
   }
