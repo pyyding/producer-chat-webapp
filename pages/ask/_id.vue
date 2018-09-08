@@ -32,8 +32,8 @@
 			}
 		},
 		computed: {
-			questionData () { return this.$store.getters['qa/questionData'] },
-			user () { return this.$store.getters['auth/user'] }
+			user () { return this.$store.getters['auth/user'] },
+			questionData () { return this.$store.getters['qa/questionData'] }
 		},
 		beforeCreate () {
 			this.questionID = this.$route.params.id

@@ -40,24 +40,41 @@ export const actions = {
 	async deleteAnswer ({ commit, dispatch }, id) {
 		await fb.db.collection('answers').doc(id).delete()
 	},
-	async getQuestionData ({ commit }, id) {
+	async getQuestionData ({ commit, dispatch}, id) {
   	const questionSnapshot = await fb.db.collection('questions').doc(id).get()
 		const answersSnapshot = await fb.db.collection('answers').where('questionID', '==', id).get()
 		const answers = []
-		answersSnapshot.forEach(doc => {
+		for (const doc of answersSnapshot.docs) {
 			const answer = doc.data()
 			answer.id = doc.id
 			answers.push(answer)
-		})
+		}
 		commit('setQuestionData', {question: questionSnapshot.data(), answers: answers})
-
-		return data
 	},
 	async submitAnswer ({ commit, dispatch }, answer) {
   	const newAnswerRef = await fb.db.collection('answers').doc()
 		const snapshot = await newAnswerRef.set(answer)
 		dispatch('getQuestionData', answer.questionID)
 		return snapshot
+	},
+	async castVote ({ commit, dispatch }, { vote, questionID }) {
+		const existingVoteSnapshot = await fb.db.collection('votes').where('userID', '==', vote.userID).where('answerID', '==', vote.answerID).get()
+		const existingVote = existingVoteSnapshot.docs
+		if (existingVote.length === 1) {
+  		if (existingVote[0].data().isUpvote !== vote.isUpvote) {
+  			await fb.db.collection('votes').doc(existingVote[0].id).delete()
+			  const newVoteRef = await fb.db.collection('votes').doc(`${vote.answerID}_${vote.userID}`)
+			  await newVoteRef.set(vote)
+				setTimeout( () => { dispatch('getQuestionData', questionID) }, 500)
+			}
+		} else {
+			const newVoteRef = await fb.db.collection('votes').doc(`${vote.answerID}_${vote.userID}`)
+			await newVoteRef.set(vote)
+		}
+	},
+	async getUserAnswerVote (_context, {answerID, userID}) {
+		const votes = await fb.db.collection('votes').where('answerID', '==', answerID).where('userID', '==', userID).get().docs
+		return votes ? votes[0] : null
 	}
 }
 
