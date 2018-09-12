@@ -3,7 +3,7 @@
 		<v-layout row mb-2>
 			<v-flex xl3></v-flex>
 			<v-flex xl9 ml-4>
-				<h1>featured tracks</h1>
+				<h1></h1>
 			</v-flex>
 		</v-layout>
 		<v-layout row>

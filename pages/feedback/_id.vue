@@ -3,7 +3,10 @@
 		<v-layout justify-center>
 			<v-flex xl6>
 				<v-layout row v-if="questionData.question">
-					<h2>{{questionData.question.title}}</h2>
+					<h2>
+						{{questionData.question.title}}
+						<v-btn title="question link" v-if="questionData.question.link" :href="questionData.question.link" target="_blank" icon><v-icon color="primary">play_circle_filled</v-icon></v-btn>
+					</h2>
 				</v-layout>
 				<v-layout row v-if="questionData.question">
 					asked by &nbsp; <strong>{{questionData.question.user.displayName}}</strong>
@@ -15,6 +18,17 @@
 						<div v-for="answer in questionData.answers" :key="answer.id" class="">
 							<answer-card :answer="answer" :user="user"/>
 						</div>
+					</v-flex>
+				</v-layout>
+				<v-layout row mt-5 v-if="questionData.answers && questionData.answers.length === 0">
+					<v-flex>
+						<v-card height="300" flat color="grey lighten-4" v-if="questionData.question">
+							<v-layout fill-height align-center text-sm-center>
+								<v-card-text>
+									<h2>{{questionData.question.user.displayName}} would be super thankful for your feedback!</h2>
+								</v-card-text>
+							</v-layout>
+						</v-card>
 					</v-flex>
 				</v-layout>
 			</v-flex>
@@ -41,6 +55,3 @@
 		}
 	}
 </script>
-
-<style lang="stylus">
-</style>

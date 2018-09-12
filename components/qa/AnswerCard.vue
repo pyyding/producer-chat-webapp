@@ -6,21 +6,19 @@
 				<strong>{{answer.user.displayName}}</strong>
 				<div><span class="grey--text">{{answer.createdAt.toDate().toLocaleDateString()}}</span></div>
 			</div>
-			<v-btn title="delete answer" icon v-if="user && user.id === answer.user.id" @click="deleteAnswer"><v-icon color="grey" small>clear</v-icon></v-btn>
+			<v-btn title="delete feedback" icon v-if="user && user.id === answer.user.id" @click="deleteAnswer"><v-icon color="grey" small>clear</v-icon></v-btn>
 		</v-layout>
-		<v-layout row mt-2>
-			<v-flex>
+		<v-layout row>
 				<div class="vote-widget">
 					<v-btn icon :class="{ active: userVote && userVote.isUpvote}" @click="castVote(true)"><v-icon>arrow_drop_up</v-icon></v-btn>
 					<h2 class="vote-widget__count">{{answer.voteSum}}</h2>
 					<v-btn icon :class="{ active: userVote && !userVote.isUpvote}" @click="castVote(false)"><v-icon>arrow_drop_down</v-icon></v-btn>
 				</div>
+			<v-flex pt-3>
+				<p class="answer--text">
+					{{answer.text}}
+				</p>
 			</v-flex>
-			<v-flex>
-			</v-flex>
-			<p class="answer--text">
-				{{answer.text}}
-			</p>
 		</v-layout>
 	</div>
 </template>

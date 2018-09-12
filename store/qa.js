@@ -65,7 +65,7 @@ export const actions = {
   			await fb.db.collection('votes').doc(existingVote[0].id).delete()
 			  const newVoteRef = await fb.db.collection('votes').doc(`${vote.answerID}_${vote.userID}`)
 			  await newVoteRef.set(vote)
-				setTimeout( () => { dispatch('getQuestionData', questionID) }, 500)
+				setTimeout( () => { dispatch('getQuestionData', questionID) }, 1000)
 			}
 		} else {
 			const newVoteRef = await fb.db.collection('votes').doc(`${vote.answerID}_${vote.userID}`)

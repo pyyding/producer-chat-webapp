@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<v-btn color="primary" flat @click="extended = true">
-			<v-icon left>create</v-icon> ask a question
+			<v-icon left>create</v-icon> ask feedback
 		</v-btn>
 		<v-card v-if="extended" color="" class="mt-2" flat>
 			<v-slide-y-transition>
 				<v-card-text>
 					<v-form>
-						<v-text-field required v-model="question.title" label="question *"/>
-						<v-text-field append-icon="link" v-model="question.link" label="link (for context purposes)"/>
+						<v-text-field required v-model="question.title" label="track title *"/>
+						<v-text-field required append-icon="link" v-model="question.link" label="link (soundcloud, clyp.it, etc.) *"/>
 					</v-form>
 				</v-card-text>
 			</v-slide-y-transition>
@@ -29,7 +29,8 @@
 				question: {
 					title: '',
 					link: '',
-					user: {}
+					user: {},
+					ratingAvg: 0
 				},
 				createdAt: null
 			}
@@ -43,7 +44,7 @@
 				this.question.user = {
 					id: user.id,
 					displayName: user.displayName,
-					photoURL: user.photoURL,
+					photoURL: user.photoURL
 				}
 				this.$store.dispatch('qa/ask', this.question)
 					.then(() => {

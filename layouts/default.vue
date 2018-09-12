@@ -6,9 +6,9 @@
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat to="/ask">
+        <v-btn flat to="/feedback">
           <v-icon left small>question_answer</v-icon>
-          ask
+          feedback
         </v-btn>
         <v-btn v-if="user" flat :to="`/producers/${user.id}`">
           <v-avatar size="36px"><img :src="user.photoURL" alt="avatar"></v-avatar>
@@ -47,7 +47,7 @@
         fixed: false,
         items: [
           { icon: 'apps', title: 'Dashboard', to: '/dashboard' },
-          { icon: 'bubble_chart', title: 'ask', to: '/ask' }
+          { icon: 'bubble_chart', title: 'feedback', to: '/feedback' }
         ],
         miniVariant: false,
         right: true,

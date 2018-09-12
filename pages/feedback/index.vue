@@ -27,7 +27,7 @@ export default {
 			return this.$store.getters['qa/questions']
 		}
 	},
-  beforeCreate() {
+  beforeCreate () {
   	this.$store.dispatch('qa/getQuestions')
   }
 }

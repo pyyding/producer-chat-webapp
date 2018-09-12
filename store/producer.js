@@ -12,13 +12,8 @@ export const mutations = {
 
 export const actions = {
 	async getProducer ({ commit }, slug) {
-		const snapshot = await fb.db.collection('users').where('slug', '==', slug).get()
-		if (snapshot.docs.length > 0) {
-			const producer = snapshot.docs[0].data()
-			commit('setProducer', producer)
-		} else {
-			// @TODO handle producer not found
-		}
+		const snapshot = await fb.db.collection('users').doc(slug).get()
+		commit('setProducer', snapshot.data())
 	}
 }
 

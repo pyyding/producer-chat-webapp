@@ -1,6 +1,6 @@
 <template>
   <v-layout column align-center>
-    
+
   </v-layout>
 </template>
 
@@ -12,7 +12,7 @@
     methods: {
     },
     beforeCreate () {
-	    this.$router.push('/ask')
+	    this.$router.push('/feedback')
 		}
   }
 </script>
