@@ -1,36 +1,28 @@
 {
-  "name": "producer-chat-webapp",
-  "version": "1.0.0",
-  "description": "Webapp for Producer Chat",
-  "author": "pyyding <kaspar.pyyding@gmail.com>",
-  "private": true,
+  "name": "Nuxt-SSR-Firebase",
+  "version": "0.1.0",
+  "description": "Host Nuxt.js SSR app on Firebase Cloud Functions with Firebase Dynamic Hosting.",
+  "license": "MIT",
+  "author": "David Royer",
+  "repository": "https://github.com/davidroyer/nuxt-ssr-firebase",
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "heroku-postbuild": "npm run build"
-  },
-  "dependencies": {
-    "axios": "^0.18.0",
-    "cookie": "^0.3.1",
-    "firebase": "^5.2.0",
-    "js-cookie": "^2.2.0",
-    "nuxt": "^1.0.0",
-    "vue": "^2.5.16",
-    "vuetify": "^1.0.0"
+    "dev": "cd \"src\" && yarn dev",
+    "build": "yarn build:nuxt && yarn clean && yarn copyassets",
+    "serve": "firebase serve --only functions,hosting",
+    "deploy": "firebase deploy",
+    "predeploy": "yarn build",
+    "setup": "yarn install && yarn setup:client && yarn setup:firebase && yarn setup:server",
+    "setup:client": "cd \"src\" && yarn install",
+    "setup:server": "cd \"prod/server\" && yarn install",
+    "setup:firebase": "mv .setup-firebaserc .firebaserc",
+    "copyassets": "yarn copydist && yarn copystatic",
+    "copydist": "cp -R prod/server/nuxt/dist/ prod/client/assets",
+    "copystatic": "cp -R src/static/ prod/client",
+    "clean": "rimraf prod/client/assets/*",
+    "build:nuxt": "cd \"src\" && yarn build"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint": "^4.3.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-loader": "^1.9.0",
-    "eslint-plugin-html": "^3.1.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.1"
+    "cross-env": "^5.0.5",
+    "rimraf": "^2.6.2"
   }
 }
