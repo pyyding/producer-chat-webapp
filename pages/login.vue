@@ -33,7 +33,7 @@
     },
     watch: {
   		user: function (prevValue, newValue) {
-  			this.$router.push('/ask')
+  			this.$router.push('/feedback')
       }
     },
     methods: {
