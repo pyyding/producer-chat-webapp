@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<v-card v-if="user" flat color="">
+		<v-btn class="ml-0" color="primary" @click="showForm = ! showForm" flat><v-icon left>create</v-icon>give feedback</v-btn>
+		<v-card v-if="showForm" flat color="">
 			<v-card-text>
 				<v-layout row>
 					<v-flex>
@@ -30,7 +31,7 @@
 		props: ['questionID', 'user'],
 		data () {
 			return {
-				showForm: true,
+				showForm: false,
 				answerText: '',
 				rating: 1
 			}

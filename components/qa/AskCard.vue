@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<v-btn v-if="user" color="primary" flat @click="extended = true">
+		<v-btn color="primary" flat @click="extended = true">
 			<v-icon left>create</v-icon> ask feedback
 		</v-btn>
 		<v-card v-if="extended" color="" class="mt-2" flat>
@@ -23,11 +23,6 @@
 
 <script>
 	export default {
-		computed: {
-			user () {
-				return this.$store.getters['auth/user']
-			}
-		},
 		data () {
 			return {
 				extended: false,
@@ -43,11 +38,13 @@
 		methods: {
 			ask () {
 				this.loading = true
+				const user = this.$store.getters['auth/user']
+
 				this.question.createdAt = new Date()
 				this.question.user = {
-					id: this.user.id,
-					displayName: this.user.displayName,
-					photoURL: this.user.photoURL
+					id: user.id,
+					displayName: user.displayName,
+					photoURL: user.photoURL
 				}
 				this.$store.dispatch('qa/ask', this.question)
 					.then(() => {

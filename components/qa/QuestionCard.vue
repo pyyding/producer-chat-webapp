@@ -1,7 +1,7 @@
 <template>
-  <v-card color="" class="mt-2 question-card" flat>
+  <v-card color="" class="mt-2" flat>
       <v-card-title>
-        <h2 class="question-card__title">
+        <h2>
           <nuxt-link :to="`/feedback/${question.id}`">
             {{question.title}}
           </nuxt-link>
@@ -39,6 +39,10 @@
 </script>
 
 <style scoped lang="stylus">
-  .question-card__title
-    margin 0
+  .v-card__title
+    padding 16px 16px 8 16px
+  .v-card__text
+    padding 0 16px
+  .v-card__actions
+    padding 0 8px 8px 8px
 </style>

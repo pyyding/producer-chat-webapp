@@ -12,7 +12,7 @@
     methods: {
     },
     beforeCreate () {
-	    this.$router.push('/login')
+	    this.$router.push('/feedback')
 		}
   }
 </script>
