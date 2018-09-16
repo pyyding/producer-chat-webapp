@@ -75,6 +75,23 @@ export const actions = {
 	async getUserAnswerVote (_context, {answerID, userID}) {
 		const votes = await fb.db.collection('votes').where('answerID', '==', answerID).where('userID', '==', userID).get().docs
 		return votes ? votes[0] : null
+	},
+	async submitReply (_context, reply) {
+  	const replyRef = await fb.db.collection('replies').doc()
+		const snapshot = await replyRef.set(reply)
+	},
+	async fetchReplies (_context, { answerID }) {
+		const snapshot = await fb.db.collection('replies').where('answerID', '==', answerID).orderBy('createdAt').get()
+		let replies = []
+		snapshot.forEach(doc => {
+			let reply = doc.data()
+			reply.id = doc.id
+			replies.push(reply)
+		})
+		return replies
+	},
+	async deleteReply (_context, { id }) {
+		await fb.db.collection('replies').doc(id).delete()
 	}
 }
 

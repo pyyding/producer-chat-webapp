@@ -1,33 +1,53 @@
 <template>
-	<div v-if="answer && user">
-		<v-layout row align-center>
-			<v-avatar class="ml-2 mr-2" size="36px"><img :src="answer.user.photoURL" alt="avatar"></v-avatar>
-			<div>
-				<strong>{{answer.user.displayName}}</strong>
-				<div><span class="grey--text">{{answer.createdAt.toDate().toLocaleDateString()}}</span></div>
-			</div>
-			<v-btn title="delete feedback" icon v-if="user && user.id === answer.user.id" @click="deleteAnswer"><v-icon color="grey" small>clear</v-icon></v-btn>
-		</v-layout>
-		<v-layout row>
+	<v-card v-if="answer && user" flat class="mb-2">
+		<v-card-text>
+			<v-layout row align-center>
+
+				<v-avatar class="ml-2 mr-2" size="36px"><img :src="answer.user.photoURL" alt="avatar"></v-avatar>
+				<div>
+					<strong>{{answer.user.displayName}}</strong>
+					<div><span class="grey--text">{{answer.createdAt.toDate().toLocaleDateString()}}</span></div>
+				</div>
+				<v-btn title="delete feedback" icon v-if="user && user.id === answer.user.id" @click="deleteAnswer"><v-icon color="grey" small>clear</v-icon></v-btn>
+			</v-layout>
+			<v-layout row>
 				<div class="vote-widget">
 					<v-btn icon :class="{ active: userVote && userVote.isUpvote}" @click="castVote(true)"><v-icon>arrow_drop_up</v-icon></v-btn>
 					<h2 class="vote-widget__count">{{answer.voteSum}}</h2>
 					<v-btn icon :class="{ active: userVote && !userVote.isUpvote}" @click="castVote(false)"><v-icon>arrow_drop_down</v-icon></v-btn>
 				</div>
-			<v-flex pt-3>
-				<p class="answer--text">
-					{{answer.text}}
-				</p>
-			</v-flex>
-		</v-layout>
-	</div>
+				<v-flex pt-3>
+					<p class="answer--text">
+						{{answer.text}}
+					</p>
+				</v-flex>
+			</v-layout>
+			<v-layout column>
+				<v-flex v-for="reply in replies" :key="reply.id">
+					<v-btn title="delete reply" icon v-if="user && user.id === reply.user.id" @click="deleteReply(reply)"><v-icon color="grey" small>clear</v-icon></v-btn>
+					<strong class="grey--text">{{reply.user.displayName}}</strong><span class="grey--text"> {{reply.text}}</span>
+				</v-flex>
+			</v-layout>
+			<v-layout row>
+				<v-btn color="success"  v-if="!replyVisible" @click="replyVisible = true" flat>reply</v-btn>
+				<v-text-field autofocus @keyup.native.enter="submitReply" v-if="replyVisible" label="Reply..." v-model="replyText"></v-text-field><v-btn v-if="replyVisible" @click="submitReply" icon><v-icon color="success" >send</v-icon></v-btn>
+			</v-layout>
+		</v-card-text>
+	</v-card>
 </template>
 
 <script>
 	export default {
 		props: ['answer', 'user'],
 		data () {
-			return {}
+			return {
+				replyVisible: false,
+				replyText: '',
+				replies: []
+			}
+		},
+		async beforeMount () {
+			this.fetchReplies()
 		},
 		computed: {
 			userVote () {
@@ -51,6 +71,29 @@
 					questionID: this.answer.questionID
 				}
 				await this.$store.dispatch('qa/castVote', params)
+			},
+			async submitReply () {
+				const reply = {
+					answerID: this.answer.id,
+					user: {
+						id: this.user.id,
+						displayName: this.user.displayName,
+						photoURL: this.user.photoURL
+					},
+					text: this.replyText,
+					createdAt: new Date()
+				}
+				await this.$store.dispatch('qa/submitReply', reply)
+				this.replyText = ''
+				this.fetchReplies()
+				this.replyVisible = false
+			},
+			async deleteReply (reply) {
+				await this.$store.dispatch('qa/deleteReply', { id: reply.id })
+				this.fetchReplies()
+			},
+			async fetchReplies () {
+				this.replies = await this.$store.dispatch('qa/fetchReplies', { answerID: this.answer.id })
 			}
 		}
 	}
