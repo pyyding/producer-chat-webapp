@@ -3,7 +3,7 @@
     <v-toolbar dark scroll-off-screen style="background: #20be99;">
       <v-toolbar-title>
         <nuxt-link to="/">
-          <img style="width: 200px; margin-top: 5px" src="/toolbar_dark.svg">
+          <img style="width: 230px; margin-top: 5px" src="/toolbar_dark.svg">
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer/>
