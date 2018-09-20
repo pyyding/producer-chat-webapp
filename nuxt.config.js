@@ -4,15 +4,15 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Producer.chat',
+    title: 'Producer Chat',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Webapp for Producer Chat' }
+      { hid: 'description', name: 'description', content: 'where music comes together' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico#2' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,700|Material+Icons' }
     ]
   },
   plugins: [

@@ -1,23 +1,25 @@
-<template>
+  <template>
   <v-app class="background">
-    <v-toolbar dark dense flat>
+    <v-toolbar dark scroll-off-screen style="background: #20be99;">
       <v-toolbar-title>
-        producer chat
+        <nuxt-link to="/">
+          <img style="width: 200px; margin-top: 5px" src="/toolbar_dark.svg">
+        </nuxt-link>
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat to="/feedback">
+        <v-btn class="font-weight-bold" flat to="/feedback">
           <v-icon left small>question_answer</v-icon>
           feedback
         </v-btn>
-        <v-btn v-if="user" flat :to="`/producers/${user.id}`">
+        <v-btn class="font-weight-bold" v-if="user" flat :to="`/producers/${user.id}`">
           <v-avatar size="36px"><img :src="user.photoURL" alt="avatar"></v-avatar>
         </v-btn>
-        <v-btn flat to="/login" v-if="!user">
+        <v-btn class="font-weight-bold" flat to="/login" v-if="!user">
           <v-icon left small>account_circle</v-icon>
           login
         </v-btn>
-        <v-btn flat @click="signOut" v-if="user">
+        <v-btn class="font-weight-bold" flat @click="signOut" v-if="user">
           <v-icon left small>power_settings_new</v-icon>
           sign out
         </v-btn>
