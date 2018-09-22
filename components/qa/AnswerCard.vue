@@ -12,9 +12,13 @@
 			</v-layout>
 			<v-layout row>
 				<div class="vote-widget">
-					<v-btn icon :class="{ active: userVote && userVote.isUpvote}" @click="castVote(true)"><v-icon>arrow_drop_up</v-icon></v-btn>
-					<h2 class="vote-widget__count">{{answer.voteSum}}</h2>
-					<v-btn icon :class="{ active: userVote && !userVote.isUpvote}" @click="castVote(false)"><v-icon>arrow_drop_down</v-icon></v-btn>
+					<v-btn small icon @click="castVote(true)">
+						<v-icon :class="{ 'success--text' : userVote && userVote.isUpvote}">arrow_drop_up</v-icon>
+					</v-btn>
+					<h2 class="vote-widget__count">{{temporaryVoteSum || answer.voteSum}}</h2>
+					<v-btn small icon @click="castVote(false)">
+						<v-icon :class="{ 'success--text' : userVote && !userVote.isUpvote}">arrow_drop_down</v-icon>
+					</v-btn>
 				</div>
 				<v-flex pt-3>
 					<p class="answer--text subheading">
@@ -54,17 +58,14 @@
 			return {
 				replyVisible: false,
 				replyText: '',
-				replies: []
+				replies: [],
+				userVote: {},
+				temporaryVoteSum: null
 			}
 		},
 		async beforeMount () {
 			this.fetchReplies()
-		},
-		computed: {
-			userVote () {
-				if (!this.user) return
-				return this.$store.dispatch('qa/getUserAnswerVote', { answerID: this.answer.id, userID: this.user.id })
-			}
+			this.fetchUserVote()
 		},
 		methods: {
 			deleteAnswer () {
@@ -81,6 +82,9 @@
 				const params = {
 					vote: vote,
 					questionID: this.answer.questionID
+				}
+				this.userVote = {
+					isUpvote: isUpvote
 				}
 				await this.$store.dispatch('qa/castVote', params)
 			},
@@ -105,6 +109,9 @@
 				await this.$store.dispatch('qa/deleteReply', { id: reply.id })
 				this.fetchReplies()
 			},
+			async fetchUserVote () {
+				this.userVote = await this.$store.dispatch('qa/fetchUserAnswerVote', { answerID: this.answer.id, userID: this.user.id })
+			},
 			async fetchReplies () {
 				this.replies = await this.$store.dispatch('qa/fetchReplies', { answerID: this.answer.id })
 			}
@@ -117,9 +124,8 @@
 		&:first-line
 			line-height 0
 		white-space pre-line
+		word-break break-word
 	.vote-widget
 		.vote-widget__count
 			text-align center
-		.vote-widget__button.active
-			color green
 </style>

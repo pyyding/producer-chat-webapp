@@ -67,16 +67,17 @@ export const actions = {
   			await fb.db.collection('votes').doc(existingVote[0].id).delete()
 			  const newVoteRef = await fb.db.collection('votes').doc(`${vote.answerID}_${vote.userID}`)
 			  await newVoteRef.set(vote)
-				setTimeout( () => { dispatch('getQuestionData', questionID) }, 1000)
+				setTimeout( () => { dispatch('getQuestionData', questionID) }, 500)
 			}
 		} else {
 			const newVoteRef = await fb.db.collection('votes').doc(`${vote.answerID}_${vote.userID}`)
 			await newVoteRef.set(vote)
 		}
 	},
-	async getUserAnswerVote (_context, {answerID, userID}) {
-		const votes = await fb.db.collection('votes').where('answerID', '==', answerID).where('userID', '==', userID).get().docs
-		return votes ? votes[0] : null
+	async fetchUserAnswerVote (_context, {answerID, userID}) {
+		const snapshot = await fb.db.collection('votes').where('answerID', '==', answerID).where('userID', '==', userID).get()
+		if (!snapshot.docs.length) return null
+		return snapshot.docs[0].data()
 	},
 	async submitReply (_context, reply) {
   	const replyRef = await fb.db.collection('replies').doc()

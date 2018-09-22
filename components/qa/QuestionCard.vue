@@ -28,7 +28,7 @@
         >
           <v-icon color="grey" small>clear</v-icon>
         </v-btn>
-        <v-flex class="xs2 sm4 text-xs-right">
+        <v-flex class="xs3 sm4 text-xs-right">
           <span class="">{{question.user.displayName}}</span>
           <v-avatar class="ml-2 hidden-xs-only" size="36px"><img :src="question.user.photoURL" alt="avatar"></v-avatar>
         </v-flex>
