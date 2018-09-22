@@ -1,5 +1,5 @@
 <template>
-	<v-card v-if="answer && user" flat class="mb-2">
+	<v-card v-if="answer" flat class="mb-2">
 		<v-card-text>
 			<v-layout row align-center>
 
@@ -62,6 +62,7 @@
 		},
 		computed: {
 			userVote () {
+				if (!this.user) return
 				return this.$store.dispatch('qa/getUserAnswerVote', { answerID: this.answer.id, userID: this.user.id })
 			}
 		},
@@ -84,6 +85,7 @@
 				await this.$store.dispatch('qa/castVote', params)
 			},
 			async submitReply () {
+				if (!this.user) return
 				const reply = {
 					answerID: this.answer.id,
 					user: {

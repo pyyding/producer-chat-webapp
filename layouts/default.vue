@@ -3,11 +3,12 @@
     <v-toolbar dark flat scroll-off-screen color="primary">
       <v-toolbar-title>
         <nuxt-link to="/">
-          <img style="width: 230px; margin-top: 5px" src="/producer_chat_toolbar.svg">
+          <img class="toolbar__logo hidden-xs-only" src="/toolbar_logo.svg">
+          <img class="toolbar__logo--small hidden-sm-and-up" src="/toolbar_logo_small.svg">
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer/>
-      <v-toolbar-items class="hidden-sm-and-down">
+      <v-toolbar-items >
         <v-btn class="font-weight-bold" flat to="/feedback">
           <v-icon left small>question_answer</v-icon>
           feedback
@@ -66,5 +67,10 @@
 </script>
 
 <style lang="stylus" scoped>
-
+  .toolbar__logo
+    width 230px
+    margin-top: 5px
+  .toolbar__logo--small
+    width: 30px;
+    margin-top: 5px;
 </style>

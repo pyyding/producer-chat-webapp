@@ -49,7 +49,9 @@ export const actions = {
 			answer.id = doc.id
 			answers.push(answer)
 		}
-		commit('setQuestionData', {question: questionSnapshot.data(), answers: answers})
+		const question = questionSnapshot.data()
+		question.id = id
+		commit('setQuestionData', {question: question, answers: answers})
 	},
 	async submitAnswer ({ commit, dispatch }, answer) {
   	const newAnswerRef = await fb.db.collection('answers').doc()

@@ -1,5 +1,5 @@
 <template>
-	<v-container>
+	<v-container v-if="questionData">
 		<v-layout justify-center>
 			<v-flex xl6>
 				<v-layout v-if="questionData.question">
@@ -56,7 +56,11 @@
 		},
 		computed: {
 			user () { return this.$store.getters['auth/user'] },
-			questionData () { return this.$store.getters['qa/questionData'] }
+			questionData () {
+				const data = this.$store.getters['qa/questionData']
+				if (data.question && data.question.id !== this.questionID) return
+				return data
+			}
 		},
 		beforeCreate () {
 			this.questionID = this.$route.params.id

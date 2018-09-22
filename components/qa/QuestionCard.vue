@@ -2,7 +2,7 @@
   <v-card color="" class="mt-2" flat>
       <v-card-title class="align-center">
         <v-btn small title="question link" v-if="question.link" :href="question.link" target="_blank" icon><v-icon color="secondary">play_circle_outline</v-icon></v-btn>
-        <div>
+        <v-flex xs7>
           <h2>
             <nuxt-link :to="`/feedback/${question.id}`">
               {{question.title}}
@@ -17,13 +17,21 @@
             dense
             color="secondary"
           />
-        </div>
+        </v-flex>
         <v-spacer/>
-        <v-btn small title="delete question" icon v-if="user && user.id === question.user.id" @click="deleteQuestion"><v-icon color="grey" small>clear</v-icon></v-btn>
-        <div>
-          <strong class="">by {{question.user.displayName}}</strong>
-          <v-avatar class="ml-2" size="36px"><img :src="question.user.photoURL" alt="avatar"></v-avatar>
-        </div>
+        <v-btn
+          small
+          icon
+          title="delete question"
+          v-if="user && user.id === question.user.id"
+          @click="deleteQuestion"
+        >
+          <v-icon color="grey" small>clear</v-icon>
+        </v-btn>
+        <v-flex class="xs2 sm4 text-xs-right">
+          <span class="">{{question.user.displayName}}</span>
+          <v-avatar class="ml-2 hidden-xs-only" size="36px"><img :src="question.user.photoURL" alt="avatar"></v-avatar>
+        </v-flex>
       </v-card-title>
   </v-card>
 </template>
@@ -50,9 +58,13 @@
 
 <style scoped lang="stylus">
   .v-card__title
-    padding 16px 16px 8 16px
+    padding 16px 16px 8px 16px
   .v-card__text
     padding 0 16px
   .v-card__actions
     padding 0 8px 8px 8px
+  @media (max-width 599px)
+    .v-card__title
+      padding 5px 10px 5px 0
+      align-items flex-start
 </style>
