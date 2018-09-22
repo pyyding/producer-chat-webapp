@@ -7,13 +7,27 @@
             <h2 style="text-align: center">
               log in to producer chat.
             </h2>
-            <v-card-actions>
-              <v-spacer/>
+            <v-layout column>
+              <v-flex xs12 pt-3 class="text-xs-center">
+                <p v-if="errorVisible">
+                  This email account isn't part of Producer Chat community. Please fill
+                  <a
+                    class="warning--text"
+                    target="_blank"
+                    href="https://kasparpding.typeform.com/to/xHV1OG"
+                  >our application
+                  </a>
+                  to join the chat.
+                </p>
+              </v-flex>
+              <v-flex class="d-flex">
+                <v-spacer/>
                 <v-btn :loading="loading" class="mt-5 text-xl-center" color="primary" flat @click="authWithGoogle">
                   sign in with Google
                 </v-btn>
-              <v-spacer/>
-            </v-card-actions>
+                <v-spacer/>
+              </v-flex>
+            </v-layout>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -28,7 +42,8 @@
     },
   	data () {
   		return {
-        loading: false
+        loading: false,
+        errorVisible: false
       }
     },
     watch: {
@@ -42,6 +57,10 @@
 				this.$store.dispatch('auth/loginWithGoogle')
           .then(() => {
           	this.loading = false
+          })
+          .catch((error) => {
+          	this.errorVisible = true
+            this.loading = false
           })
 			}
     }

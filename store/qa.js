@@ -18,7 +18,7 @@ export const mutations = {
 
 export const actions = {
   async getQuestions ({ commit }) {
-    const snapshot = await fb.db.collection('questions').get()
+    const snapshot = await fb.db.collection('questions').orderBy('createdAt', 'desc').get()
 		let questions = []
 		snapshot.forEach(doc => {
 			let question = doc.data()
