@@ -2,17 +2,26 @@
 	<v-container>
 		<v-layout justify-center>
 			<v-flex xl6>
-				<v-layout row v-if="questionData.question">
+				<v-layout v-if="questionData.question">
 					<h2>
 						{{questionData.question.title}}
-						<v-btn title="question link" v-if="questionData.question.link" :href="questionData.question.link" target="_blank" icon><v-icon color="secondary">play_circle_outline</v-icon></v-btn>
 					</h2>
+					<v-btn
+						small
+						icon
+						v-if="questionData.question.link"
+						target="_blank"
+						title="question link"
+						:href="questionData.question.link"
+					>
+						<v-icon color="secondary">play_circle_outline</v-icon>
+					</v-btn>
+
 				</v-layout>
 				<v-layout row v-if="questionData.question">
 					posted by &nbsp; <strong>{{questionData.question.user.displayName}}</strong>
 				</v-layout>
-				<v-divider class="mt-1 mb-1"/>
-				<answer-form :questionID="questionID" :user="user"/>
+				<answer-form class="mt-4" :questionID="questionID" :user="user"/>
 				<v-layout row mt-5>
 					<v-flex v-if="questionData.answers">
 						<div v-for="answer in questionData.answers" :key="answer.id" class="">

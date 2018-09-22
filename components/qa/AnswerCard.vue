@@ -17,15 +17,26 @@
 					<v-btn icon :class="{ active: userVote && !userVote.isUpvote}" @click="castVote(false)"><v-icon>arrow_drop_down</v-icon></v-btn>
 				</div>
 				<v-flex pt-3>
-					<p class="answer--text">
+					<p class="answer--text subheading">
 						{{answer.text}}
 					</p>
-				</v-flex>
-			</v-layout>
-			<v-layout column>
-				<v-flex v-for="reply in replies" :key="reply.id">
-					<v-btn title="delete reply" icon v-if="user && user.id === reply.user.id" @click="deleteReply(reply)"><v-icon color="grey" small>clear</v-icon></v-btn>
-					<strong class="grey--text">{{reply.user.displayName}}</strong><span class="grey--text"> {{reply.text}}</span>
+					<v-flex v-for="reply in replies" :key="reply.id">
+						<v-divider class="mb-2 mt-2 grey lighten-4" />
+						<v-layout align-center>
+							<v-flex>
+								<strong class="">{{reply.user.displayName}}</strong><span class=""> {{reply.text}}</span>
+							</v-flex>
+							<v-btn
+								small
+								icon
+								title="delete reply"
+								v-if="user && user.id === reply.user.id"
+								@click="deleteReply(reply)"
+							>
+								<v-icon color="grey" small>clear</v-icon>
+							</v-btn>
+						</v-layout>
+					</v-flex>
 				</v-flex>
 			</v-layout>
 		</v-card-text>
