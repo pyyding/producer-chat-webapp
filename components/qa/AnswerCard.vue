@@ -28,11 +28,11 @@
 					<strong class="grey--text">{{reply.user.displayName}}</strong><span class="grey--text"> {{reply.text}}</span>
 				</v-flex>
 			</v-layout>
-			<v-layout row>
+		</v-card-text>
+		<v-card-actions>
 				<v-btn color="success"  v-if="!replyVisible" @click="replyVisible = true" flat>reply</v-btn>
 				<v-text-field autofocus @keyup.native.enter="submitReply" v-if="replyVisible" label="Reply..." v-model="replyText"></v-text-field><v-btn v-if="replyVisible" @click="submitReply" icon><v-icon color="success" >send</v-icon></v-btn>
-			</v-layout>
-		</v-card-text>
+		</v-card-actions>
 	</v-card>
 </template>
 

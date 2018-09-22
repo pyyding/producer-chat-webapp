@@ -5,11 +5,11 @@
 				<v-layout row v-if="questionData.question">
 					<h2>
 						{{questionData.question.title}}
-						<v-btn title="question link" v-if="questionData.question.link" :href="questionData.question.link" target="_blank" icon><v-icon color="primary">play_circle_filled</v-icon></v-btn>
+						<v-btn title="question link" v-if="questionData.question.link" :href="questionData.question.link" target="_blank" icon><v-icon color="secondary">play_circle_outline</v-icon></v-btn>
 					</h2>
 				</v-layout>
 				<v-layout row v-if="questionData.question">
-					asked by &nbsp; <strong>{{questionData.question.user.displayName}}</strong>
+					posted by &nbsp; <strong>{{questionData.question.user.displayName}}</strong>
 				</v-layout>
 				<v-divider class="mt-1 mb-1"/>
 				<answer-form :questionID="questionID" :user="user"/>

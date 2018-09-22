@@ -9,16 +9,14 @@
 				</v-layout>
 				<v-layout row>
 					<h4>sounds dope?</h4>
-					<v-btn @click="setRating(1)" icon><v-icon>{{ rating >= 1 ? 'star' : 'star_border'}}</v-icon></v-btn>
-					<v-btn @click="setRating(2)" icon><v-icon>{{ rating >= 2 ? 'star' : 'star_border'}}</v-icon></v-btn>
-					<v-btn @click="setRating(3)" icon><v-icon>{{ rating >= 3 ? 'star' : 'star_border'}}</v-icon></v-btn>
-					<v-btn @click="setRating(4)" icon><v-icon>{{ rating >= 4 ? 'star' : 'star_border'}}</v-icon></v-btn>
-					<v-btn @click="setRating(5)" icon><v-icon>{{ rating >= 5 ? 'star' : 'star_border'}}</v-icon></v-btn>
+					<v-rating
+						v-model="rating"
+						color="secondary"
+					/>
 				</v-layout>
 			</v-card-text>
 			<v-card-actions>
 				<v-spacer/>
-				<v-btn @click="showForm = false" color="error" flat>cancel</v-btn>
 				<v-btn @click="submit" class="ml-0" color="success" flat>post</v-btn>
 			</v-card-actions>
 		</v-card>

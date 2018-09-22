@@ -1,9 +1,9 @@
   <template>
   <v-app class="background">
-    <v-toolbar dark scroll-off-screen style="background: #20be99;">
+    <v-toolbar dark flat scroll-off-screen color="primary">
       <v-toolbar-title>
         <nuxt-link to="/">
-          <img style="width: 230px; margin-top: 5px" src="/toolbar_dark.svg">
+          <img style="width: 230px; margin-top: 5px" src="/producer_chat_toolbar.svg">
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer/>
