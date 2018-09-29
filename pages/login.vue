@@ -7,6 +7,13 @@
             <h2 style="text-align: center">
               log in to producer chat.
             </h2>
+            <v-layout row>
+              <v-spacer/>
+              <p class="text--grey mt-3 text-xs-center" style="width: 300px">
+                We're currently in beta and accept only limited amount of users. <a target="_blank" href="https://kasparpding.typeform.com/to/xHV1OG">Apply to be a beta tester</a>
+              </p>
+              <v-spacer/>
+            </v-layout>
             <v-layout column>
               <v-flex xs12 pt-3 class="text-xs-center">
                 <p v-if="errorVisible">
@@ -15,15 +22,21 @@
                     class="warning--text"
                     target="_blank"
                     href="https://kasparpding.typeform.com/to/xHV1OG"
-                  >our application
+                  >the beta tester application
                   </a>
                   to join the chat.
                 </p>
               </v-flex>
               <v-flex class="d-flex">
                 <v-spacer/>
-                <v-btn :loading="loading" class="mt-5 text-xl-center" color="primary" flat @click="authWithGoogle">
-                  sign in with Google
+                <v-btn
+                  :loading="loading"
+                  class="mt-5"
+                  color="white"
+                  style="width: 50px"
+                  @click="authWithGoogle"
+                >
+                  sign in with <img class="ml-2" style="height: 20px" :src="require('assets/btn_google_light_normal_ios.svg')">
                 </v-btn>
                 <v-spacer/>
               </v-flex>

@@ -13,16 +13,28 @@
           <v-icon left small>question_answer</v-icon>
           feedback
         </v-btn>
-        <v-btn class="font-weight-bold" v-if="user" flat :to="`/producers/${user.id}`">
-          <v-avatar size="36px"><img :src="user.photoURL" alt="avatar"></v-avatar>
-        </v-btn>
+        <v-menu
+          offset-y
+          v-if="user"
+        >
+          <v-btn
+            class="font-weight-bold"
+            flat
+            slot="activator"
+          >
+            <v-avatar size="36px"><img :src="user.photoURL" alt="avatar"></v-avatar>
+          </v-btn>
+          <v-list>
+            <v-list-tile
+              @click="signOut"
+            >
+              <v-list-tile-title>Sign out</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
         <v-btn class="font-weight-bold" flat to="/login" v-if="!user">
           <v-icon left small>account_circle</v-icon>
           login
-        </v-btn>
-        <v-btn class="font-weight-bold" flat @click="signOut" v-if="user">
-          <v-icon left small>power_settings_new</v-icon>
-          sign out
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -32,7 +44,7 @@
       </v-container>
     </v-content>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2018</span>
+      <span class="ml-4">Producer Chat &copy; 2018</span>
     </v-footer>
   </v-app>
 </template>

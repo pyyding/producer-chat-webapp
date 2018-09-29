@@ -7,7 +7,7 @@
 			</v-flex>
 		</v-layout>
 		<v-layout row>
-			<v-flex xl3 >
+			<v-flex xl3>
 				<v-card flat>
 					<v-card-text>
 						<v-layout row justify-center>
