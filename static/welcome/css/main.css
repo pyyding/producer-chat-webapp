@@ -7937,11 +7937,11 @@ button.button {
   padding-left: 40px;
   padding-top: 40px;
   padding-bottom: 40px;
-  width: 50%; }
+  width: 30%; }
   @media (max-width: 700px) {
     .features-07__main {
       width: 100%;
-      padding-left: 0;
+      padding-left: 40px;
       padding-top: 0; } }
 
 .features-07__main_content {
@@ -7957,7 +7957,7 @@ button.button {
   margin-top: 45px; }
 
 .features-07__visual {
-  width: 50%; }
+  width: 70%; }
   @media (max-width: 700px) {
     .features-07__visual {
       width: 100%;
