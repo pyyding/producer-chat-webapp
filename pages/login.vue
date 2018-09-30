@@ -10,7 +10,7 @@
             <v-layout row>
               <v-spacer/>
               <p class="text--grey mt-3 text-xs-center" style="width: 300px">
-                We're currently in beta and accept only limited amount of users. <a target="_blank" href="https://kasparpding.typeform.com/to/xHV1OG">Apply to be a beta tester</a>
+                We're currently in beta and accept only limited amount of users. <a target="_blank" href="https://producerchat.typeform.com/to/bmYm9d">Apply to be a beta tester</a>
               </p>
               <v-spacer/>
             </v-layout>
@@ -21,7 +21,7 @@
                   <a
                     class="warning--text"
                     target="_blank"
-                    href="https://kasparpding.typeform.com/to/xHV1OG"
+                    href="https://producerchat.typeform.com/to/bmYm9d"
                   >the beta tester application
                   </a>
                   to join the chat.
