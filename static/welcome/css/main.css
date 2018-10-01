@@ -8998,3 +8998,9 @@ a.pswp__share--download:hover {
 .pswp__bg {
   transition: none !important;
   background-color: rgba(0, 0, 0, 0.8); }
+
+.avatar-mid {
+  height: 130px;
+  border-radius: 100%;
+  max-height: 100%;
+}

@@ -2,7 +2,7 @@
   <v-app class="background">
     <v-toolbar dark flat scroll-off-screen color="primary">
       <v-toolbar-title>
-        <nuxt-link to="/">
+        <nuxt-link to="/feedback">
           <img class="toolbar__logo hidden-xs-only" src="/toolbar_logo.svg">
           <img class="toolbar__logo--small hidden-sm-and-up" src="/toolbar_logo_small.svg">
         </nuxt-link>
