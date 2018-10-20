@@ -1,6 +1,6 @@
 <template>
     <v-list>
-        <v-list-tile class="task-item" @click="" v-for="task in tasks" :key="task.id" subheader>
+        <v-list-tile class="task-item" v-for="task in tasks" :key="task.id" subheader>
             <v-list-tile-action>
                 <v-checkbox :input-value="task.isDone" @change="toggleTaskStatus(task)"/>
             </v-list-tile-action>
