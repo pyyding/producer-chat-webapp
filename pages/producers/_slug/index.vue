@@ -55,7 +55,7 @@
 		},
 		beforeCreate () {
 			const slug = this.$route.params.slug
-			this.$store.dispatch('producer/getProducer', slug)
+			this.$store.dispatch('producer/fetchProducer', slug)
 		},
 		methods: {
 			signOut () {

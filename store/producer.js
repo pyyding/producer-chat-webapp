@@ -11,10 +11,14 @@ export const mutations = {
 }
 
 export const actions = {
-	async getProducer ({ commit }, slug) {
+	async fetchProducer ({ commit }, slug) {
+		// @TODO create user slugs trigger
 		const snapshot = await fb.db.collection('users').doc(slug).get()
-		commit('setProducer', snapshot.data())
-	}
+		const producer = snapshot.data()
+		producer.id = snapshot.id
+		commit('setProducer', producer)
+		return producer
+	}	
 }
 
 export const getters = {

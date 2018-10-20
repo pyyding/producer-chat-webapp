@@ -13,6 +13,10 @@
           <v-icon left small>question_answer</v-icon>
           feedback
         </v-btn>
+        <v-btn v-if="user" class="font-weight-bold" flat :to="'/producers/' + user.id + '/tasks'">
+          <v-icon left small>check_circle</v-icon>
+          tasks
+        </v-btn>
         <v-menu
           offset-y
           v-if="user"
