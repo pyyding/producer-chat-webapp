@@ -38,7 +38,12 @@
 
 <script>
   export default {
-    props: ['question'],
+    props: {
+      question: {
+        type: Object,
+        default: null
+      }
+    },
     computed: {
     	user () { return this.$store.getters['auth/user']}
     },

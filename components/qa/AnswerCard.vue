@@ -53,7 +53,16 @@
 
 <script>
 	export default {
-		props: ['answer', 'user'],
+		props: {
+			answer: {
+				type: Object,
+				default: null
+			},
+			user: {
+				type: Object,
+				default: null
+			}
+		},
 		data () {
 			return {
 				replyVisible: false,

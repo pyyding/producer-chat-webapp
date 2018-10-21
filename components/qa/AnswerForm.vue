@@ -25,7 +25,16 @@
 
 <script>
 	export default {
-		props: ['questionID', 'user'],
+		props: {
+			questionID: {
+				type: int,
+				default: null
+			},
+			user: {
+				type: Object,
+				default: null
+			}
+		},
 		data () {
 			return {
 				showForm: true,

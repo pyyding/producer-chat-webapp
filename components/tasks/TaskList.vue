@@ -27,54 +27,64 @@
 
 <script>
 export default {
-    props: ['tasks'],
-    data () {
-        return {
-            newTaskText: ''
-        }
-    },
-    computed: {
-        user () {
-            return this.$store.getters['auth/user']
-        },
-    },
-    methods: {
-        toggleTaskStatus (task) {
-            const params = { 
-                task: task,
-                isDone: !task.isDone
-            }
-            this.$store.dispatch('tasks/setTaskStatus', params)
-        },
-        createTask () {
-            const task = {
-                text: this.newTaskText,
-                user: {
-                    id: this.user.id,
-                    displayName: this.user.displayName,
-                    photoURL: this.user.photoURL
-                },
-                createdAt: new Date(),
-                isDone: false,
-                finishedAt: null
-            }
-            this.$store.dispatch('tasks/createTask', task)
-            this.newTaskText = ''
-        },
-        deleteTask (task) {
-            this.$store.dispatch('tasks/deleteTask', task)
-        }
+  props: {
+    tasks: {
+      type: Array,
+      default: new Array
     }
+  },
+  data() {
+    return {
+      newTaskText: ''
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.getters['auth/user']
+    }
+  },
+  methods: {
+    toggleTaskStatus(task) {
+      const params = {
+        task: task,
+        isDone: !task.isDone
+      }
+      this.$store.dispatch('tasks/setTaskStatus', params)
+    },
+    createTask() {
+      const task = {
+        text: this.newTaskText,
+        user: {
+          id: this.user.id,
+          displayName: this.user.displayName,
+          photoURL: this.user.photoURL
+        },
+        createdAt: new Date(),
+        isDone: false,
+        finishedAt: null
+      }
+      this.$store.dispatch('tasks/createTask', task)
+      this.newTaskText = ''
+    },
+    deleteTask(task) {
+      this.$store.dispatch('tasks/deleteTask', task)
+    }
+  }
 }
 </script>
 
 <style lang="stylus">
-.v-input--selection-controls .v-input__slot
-    margin-bottom initial
+.v-input--selection-controls .v-input__slot {
+    margin-bottom: initial;
+}
 
-.task-item:hover
-    .task-item__delete-button 
-        opacity 1
-.task-item__delete-button
-    opacity 0
+.task-item:hover {
+    .task-item__delete-button {
+        opacity: 1;
+    }
+}
+
+.task-item__delete-button {
+    opacity: 0;
+}
 </style>
