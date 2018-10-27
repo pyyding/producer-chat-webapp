@@ -2,7 +2,6 @@
 	<v-card v-if="answer" flat class="mb-2">
 		<v-card-text>
 			<v-layout row align-center>
-
 				<v-avatar class="ml-2 mr-2" size="36px"><img :src="answer.user.photoURL" alt="avatar"></v-avatar>
 				<div>
 					<strong>{{answer.user.displayName}}</strong>
@@ -45,7 +44,7 @@
 			</v-layout>
 		</v-card-text>
 		<v-card-actions>
-				<v-btn color="success"  v-if="!replyVisible" @click="replyVisible = true" flat>reply</v-btn>
+				<v-btn color="success"  v-if="!replyVisible && user" @click="replyVisible = true" flat>reply</v-btn>
 				<v-text-field autofocus @keyup.native.enter="submitReply" v-if="replyVisible" label="Reply..." v-model="replyText"></v-text-field><v-btn v-if="replyVisible" @click="submitReply" icon><v-icon color="success" >send</v-icon></v-btn>
 		</v-card-actions>
 	</v-card>
@@ -119,6 +118,10 @@
 				this.fetchReplies()
 			},
 			async fetchUserVote () {
+				if (!this.user) {
+					this.userVote = null
+					return
+				}
 				this.userVote = await this.$store.dispatch('qa/fetchUserAnswerVote', { answerID: this.answer.id, userID: this.user.id })
 			},
 			async fetchReplies () {

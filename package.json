@@ -1,7 +1,7 @@
 {
   "name": "producer-chat-webapp4",
   "version": "1.0.0",
-  "description": "My hunky-dory Nuxt.js project",
+  "description": "Community for active music producers. Connect, Get Feedback, and Release Your Music",
   "author": "kaspar püüding",
   "private": true,
   "scripts": {

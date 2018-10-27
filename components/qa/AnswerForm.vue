@@ -27,7 +27,7 @@
 	export default {
 		props: {
 			questionID: {
-				type: int,
+				type: String,
 				default: null
 			},
 			user: {
