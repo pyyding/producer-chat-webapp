@@ -61,7 +61,7 @@
     },
     watch: {
   		user: function (prevValue, newValue) {
-  			this.$router.push('/feedback')
+  			this.$router.push('/tracks')
       }
     },
     methods: {

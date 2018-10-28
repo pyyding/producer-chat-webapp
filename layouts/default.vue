@@ -2,7 +2,7 @@
   <v-app class="background">
     <v-toolbar dark flat scroll-off-screen color="primary">
       <v-toolbar-title>
-        <nuxt-link to="/feedback">
+        <nuxt-link to="/tracks">
           <img class="toolbar__logo hidden-xs-only" src="/toolbar_logo.svg">
           <img class="toolbar__logo--small hidden-sm-and-up" src="/toolbar_logo_small.svg">
         </nuxt-link>
@@ -64,10 +64,6 @@
       return {
         drawer: true,
         fixed: false,
-        items: [
-          { icon: 'apps', title: 'Dashboard', to: '/dashboard' },
-          { icon: 'bubble_chart', title: 'feedback', to: '/feedback' }
-        ],
         miniVariant: false,
         right: true,
         rightDrawer: false,
