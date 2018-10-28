@@ -1,12 +1,33 @@
+import fb from '~/plugins/firebase'
+import {COLLECTIONS} from '~/utils/constants.js'
+
 export const state = () => ({
-  sidebar: false
+  sidebar: false,
+  topUsers: []
 })
 
 export const mutations = {
-  toggleSidebar (state) {
-    state.sidebar = !state.sidebar
+  setTopUsers (state, topUsers) {
+    state.topUsers = topUsers
   }
 }
 
 export const actions = {
+  async fetchTopUsers ({commit}) {
+    const snapshot = await fb.db.collection(COLLECTIONS.USERS).orderBy('totalTracks', 'desc').limit(10).get()
+    const users = []
+    for (const doc of snapshot.docs) {
+      const user = doc.data()
+      if (user.totalTracks > 0) {
+        users.push(user)
+      }
+    }
+    commit('setTopUsers', users)
+  }
+}
+
+export const getters = {
+  topUsers (state) {
+    return state.topUsers
+  }
 }

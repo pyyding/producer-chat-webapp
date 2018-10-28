@@ -1,38 +1,51 @@
 <template>
-  <v-card color="" class="mt-2" flat>
+  <v-card color="" class="mt-2 mb-5" flat>
       <v-card-title class="align-center">
-        <v-btn small title="question link" v-if="question.link" :href="question.link" target="_blank" icon><v-icon color="secondary">play_circle_outline</v-icon></v-btn>
-        <v-flex xs7>
-          <h2>
-            <nuxt-link :to="`/feedback/${question.id}`">
-              {{question.title}}
-            </nuxt-link>
-          </h2>
+        <v-layout column>
+          <v-flex>
+          <v-avatar class="mr-2 hidden-xs-only" size="36px"><img :src="question.user.photoURL" alt="avatar"></v-avatar>
+          <span><strong>{{question.user.displayName}}</strong> posted a track</span>
           <v-rating
-            style="width:100px"
             v-model="question.ratingAvg"
             half-increments
             readonly
             small
             dense
+            class="d-inline-block"
             color="secondary"
           />
-        </v-flex>
-        <v-spacer/>
-        <v-btn
-          small
-          icon
-          title="delete question"
-          v-if="user && user.id === question.user.id"
-          @click="deleteQuestion"
-        >
-          <v-icon color="grey" small>clear</v-icon>
-        </v-btn>
-        <v-flex class="xs3 sm4 text-xs-right">
-          <span class="">{{question.user.displayName}}</span>
-          <v-avatar class="ml-2 hidden-xs-only" size="36px"><img :src="question.user.photoURL" alt="avatar"></v-avatar>
-        </v-flex>
+          <v-btn
+            small
+            icon
+            title="delete question"
+            v-if="user && user.id === question.user.id"
+            @click="deleteQuestion"
+            class="pull-right"
+          >
+            <v-icon color="grey" small>clear</v-icon>
+          </v-btn>
+          </v-flex>
+          <v-flex pt-3 pb-4>
+            <v-divider/>
+          </v-flex>
+        </v-layout>
       </v-card-title>
+      <v-card-text>
+            <iframe class="mb-4" v-if="question.link.includes('soundcloud')" width="100%" height="100" scrolling="no" frameborder="no" allow="autoplay" :src="`https://w.soundcloud.com/player/?url=${question.link}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true`"/>
+            <iframe class="mb-4" v-else-if="question.link.includes('spotify')" :src="question.link" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"/>
+            <iframe class="mb-4" v-else-if="question.link.includes('clyp')" width="100%" height="160" :src="`${question.link}/widget`" frameborder="0"></iframe>  
+            <v-flex v-else mt-2 mb-4 class="text-xs-center">
+              <span style="display: inline-flex; flex-direction: column; cursor: pointer">
+                <v-icon :href="question.link" target="_blank" color="primary">play_circle_filled</v-icon>
+                <a :href="question.link" target="_blank"> listen from here</a>
+              </span>
+            </v-flex>
+      </v-card-text>
+      <v-card-actions>
+        <v-btn :to="`/tracks/${question.id}`" depressed color="success" flat>
+          See thread
+        </v-btn>
+      </v-card-actions>
   </v-card>
 </template>
 
@@ -45,7 +58,7 @@
       }
     },
     computed: {
-    	user () { return this.$store.getters['auth/user']}
+      user () { return this.$store.getters['auth/user']}
     },
     data () {
       return {

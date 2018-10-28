@@ -9,13 +9,13 @@
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items >
-        <v-btn class="font-weight-bold" flat to="/feedback">
+        <v-btn class="font-weight-bold" flat to="/tracks">
           <v-icon left small>question_answer</v-icon>
-          feedback
+          tracks
         </v-btn>
         <v-btn v-if="user" class="font-weight-bold" flat :to="'/producers/' + user.id + '/tasks'">
           <v-icon left small>check_circle</v-icon>
-          tasks
+          my tasks
         </v-btn>
         <v-menu
           offset-y

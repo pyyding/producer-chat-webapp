@@ -1,21 +1,20 @@
 <template>
 	<div>
-		<v-btn v-if="user" color="primary" flat @click="extended = true">
-			<v-icon left>create</v-icon> ask feedback
+		<v-btn v-if="user" color="primary" depressed @click="extended = true">
+			🎹 post a track
 		</v-btn>
 		<v-card v-if="extended" color="" class="mt-2" flat>
 			<v-slide-y-transition>
 				<v-card-text>
 					<v-form>
-						<v-text-field required v-model="question.title" label="track title *"/>
-						<v-text-field required append-icon="link" v-model="question.link" label="link (soundcloud, clyp.it, etc.) *"/>
+						<v-text-field required append-icon="link" v-model="question.link" label="link (public soundcloud or clyp.it link)*"/>
 					</v-form>
 				</v-card-text>
 			</v-slide-y-transition>
 			<v-card-actions v-if="extended">
 				<v-spacer/>
-				<v-btn @click="extended = false" color="error" flat>cancel</v-btn>
-				<v-btn :loading="loading" @click="ask" color="primary" flat>ask</v-btn>
+				<v-btn @click="extended = false" color="grey" flat>cancel</v-btn>
+				<v-btn :loading="loading" @click="ask" color="primary" flat>post</v-btn>
 			</v-card-actions>
 		</v-card>
 	</div>
