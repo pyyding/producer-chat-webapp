@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-layout row>
-      <v-flex md8 xs12>
+      <v-flex>
         <v-layout row>
           <v-flex xl6>
             <ask-card/>
@@ -15,11 +15,6 @@
               :question="question"
             />
           </v-flex>
-        </v-layout>
-      </v-flex>
-      <v-flex style="margin-top: 56px" pl-4 md4 hidden-xs-only>
-        <v-layout row>
-          <app-streak-list/>
         </v-layout>
       </v-flex>
     </v-layout>

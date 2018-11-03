@@ -25,9 +25,6 @@
             <v-icon color="grey" small>clear</v-icon>
           </v-btn>
           </v-flex>
-          <v-flex pt-3 pb-4>
-            <v-divider/>
-          </v-flex>
         </v-layout>
       </v-card-title>
       <v-card-text>
@@ -50,39 +47,49 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      question: {
-        type: Object,
-        default: null
-      }
-    },
-    computed: {
-      user () { return this.$store.getters['auth/user']}
-    },
-    data () {
-      return {
-        extended: false,
-        showAnswerForm: false
-      }
-    },
-    methods: {
-    	deleteQuestion () {
-    		this.$store.dispatch('qa/deleteQuestion', this.question.id)
-      }
+export default {
+  props: {
+    question: {
+      type: Object,
+      default: null
+    }
+  },
+  computed: {
+    user() {
+      return this.$store.getters['auth/user']
+    }
+  },
+  data() {
+    return {
+      extended: false,
+      showAnswerForm: false
+    }
+  },
+  methods: {
+    deleteQuestion() {
+      this.$store.dispatch('qa/deleteQuestion', this.question.id)
     }
   }
+}
 </script>
 
 <style scoped lang="stylus">
-  .v-card__title
-    padding 16px 16px 8px 16px
-  .v-card__text
-    padding 0 16px
-  .v-card__actions
-    padding 0 8px 8px 8px
-  @media (max-width 599px)
-    .v-card__title
-      padding 5px 10px 5px 0
-      align-items flex-start
+.v-card__title {
+  padding: 16px 16px 8px 16px;
+}
+
+.v-card__text {
+  padding: 15px 16px;
+}
+
+.v-card__actions {
+  padding: 0 8px 8px 8px;
+}
+
+@media (max-width: 599px) {
+  .v-card__title {
+    padding: 5px 10px 5px 0;
+    align-items: flex-start;
+  }
+}
 </style>

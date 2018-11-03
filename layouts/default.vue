@@ -2,15 +2,19 @@
   <v-app class="background">
     <v-toolbar dark flat scroll-off-screen color="primary">
       <v-toolbar-title>
-        <nuxt-link to="/tracks">
+        <nuxt-link to="/newsfeed">
           <img class="toolbar__logo hidden-xs-only" src="/toolbar_logo.svg">
           <img class="toolbar__logo--small hidden-sm-and-up" src="/toolbar_logo_small.svg">
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items >
+        <v-btn class="font-weight-bold" flat to="/newsfeed">
+          <v-icon left small>web</v-icon>
+          newsfeed
+        </v-btn>
         <v-btn class="font-weight-bold" flat to="/tracks">
-          <v-icon left small>question_answer</v-icon>
+          <v-icon left small>album</v-icon>
           tracks
         </v-btn>
         <v-btn v-if="user" class="font-weight-bold" flat :to="'/producers/' + user.id + '/tasks'">
@@ -54,35 +58,38 @@
 </template>
 
 <script>
-  export default {
-  	computed: {
-      user () {
-        return this.$store.getters['auth/user']
-      }
-    },
-    data () {
-      return {
-        drawer: true,
-        fixed: false,
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'producer.chat'
-      }
-    },
-    methods: {
-  		signOut () {
-  			this.$store.dispatch('auth/signOut')
-      }
+export default {
+  computed: {
+    user() {
+      return this.$store.getters['auth/user']
+    }
+  },
+  data() {
+    return {
+      drawer: true,
+      fixed: false,
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: 'producer.chat'
+    }
+  },
+  methods: {
+    signOut() {
+      this.$store.dispatch('auth/signOut')
     }
   }
+}
 </script>
 
 <style lang="stylus" scoped>
-  .toolbar__logo
-    width 230px
-    margin-top: 5px
-  .toolbar__logo--small
-    width: 30px;
-    margin-top: 5px;
+.toolbar__logo {
+  width: 230px;
+  margin-top: 5px;
+}
+
+.toolbar__logo--small {
+  width: 30px;
+  margin-top: 5px;
+}
 </style>
