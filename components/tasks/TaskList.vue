@@ -10,7 +10,7 @@
                 </v-list-tile-title>
             </v-list-tile-content>
             <v-spacer/>
-            <v-list-tile-action v-if="task.user.id === user.id">
+            <v-list-tile-action v-if="user && task.user.id === user.id">
                 <v-btn class="task-item__delete-button" @click="deleteTask(task)" icon><v-icon small class="grey--text">clear</v-icon></v-btn>
             </v-list-tile-action>
         </v-list-tile>

@@ -14,7 +14,7 @@ export const mutations = {
 
 export const actions = {
   async fetchTopUsers ({commit}) {
-    const snapshot = await fb.db.collection(COLLECTIONS.USERS).orderBy('totalTracks', 'desc').limit(10).get()
+    const snapshot = await fb.db.collection(COLLECTIONS.USERS).orderBy('streak', 'desc').limit(10).get()
     const users = []
     for (const doc of snapshot.docs) {
       const user = doc.data()
