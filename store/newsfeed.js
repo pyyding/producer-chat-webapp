@@ -28,7 +28,7 @@ export const actions = {
             .collection(COLLECTIONS.TASKS)
             .where('isDone', '==', true)
             .orderBy('createdAt', 'desc')
-            .limit(10)
+            .limit(30)
             .get()
         let posts = []
 
