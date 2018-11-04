@@ -9,19 +9,19 @@
             </v-list-tile-title>
             <v-list-tile-sub-title class="streak-item__sub-title">
                 <span class="tracks-chip d-inline-flex">
+                    <span class="streak-chip d-inline-flex ml-2" v-if="user.streak > 0">
+                        <span class="streak-chip__icon">
+                            🔥
+                        </span>
+                        <span class="streak-chip__text">
+                            {{user.streak}}
+                        </span>
+                    </span>
                     <span class="streak-chip__icon">
                         🎹
                     </span>
                     <span class="streak-chip__text">
                         {{user.totalTracks}}
-                    </span>
-                </span>
-                <span class="streak-chip d-inline-flex ml-2" v-if="user.streak > 0">
-                    <span class="streak-chip__icon">
-                        🔥
-                    </span>
-                    <span class="streak-chip__text">
-                        {{user.streak}}
                     </span>
                 </span>
             </v-list-tile-sub-title>

@@ -64,8 +64,7 @@ export default {
           photoURL: this.user.photoURL
         },
         createdAt: new Date(),
-        isDone: false,
-        finishedAt: null
+        isDone: false
       }
       this.$store.dispatch('tasks/createTask', task)
       this.newTaskText = ''

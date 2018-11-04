@@ -25,7 +25,7 @@ export const actions = {
     const googleUser = signInResponse.user
 
     const users = fb.db.collection('users')
-    let userExistsSnapshot = await users.where('email', '==', googleUser.email).get()
+		let userExistsSnapshot = await users.where('email', '==', googleUser.email).get()
     if (!userExistsSnapshot.empty) {
     	const doc = userExistsSnapshot[0]
 	    const user = doc.data()
