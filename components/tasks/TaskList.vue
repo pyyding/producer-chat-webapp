@@ -14,7 +14,7 @@
                 <v-btn class="task-item__delete-button" @click="deleteTask(task)" icon><v-icon small class="grey--text">clear</v-icon></v-btn>
             </v-list-tile-action>
         </v-list-tile>
-        <v-list-tile v-if="!disabled">
+        <v-list-tile v-if="!hideInput">
             <v-text-field 
                 placeholder="Finish the beat from last night" 
                 @keyup.native.enter="createTask" 
@@ -35,6 +35,10 @@ export default {
     tasks: {
       type: Array,
       default: new Array()
+    },
+    hideInput: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

@@ -9,7 +9,7 @@
       </v-card-title>
       
       <v-card-text>
-        <task-list disabled :tasks="post.data"></task-list>
+        <task-list disabled hide-input :tasks="post.data"></task-list>
       </v-card-text>
   </v-card>
 </template>
