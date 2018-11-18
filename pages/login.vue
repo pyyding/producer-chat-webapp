@@ -49,33 +49,36 @@
 </template>
 
 <script>
-  export default {
-  	computed: {
-  		user () { return this.$store.getters['auth/user'] }
-    },
-  	data () {
-  		return {
-        loading: false,
-        errorVisible: false
-      }
-    },
-    watch: {
-  		user: function (prevValue, newValue) {
-  			this.$router.push('/tracks')
-      }
-    },
-    methods: {
-			authWithGoogle: function () {
-				this.loading = true
-				this.$store.dispatch('auth/loginWithGoogle')
-          .then(() => {
-          	this.loading = false
-          })
-          .catch((error) => {
-          	this.errorVisible = true
-            this.loading = false
-          })
-			}
+export default {
+  computed: {
+    user() {
+      return this.$store.getters['auth/user']
+    }
+  },
+  data() {
+    return {
+      loading: false,
+      errorVisible: false
+    }
+  },
+  watch: {
+    user: function(prevValue, newValue) {
+      this.$router.push('/newsfeed')
+    }
+  },
+  methods: {
+    authWithGoogle: function() {
+      this.loading = true
+      this.$store
+        .dispatch('auth/loginWithGoogle')
+        .then(() => {
+          this.loading = false
+        })
+        .catch(error => {
+          this.errorVisible = true
+          this.loading = false
+        })
     }
   }
+}
 </script>

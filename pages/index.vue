@@ -4,9 +4,9 @@
 </template>
 
 <script>
-	export default {
-    mounted () {
-      window.location = 'https://www.producer.chat/welcome'
-		}
+export default {
+  mounted() {
+    this.$router.push('/newsfeed')
   }
+}
 </script>
