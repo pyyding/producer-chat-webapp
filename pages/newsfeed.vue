@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-layout row>
-            <v-flex md7 sm8>
+            <v-flex md7 sm7>
                 <v-layout column>
                     <ask-card class="mb-3"/>
                     <div v-for="post in posts" :key="post.createdAt.seconds"> 
@@ -10,7 +10,7 @@
                     </div>
                 </v-layout>
             </v-flex>
-            <v-flex pl-4 lg4 md5 sm4 hidden-xs-only>
+            <v-flex pl-4 lg4 md5 sm5 hidden-xs-only>
                 <v-layout row>
                 <app-streak-list/>
                 </v-layout>
