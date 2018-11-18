@@ -5,7 +5,7 @@
         </v-list-tile-avatar>
         <v-list-tile-content>
             <v-list-tile-title>
-                <h3>{{user.displayName}}</h3>
+                <h3>{{`${user.displayName}`}}</h3>
             </v-list-tile-title>
             <v-list-tile-sub-title class="streak-item__sub-title">
                 <span class="tracks-chip d-inline-flex">
@@ -13,14 +13,14 @@
                         <span class="streak-chip__icon">
                             🔥
                         </span>
-                        <span class="streak-chip__text">
+                        <span class="streak-chip__text success--text">
                             {{user.streak}}
                         </span>
                     </span>
                     <span class="streak-chip__icon">
                         🎹
                     </span>
-                    <span class="streak-chip__text">
+                    <span class="streak-chip__text secondary--text">
                         {{user.totalTracks}}
                     </span>
                 </span>
@@ -42,7 +42,6 @@ export default {
 
 <style lang="stylus" scoped>
 .streak-chip__text {
-    color: black;
     font-weight: 600;
     line-height: 18px;
 }

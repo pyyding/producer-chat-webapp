@@ -1,7 +1,7 @@
 <template>
     <v-card flat style="width: 100%">
-        <v-card-title class="justify-center primary">
-            <h2 class="white--text">Top Producers</h2>
+        <v-card-title >
+            <h2>top producers</h2>
         </v-card-title>
         <v-card-text>
             <v-list two-line>

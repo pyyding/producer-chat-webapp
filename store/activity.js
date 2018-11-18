@@ -63,6 +63,7 @@ export const actions = {
             .get()
         for (const doc of tracksSnapshot.docs) {
             const track = doc.data()
+            track.id = doc.id
             const post = new Post(
                 track,
                 POST_TYPES.TRACK,

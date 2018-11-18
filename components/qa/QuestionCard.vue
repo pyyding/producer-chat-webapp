@@ -1,5 +1,5 @@
 <template>
-  <v-card color="" class="mt-2 mb-5" flat>
+  <v-card color="" flat>
       <v-card-title class="align-center">
         <v-layout column>
           <v-flex>
@@ -40,7 +40,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn :to="`/tracks/${question.id}`" depressed color="success" flat>
-          See thread
+          see thread
         </v-btn>
       </v-card-actions>
   </v-card>

@@ -1,5 +1,5 @@
 <template>
-    <v-card color="" class="mb-5" flat>
+    <v-card color="" flat>
       <v-card-title class="align-center pb-0 pl-4">
             <v-avatar class="mr-2 hidden-xs-only" size="36px"><img :src="post.user.photoURL" alt="avatar"></v-avatar>
             <div class="d-inline-block ml-1">

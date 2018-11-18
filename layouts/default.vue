@@ -2,16 +2,16 @@
   <v-app class="background">
     <v-toolbar dense dark flat scroll-off-screen color="primary">
       <v-toolbar-title>
-        <nuxt-link to="/newsfeed">
+        <nuxt-link to="/activity">
           <img class="toolbar__logo hidden-xs-only" src="/toolbar_logo.svg">
           <img class="toolbar__logo--small hidden-sm-and-up" src="/toolbar_logo_small.svg">
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items >
-        <v-btn class="font-weight-bold" flat to="/newsfeed">
+        <v-btn class="font-weight-bold" flat to="/activity">
           <v-icon left small>web</v-icon>
-          newsfeed
+          activity
         </v-btn>
         <!-- <v-btn class="font-weight-bold" flat to="/tracks">
           <v-icon left small>album</v-icon>
@@ -51,7 +51,7 @@
         <nuxt />
       </v-container>
     </v-content>
-    <v-footer :fixed="fixed" app>
+    <v-footer height="10px" absolute app>
       <span class="ml-4">Producer Chat &copy; 2018</span>
     </v-footer>
   </v-app>
@@ -97,6 +97,13 @@ export default {
 .toolbar__logo--small {
   width: 30px;
   margin-top: 5px;
+}
+
+.theme--light.v-footer {
+  background-color: $theme['bg-grey'];
+  height: 20px;
+  min-height: 20px;
+  font-size: 12px;
 }
 
 @media (max-width: 768px) {

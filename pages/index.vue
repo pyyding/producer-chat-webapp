@@ -6,7 +6,7 @@
 <script>
 export default {
   mounted() {
-    this.$router.push('/newsfeed')
+    this.$router.push('/activity')
   }
 }
 </script>

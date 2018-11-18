@@ -63,7 +63,7 @@ export default {
   },
   watch: {
     user: function(prevValue, newValue) {
-      this.$router.push('/newsfeed')
+      this.$router.push('/activity')
     }
   },
   methods: {

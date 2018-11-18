@@ -1,9 +1,6 @@
 <template>
 	<div>
-		<v-btn v-if="user" color="primary" depressed @click="extended = true">
-			🎹 post a track
-		</v-btn>
-		<v-card v-if="extended" color="" class="mt-2" flat>
+		<v-card v-if="visible" color="" class="mb-2" flat>
 			<v-slide-y-transition>
 				<v-card-text>
 					<v-form>
@@ -11,9 +8,9 @@
 					</v-form>
 				</v-card-text>
 			</v-slide-y-transition>
-			<v-card-actions v-if="extended">
+			<v-card-actions v-if="visible">
 				<v-spacer/>
-				<v-btn @click="extended = false" color="grey" flat>cancel</v-btn>
+				<v-btn @click="visible = false" color="grey" flat>cancel</v-btn>
 				<v-btn :loading="loading" @click="ask" color="primary" flat>post</v-btn>
 			</v-card-actions>
 		</v-card>
@@ -29,7 +26,7 @@ export default {
   },
   data() {
     return {
-      extended: false,
+      visible: false,
       question: {
         title: '',
         link: '',
@@ -40,6 +37,12 @@ export default {
     }
   },
   methods: {
+    show() {
+      this.visible = true
+    },
+    hide() {
+      this.visible = false
+    },
     ask() {
       this.loading = true
       this.question.createdAt = new Date()
@@ -49,7 +52,7 @@ export default {
         photoURL: this.user.photoURL
       }
       this.$store.dispatch('qa/ask', this.question).then(() => {
-        this.extended = false
+        this.visible = false
         this.loading = false
       })
     }
