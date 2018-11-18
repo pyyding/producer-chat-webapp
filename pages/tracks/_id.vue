@@ -1,26 +1,12 @@
 <template>
 	<v-container v-if="questionData">
+		<v-layout>
+			<v-flex>
+				<question-card v-if="questionData.question" :question="questionData.question"/>
+			</v-flex>
+		</v-layout>
 		<v-layout justify-center>
-			<v-flex xl6>
-				<v-layout v-if="questionData.question">
-					<h2>
-						{{questionData.question.title}}
-					</h2>
-					<v-btn
-						small
-						icon
-						v-if="questionData.question.link"
-						target="_blank"
-						title="question link"
-						:href="questionData.question.link"
-					>
-						<v-icon color="secondary">play_circle_outline</v-icon>
-					</v-btn>
-
-				</v-layout>
-				<v-layout row v-if="questionData.question">
-					posted by &nbsp; <strong>{{questionData.question.user.displayName}}</strong>
-				</v-layout>
+			<v-flex>
 				<answer-form class="mt-4" :questionID="questionID" :user="user"/>
 				<v-layout row mt-5>
 					<v-flex v-if="questionData.answers">
@@ -46,25 +32,27 @@
 </template>
 
 <script>
-	import AnswerForm from '~/components/qa/AnswerForm.vue'
-	import AnswerCard from '~/components/qa/AnswerCard.vue'
-	export default {
-		components: {AnswerForm, AnswerCard},
-		data () {
-			return {
-			}
-		},
-		computed: {
-			user () { return this.$store.getters['auth/user'] },
-			questionData () {
-				const data = this.$store.getters['qa/questionData']
-				if (data.question && data.question.id !== this.questionID) return
-				return data
-			}
-		},
-		beforeCreate () {
-			this.questionID = this.$route.params.id
-			this.$store.dispatch('qa/getQuestionData', this.questionID)
-		}
-	}
+import AnswerForm from '~/components/qa/AnswerForm.vue'
+import AnswerCard from '~/components/qa/AnswerCard.vue'
+import QuestionCard from '~/components/qa/QuestionCard.vue'
+export default {
+  components: { AnswerForm, AnswerCard, QuestionCard },
+  data() {
+    return {}
+  },
+  computed: {
+    user() {
+      return this.$store.getters['auth/user']
+    },
+    questionData() {
+      const data = this.$store.getters['qa/questionData']
+      if (data.question && data.question.id !== this.questionID) return
+      return data
+    }
+  },
+  beforeCreate() {
+    this.questionID = this.$route.params.id
+    this.$store.dispatch('qa/getQuestionData', this.questionID)
+  }
+}
 </script>

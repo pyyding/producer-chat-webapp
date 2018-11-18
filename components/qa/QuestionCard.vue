@@ -39,7 +39,7 @@
             </v-flex>
       </v-card-text>
       <v-card-actions>
-        <v-btn :to="`/tracks/${question.id}`" depressed color="success" flat>
+        <v-btn v-if="$route.path.includes('activity')" :to="`/tracks/${question.id}`" depressed color="success" flat>
           see thread
         </v-btn>
       </v-card-actions>
