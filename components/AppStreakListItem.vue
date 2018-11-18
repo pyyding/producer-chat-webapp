@@ -9,7 +9,7 @@
             </v-list-tile-title>
             <v-list-tile-sub-title class="streak-item__sub-title">
                 <span class="tracks-chip d-inline-flex">
-                    <span class="streak-chip d-inline-flex ml-2" v-if="user.streak > 0">
+                    <span class="streak-chip d-inline-flex mr-2" v-if="user.streak > 0">
                         <span class="streak-chip__icon">
                             🔥
                         </span>
@@ -31,21 +31,27 @@
 
 <script>
 export default {
-    props: {
-        user: {
-            type: Object,
-            default: null
-        }
+  props: {
+    user: {
+      type: Object,
+      default: null
     }
-
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
-    .streak-chip__text
-        color black
-        font-weight 600
-        line-height 18px
-    .streak-item__sub-title
-        color initial !important
+.streak-chip__text {
+    color: black;
+    font-weight: 600;
+    line-height: 18px;
+}
+
+.streak-chip__icon {
+    margin-right: 5px;
+}
+
+.streak-item__sub-title {
+    color: initial !important;
+}
 </style>

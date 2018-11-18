@@ -1,6 +1,6 @@
 <template>
     <v-card flat style="width: 100%">
-        <v-card-title class="justify-center secondary">
+        <v-card-title class="justify-center primary">
             <h2 class="white--text">Top Producers</h2>
         </v-card-title>
         <v-card-text>
@@ -20,15 +20,15 @@
 import AppStreakListItem from '~/components/AppStreakListItem'
 
 export default {
-    components: { AppStreakListItem },
-    computed: {
-        topUsers () {
-            return this.$store.getters.topUsers
-        }
-    },
-    beforeCreate () {
-        this.$store.dispatch('fetchTopUsers')
+  components: { AppStreakListItem },
+  computed: {
+    topUsers() {
+      return this.$store.getters.topUsers
     }
+  },
+  beforeCreate() {
+    this.$store.dispatch('fetchTopUsers')
+  }
 }
 </script>
 

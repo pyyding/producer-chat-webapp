@@ -1,6 +1,6 @@
   <template>
   <v-app class="background">
-    <v-toolbar dark flat scroll-off-screen color="primary">
+    <v-toolbar dense dark flat scroll-off-screen color="primary">
       <v-toolbar-title>
         <nuxt-link to="/newsfeed">
           <img class="toolbar__logo hidden-xs-only" src="/toolbar_logo.svg">
@@ -13,10 +13,10 @@
           <v-icon left small>web</v-icon>
           newsfeed
         </v-btn>
-        <v-btn class="font-weight-bold" flat to="/tracks">
+        <!-- <v-btn class="font-weight-bold" flat to="/tracks">
           <v-icon left small>album</v-icon>
           tracks
-        </v-btn>
+        </v-btn> -->
         <v-btn v-if="user" class="font-weight-bold" flat :to="'/producers/' + user.id + '/tasks'">
           <v-icon left small>check_circle</v-icon>
           my tasks
@@ -83,6 +83,12 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '../assets/style/colors';
+
+.background {
+  background: $theme['bg-grey'];
+}
+
 .toolbar__logo {
   width: 230px;
   margin-top: 5px;
@@ -91,5 +97,11 @@ export default {
 .toolbar__logo--small {
   width: 30px;
   margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+  .v-toolbar .v-btn {
+    padding: 0 5px;
+  }
 }
 </style>
