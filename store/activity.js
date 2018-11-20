@@ -43,7 +43,7 @@ export const actions = {
                 match.data.push(task)
             } else {
                 const dateMoment = moment(task.createdAt.toDate())
-                const dateString = dateMoment.endOf('day').fromNow()
+                const dateString = dateMoment.fromNow()
 
                 const post = new Post(
                     [task],
@@ -63,12 +63,15 @@ export const actions = {
             .get()
         for (const doc of tracksSnapshot.docs) {
             const track = doc.data()
+            const dateMoment = moment(track.createdAt.toDate())
+            const dateString = dateMoment.fromNow()
             track.id = doc.id
             const post = new Post(
                 track,
                 POST_TYPES.TRACK,
                 track.createdAt,
-                track.user
+                track.user,
+                dateString
             )
             posts.push(post)
         }

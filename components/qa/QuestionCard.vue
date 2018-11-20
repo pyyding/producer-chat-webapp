@@ -1,10 +1,13 @@
 <template>
   <v-card color="" flat>
-      <v-card-title class="align-center">
-        <v-layout column>
-          <v-flex>
+      <v-card-title>
+        <v-layout>
+          <div class="d-flex align-items-top">
           <v-avatar class="mr-2 hidden-xs-only" size="36px"><img :src="question.user.photoURL" alt="avatar"></v-avatar>
-          <span><strong>{{question.user.displayName}}</strong> posted a track</span>
+          <div class="d-inline-block ml-1">
+            <span><strong>{{question.user.displayName}}</strong> posted a track</span>
+            <div class="caption grey--text">{{dateString}}</div>
+          </div>
           <v-rating
             v-model="question.ratingAvg"
             half-increments
@@ -24,7 +27,7 @@
           >
             <v-icon color="grey" small>clear</v-icon>
           </v-btn>
-          </v-flex>
+          </div>
         </v-layout>
       </v-card-title>
       <v-card-text>
@@ -52,6 +55,10 @@ export default {
     question: {
       type: Object,
       default: null
+    },
+    dateString: {
+      type: String,
+      default: ''
     }
   },
   computed: {

@@ -14,7 +14,7 @@
                     <ask-card ref="askCard"/>
                     <new-task-card ref="newTaskCard"/>
                     <div class="mb-2" v-for="post in posts" :key="post.createdAt.seconds"> 
-                        <question-card v-if="post.type === POST_TYPES.TRACK" :question="post.data"/>
+                        <question-card v-if="post.type === POST_TYPES.TRACK" :question="post.data" :dateString="post.dateString"/>
                         <post-task-card v-if="post.type === POST_TYPES.TASK" :post="post"/>
                     </div>
                 </v-layout>
