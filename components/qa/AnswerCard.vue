@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import fb from '~/plugins/firebase'
+
 	export default {
 		props: {
 			answer: {
@@ -85,7 +87,7 @@
 					answerID: this.answer.id,
 					userID: this.user.id,
 					isUpvote: isUpvote,
-					createdAt: new Date()
+					createdAt: fb.serverTimestamp()
 				}
 				const params = {
 					vote: vote,
@@ -106,7 +108,7 @@
 						photoURL: this.user.photoURL
 					},
 					text: this.replyText,
-					createdAt: new Date()
+					createdAt: fb.serverTimestamp()
 				}
 				await this.$store.dispatch('qa/submitReply', reply)
 				this.replyText = ''

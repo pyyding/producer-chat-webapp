@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import fb from '~/plugins/firebase'
+
 	export default {
 		props: {
 			questionID: {
@@ -50,7 +52,7 @@
 				const answerObject = {
 					text: this.answerText,
 					rating: this.rating,
-					createdAt: new Date(),
+					createdAt: fb.serverTimestamp(),
 					user: {
 						id: this.user.id,
 						displayName: this.user.displayName,

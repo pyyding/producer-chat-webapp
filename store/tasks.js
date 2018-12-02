@@ -7,6 +7,9 @@ export const state = () => ({
 export const mutations = {
     setTasks(state, tasks) {
         state.tasks = tasks
+    },
+    setStatus(state, task, status) {
+        task.status = status
     }
 }
 
@@ -31,23 +34,21 @@ export const actions = {
         commit('setTasks', tasks)
         return tasks
     },
-    async createTask({ dispatch }, task) {
+    async createTask({ dispatch, commit, getters }, task) {
         const newTaskRef = await fb.db.collection('tasks').doc()
         const snapshot = await newTaskRef.set(task)
+        const newTask = { ...task, id: newTaskRef.id }
+        const tasks = getters.tasks
+        commit('setTasks', [...tasks, newTask])
         return snapshot
     },
-    async setTaskStatus({ dispatch }, { task, isDone }) {
-        await fb.db
-            .collection('tasks')
-            .doc(task.id)
-            .delete()
-        const editedTask = {
-            text: task.text,
-            createdAt: new Date(),
+    async setTaskStatus({ commit }, { task, isDone }) {
+        commit('setStatus', task, isDone)
+        const taskRef = fb.db.collection('tasks').doc(task.id)
+        await taskRef.update({
             isDone: isDone,
-            user: task.user
-        }
-        dispatch('createTask', editedTask)
+            doneAt: fb.serverTimestamp()
+        })
     },
     async deleteTask({ dispatch }, task) {
         fb.db
@@ -59,6 +60,9 @@ export const actions = {
 }
 
 export const getters = {
+    tasks(state) {
+        return state.tasks
+    },
     dueTasks(state) {
         return state.tasks.filter(task => !task.isDone)
     },

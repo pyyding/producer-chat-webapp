@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import fb from '~/plugins/firebase'
+
 export default {
   computed: {
     user() {
@@ -45,7 +47,7 @@ export default {
     },
     ask() {
       this.loading = true
-      this.question.createdAt = new Date()
+      this.question.createdAt = fb.serverTimestamp()
       this.question.user = {
         id: this.user.id,
         displayName: this.user.displayName,
