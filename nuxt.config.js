@@ -43,17 +43,12 @@ module.exports = {
     /*
   ** Plugins to load before mounting the App
   */
-    plugins: [
-        '@/plugins/auth.js',
-        '@/plugins/vuetify',
-        '@/plugins/vue-analytics'
-    ],
-
+    plugins: ['@/plugins/auth.js', '@/plugins/vuetify'],
     /*
   ** Nuxt.js modules
   */
     modules: [
-        // Doc: https://github.com/nuxt-community/axios-module#usage
+        ['@nuxtjs/google-analytics', { id: 'UA-126773503-1' }],
         '@nuxtjs/axios'
     ],
     /*
