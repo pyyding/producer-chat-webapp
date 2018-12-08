@@ -18,6 +18,14 @@ module.exports = {
                 hid: 'description',
                 name: 'description',
                 content: pkg.description
+            },
+            {
+                name: 'og:image',
+                content: 'https://www.producer.chat/pc-thumb-500.jpg'
+            },
+            {
+                name: 'twitter:image',
+                content: 'https://www.producer.chat/pc-thumb-500.jpg'
             }
         ],
         link: [
