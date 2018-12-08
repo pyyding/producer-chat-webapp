@@ -1,16 +1,21 @@
 <template>
-    <v-card color="" flat>
-      <v-card-title class="align-center pb-0 pl-4">
-            <v-avatar class="mr-2 hidden-xs-only" size="36px"><img :src="post.user.photoURL" alt="avatar"></v-avatar>
-            <div class="d-inline-block ml-1">
-              <span><strong>{{post.user.displayName}}</strong> completed {{ post.data.length === 1 ? 'a task' : 'tasks'}}</span>
-              <div class="caption grey--text">{{post.dateString}}</div>
-            </div>
-      </v-card-title>
-      
-      <v-card-text>
-        <task-list disabled hide-input :tasks="post.data"></task-list>
-      </v-card-text>
+  <v-card color flat>
+    <v-card-title class="align-center pb-0 pl-4">
+      <v-avatar class="mr-2" size="36px">
+        <img :src="post.user.photoURL" alt="avatar">
+      </v-avatar>
+      <div class="d-inline-block ml-1">
+        <span>
+          <strong>{{post.user.displayName}}</strong>
+          completed {{ post.data.length === 1 ? 'a task' : 'tasks'}}
+        </span>
+        <div class="caption grey--text">{{post.dateString}}</div>
+      </div>
+    </v-card-title>
+
+    <v-card-text>
+      <task-list disabled hide-input :tasks="post.data"></task-list>
+    </v-card-text>
   </v-card>
 </template>
 
