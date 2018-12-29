@@ -1,12 +1,13 @@
 <template>
-  <v-layout column align-center>
-  </v-layout>
+  <v-layout 
+    column 
+    align-center/>
 </template>
 
 <script>
 export default {
-  mounted() {
-    this.$router.push('/activity')
-  }
+    mounted() {
+        window.location = 'https://www.producer.chat/welcome'
+    }
 }
 </script>
