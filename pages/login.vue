@@ -17,12 +17,12 @@
                   to join the community.
                 </p>
               </v-flex>
-              <v-flex class="d-flex" v-if="!showCheckEmailLabel">
+              <v-flex class="d-flex" v-if="!showCheckEmailLabel && !showRedirecting">
                 <v-spacer/>
                 <v-text-field class="email-input" v-model="email" label="Enter your email address"/>
                 <v-spacer/>
               </v-flex>
-              <v-flex class="d-flex" v-if="!showCheckEmailLabel">
+              <v-flex class="d-flex" v-if="!showCheckEmailLabel && !showRedirecting">
                 <v-spacer/>
                 <v-btn
                   :loading="loading"
@@ -33,7 +33,7 @@
                 >sign in</v-btn>
                 <v-spacer/>
               </v-flex>
-              <v-layout row v-if="!showCheckEmailLabel">
+              <v-layout row v-if="!showCheckEmailLabel && !showRedirecting">
                 <v-spacer/>
                 <p class="text--grey mt-3 text-xs-center" style="width: 300px">
                   <a target="_blank" href="https://producerchat.typeform.com/to/bmYm9d">sign up</a>
@@ -43,6 +43,11 @@
               <v-layout row v-if="showCheckEmailLabel">
                 <v-spacer/>
                   go check your email!
+                <v-spacer/>
+              </v-layout>
+              <v-layout row v-if="showRedirecting">
+                <v-spacer/>
+                  redirecting...
                 <v-spacer/>
               </v-layout>
             </v-layout>
@@ -70,6 +75,7 @@ export default {
     // attacks, ask the user to provide the associated email again. For example:
     email = window.prompt('Please provide your email for confirmation');
   }
+  this.showRedirecting = true
   // The client SDK will parse the code from the link for you.
   fb.firebase.auth().signInWithEmailLink(email, window.location.href)
     .then(function(result) {

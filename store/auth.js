@@ -51,7 +51,6 @@ export const actions = {
 			url: 'https://www.producer.chat/login',
 			handleCodeInApp: true,
 			};
-		debugger
 		fb.firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
 			.then(() => {
 				window.localStorage.setItem('emailForSignIn', email);
