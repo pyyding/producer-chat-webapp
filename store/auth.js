@@ -45,7 +45,21 @@ export const actions = {
 				    })
 		    })
     }
-  },
+	},
+	loginWithEmail ({}, email) {
+		const actionCodeSettings = {
+			url: 'https://www.producer.chat/login',
+			handleCodeInApp: true,
+			};
+		debugger
+		fb.firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
+			.then(() => {
+				window.localStorage.setItem('emailForSignIn', email);
+		})
+		.catch((error) => {
+			console.error(error)
+		})
+	},
   signOut ({ commit }) {
     fb.firebase.auth().signOut()
       .then(() => {
