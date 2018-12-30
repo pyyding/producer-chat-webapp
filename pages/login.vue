@@ -104,7 +104,8 @@ export default {
       email: '',
       loading: false,
       errorVisible: false,
-      showCheckEmailLabel: false
+      showCheckEmailLabel: false,
+      showRedirecting: false
     }
   },
   watch: {
