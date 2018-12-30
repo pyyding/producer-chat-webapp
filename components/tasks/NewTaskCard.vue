@@ -54,6 +54,9 @@ export default {
         createdAt: fb.serverTimestamp(),
         isDone: this.isDone
       }
+      if (this.isDone) {
+          task.doneAt = fb.serverTimestamp()
+      }
       this.$store.dispatch('tasks/createTask', task)
       this.newTaskText = ''
       this.visible = false
