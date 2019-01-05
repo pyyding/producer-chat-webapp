@@ -9004,3 +9004,17 @@ a.pswp__share--download:hover {
   border-radius: 100%;
   max-height: 100%;
 }
+
+.embed-video__wrapper {
+  width: 560px;
+  height: 315px;
+}
+@media (max-width: 600px) {
+  .embed-video__wrapper {
+    width: initial;
+  }
+} 
+.embed-video {
+  width: 100%;
+  height: 100%;
+}
