@@ -17,7 +17,6 @@
                   to join the community.
                 </p>
               </v-flex>
-              <v-form>
                 <v-flex class="d-flex" v-if="!showCheckEmailLabel && !showRedirecting">
                   <v-spacer/>
                   <v-text-field
@@ -25,6 +24,7 @@
                     class="email-input"
                     v-model="email"
                     label="Enter your email address"
+                    @keyup.native.enter="authWithEmail"
                   />
                   <v-spacer/>
                 </v-flex>
@@ -33,13 +33,13 @@
                   <v-btn
                     :loading="loading"
                     class="mt-5"
-                    color="white"
+                    color="primary"
                     style="width: 50px"
                     @click="authWithEmail"
+                    depressed
                   >sign in</v-btn>
                   <v-spacer/>
                 </v-flex>
-              </v-form>
               <v-layout row v-if="!showCheckEmailLabel && !showRedirecting">
                 <v-spacer/>
                 <p class="text--grey mt-3 text-xs-center" style="width: 300px">
