@@ -33,10 +33,13 @@
             <v-avatar size="36px"><img :src="user.photoURL" alt="avatar"></v-avatar>
           </v-btn>
           <v-list>
+            <v-list-tile :to="`/producers/${user.id}`">
+                my profile
+            </v-list-tile>
             <v-list-tile
               @click="signOut"
             >
-              <v-list-tile-title>Sign out</v-list-tile-title>
+              <v-list-tile-title>sign out</v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>

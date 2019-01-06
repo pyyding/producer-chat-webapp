@@ -1,71 +1,167 @@
 <template>
-	<v-container>
-		<v-layout row mb-2>
-			<v-flex xl3></v-flex>
-			<v-flex xl9 ml-4>
-				<h1></h1>
-			</v-flex>
-		</v-layout>
-		<v-layout row>
-			<v-flex xl3>
-				<v-card flat>
-					<v-card-text>
-						<v-layout row justify-center>
-							<v-avatar size="72"><img :src="producer.photoURL" alt="avatar"></v-avatar>
-						</v-layout>
-						<v-layout row justify-center mt-3>
-							<h3 class="text-xl-center">{{ producer.displayName }}</h3>
-						</v-layout>
-						<v-layout row justify-center mt-2>
-							<p class="text--secondary"> {{ producer.bio }}</p>
-						</v-layout>
-						<v-layout justify-center row v-if="producer.soundcloud || producer.spotify || producer.bandcamp">
-							<v-flex xl3>
-								<v-layout row justify-center mt-2>
-									<iframe v-if="producer.soundcloud" allowtransparency="true" scrolling="no" frameborder="no" :src="`https://w.soundcloud.com/icon/?url=${producer.soundcloud}&color=orange_white&size=32`" style="width: 32px; height: 32px;"/>
-									<a v-if="producer.bandcamp" class="ml-2 mr-2 bandcamp-link" :href="producer.bandcamp" target="_blank">
-										<img src="~/assets/bandcamp-black-32.png" style="height: 32px; width: 32px"/>
-									</a>
-									<iframe v-if="producer.spotify" :src="`https://open.spotify.com/follow/1/?uri=${producer.spotify}&size=basic&theme=light`" width="200" height="25" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"/>
-								</v-layout>
-							</v-flex>
-						</v-layout>
-					</v-card-text>
-				</v-card>
-			</v-flex>
-			<v-flex ml-4 xl9>
-				<v-layout row  v-for="(track, i) in producer.featuredTracks" :key="i" >
-					<iframe class="mb-4" v-if="track.includes('soundcloud')" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" :src="`https://w.soundcloud.com/player/?url=${track}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true`"/>
-					<iframe class="mb-4" v-if="track.includes('spotify')" :src="track" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"/>
-					<iframe class="mb-4" v-if="track.includes('clyp')" width="100%" height="166" :src="track" frameborder="0"></iframe>
-				</v-layout>
-			</v-flex>
-		</v-layout>
-	</v-container>
-
+  <v-container align-center fill-height>
+		<v-progress-circular
+			class="loadingSpinner"
+      indeterminate
+      color="primary"
+			v-if="!producer"
+    ></v-progress-circular>
+    <v-fade-transition>
+      <v-layout row wrap align-center justify-center v-show="producer">
+        <EditProfileDialog
+          class="edit-button"
+          v-if="user && producer.id === user.id"
+          :producer="producer"
+        />
+        <v-flex xs12>
+          <v-layout align-center justify-center row wrap>
+            <v-flex lg6 md12>
+              <v-layout row justify-center>
+                <v-avatar :size="avatarSize">
+                  <img :src="producer.photoURLLarge" alt="avatar">
+                </v-avatar>
+              </v-layout>
+            </v-flex>
+            <v-flex lg6 md7 sm7 xs8>
+              <v-layout>
+                <h1 class="hey-text text-xl-center font-weight-regular">Hi 👋</h1>
+                <!-- <h1 class="hey-text text-xl-center font-weight-regular">Hi, I'm</h1> -->
+              </v-layout>
+              <v-layout row mb-5>
+                <h1 class="header-text text-xl-center">
+                  <span class="font-weight-regular">I'm</span>
+                  {{ producer.displayName }}
+                </h1>
+              </v-layout>
+              <v-layout row mt-2>
+                <p class="bio-text">{{ producer.bio }}</p>
+              </v-layout>
+              <v-layout row mt-2 mb-2>
+                <h2>follow me on</h2>
+              </v-layout>
+              <v-layout>
+                <a
+                  v-if="producer.soundcloud"
+                  class="ml-1 mr-1 social-link"
+                  :href="producer.soundcloud"
+                  target="_blank"
+                >
+                  <img src="~/assets/social_icons/soundcloud.png" style="height: 32px; width: 32px">
+                </a>
+                
+                <a
+                  v-if="producer.instagram"
+                  class="ml-1 mr-1 social-link"
+                  :href="producer.instagram"
+                  target="_blank"
+                >
+                  <img src="~/assets/social_icons/instagram.png" style="height: 32px; width: 32px">
+                </a>
+                
+                <a
+                  v-if="producer.bandcamp"
+                  class="ml-1 mr-1 social-link"
+                  :href="producer.bandcamp"
+                  target="_blank"
+                >
+                  <img src="~/assets/social_icons/bandcamp.png" style="height: 32px; width: 32px">
+                </a>
+                
+                <a
+                  v-if="producer.youtube"
+                  class="ml-1 mr-1 social-link"
+                  :href="producer.youtube"
+                  target="_blank"
+                >
+                  <img src="~/assets/social_icons/youtube.png" style="height: 32px; width: 32px">
+                </a>
+                
+                <a
+                  v-if="producer.bandcamp"
+                  class="ml-1 mr-1 social-link"
+                  :href="producer.spotify"
+                  target="_blank"
+                >
+                  <img src="~/assets/social_icons/spotify.jpg" style="height: 32px; width: 32px">
+                </a>
+              </v-layout>
+            </v-flex>
+          </v-layout>
+        </v-flex>
+      </v-layout>
+    </v-fade-transition>
+  </v-container>
 </template>
 
 <script>
-	export default {
-		computed: {
-			producer () { return this.$store.getters['producer/producer'] }
-		},
-		data () {
-			return {}
-		},
-		beforeCreate () {
-			const slug = this.$route.params.slug
-			this.$store.dispatch('producer/fetchProducer', slug)
-		},
-		methods: {
-			signOut () {
-				this.$store.dispatch('auth/signOut')
-			}
-		}
-	}
+import EditProfileDialog from '~/components/producers/EditProfileDialog.vue'
+
+export default {
+  components: { EditProfileDialog },
+  computed: {
+    user() {
+      return this.$store.getters['auth/user']
+    },
+    producer() {
+      return this.$store.getters['producer/producer']
+    },
+    avatarSize() {
+      return window.innerWidth > 600 ? 500 : 400
+    }
+  },
+  data() {
+    return {}
+  },
+  beforeCreate() {
+    const slug = this.$route.params.slug
+    this.$store.dispatch('producer/fetchProducer', slug)
+  },
+  methods: {
+    signOut() {
+      this.$store.dispatch('auth/signOut')
+    }
+  }
+}
 </script>
 
 <style lang="stylus" scoped>
-	.bandcamp-link
-		cursor pointer
+.social-link {
+  cursor: pointer;
+}
+
+.header-text {
+  font-size: 4em;
+}
+
+.hey-text {
+  font-size: 4em;
+}
+
+.bio-text {
+  font-size: 20px;
+  background: black;
+  padding: 10px;
+  color: #e2e9ee;
+  font-style: italic;
+}
+
+.section-title {
+  font-size: 50px;
+  font-weight: normal;
+}
+
+.edit-button {
+  position: absolute;
+  right: 40px;
+  top: 20px;
+}
+
+.loadingSpinner {
+	position: absolute; 
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 100px;
+}
 </style>
