@@ -47,8 +47,9 @@ export const actions = {
     }
 	},
 	loginWithEmail ({}, email) {
+		const redirectUrl = process.env.NODE_ENV === 'development' ? 'http://producer.chat:3000/login' : 'https://www.producer.chat/login'
 		const actionCodeSettings = {
-			url: 'https://www.producer.chat/login',
+			url: redirectUrl,
 			handleCodeInApp: true,
 			};
 		fb.firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
