@@ -1,16 +1,7 @@
 import fb from '~/plugins/firebase'
 import { COLLECTIONS, POST_TYPES } from '~/utils/constants.js'
 import moment from 'moment'
-
-class Post {
-    constructor(data, type, createdAt, user, dateString) {
-        this.data = data
-        this.type = type
-        this.createdAt = createdAt
-        this.user = user
-        this.dateString = dateString
-    }
-}
+import Post from '~/models/post.js'
 
 export const state = () => ({
     posts: []
