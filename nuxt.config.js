@@ -7,7 +7,7 @@ module.exports = {
   ** Headers of the page
   */
     head: {
-        title: 'Producer Chat',
+        title: 'Producer Chat – Connect, give feedback and stay accountable',
         meta: [
             { charset: 'utf-8' },
             {
@@ -34,7 +34,7 @@ module.exports = {
                 rel: 'stylesheet',
                 href:
                     'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,700'
-            },
+            }
         ]
     },
 
