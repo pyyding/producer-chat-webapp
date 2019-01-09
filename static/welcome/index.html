@@ -40,8 +40,6 @@
               <ul class="nav-01__list">
                 <li class="nav-01__item"><a class="button button--white-outline  button--empty " href="https://www.producer.chat/activity"><span>To Web App</span></a>
                 </li>
-                <li class="nav-01__item"><a class="button button--white-outline typeform-share" href="https://producerchat.typeform.com/to/bmYm9d" data-mode="drawer_left" target="_blank"><span>Sign Up</span></a>
-                </li>
               </ul>
               <div class="nav-01__burger">
                 <button class="burger js-open-menu" type="button">
@@ -60,11 +58,45 @@
           <div class="header-04__card_content">
             <h1 class="heading heading--accent header-04__heading white-text">A community of talented music producers</h1>
             <p class="header-04__text white-text">Connect, Get Feedback, and Release Your Music</p>
-            <div class="header-04__buttons buttons-set">
-                  <div class="cta_button-01__button_wrapper">
-                    <div class="cta_button-01__tag"><!--<span class="tag   tag--night"><span class="tag__text">Limited!</span></span>-->
-                    </div> <a class="typeform-share button button--accent-bg" href="https://producerchat.typeform.com/to/bmYm9d" data-mode="drawer_left" target="_blank">Sign Up </a>
+            <form class="form js-subscribe-mailchimp-form" style="max-width: 500px; margin: auto" action="https://slack.com/api/users.admin.invite?token=xoxp-397383219366-396043467059-410283874129-cf9d6200931cd9202c4558163fa5b6b0"
+              method="post" enctype="application/json">
+              <div class="form__inputs">
+                <div class="form__input">
+                  <input class="text-input js-email-input text-input--white" type="email" name="email" placeholder="Enter your email">
+                  <div class="form__messages">
+                    <div class="message message--error js-message js-error-message">
+                      <div class="message__box">
+                        <button class="message__close js-close-message" type="button"><img class="message__close_icon" src="img/icons/corner-top--blue.svg"></button>
+                        <div class="message__body">
+                          <div class="message__in">
+                            <div class="message__bubble">
+                              <div class="message__bubble_text"><b>Success</b> Go check your inbox!<img class="emoji  " src="img/emoji/smirking.png"
+                                  alt="Emoji">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+                <div class="form__button">
+                  <button class="button js-submit-button button--accent-bg " type="submit"><span class="button__text">Sign Up For Free</span>
+                    <div class="spinner"></div>
+                    <div class="button__submit_success">
+                      <div class="button__success_circle"></div>
+                      <div><svg class="button__success_tick" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
+                          <path class="button__success_tick_path" stroke="#FFF" d="M0 8l5.119 3.873L11.709.381" fill="none"
+                            fill-rule="evenodd" stroke-linecap="square"></path>
+                        </svg></div>
+                    </div><span class="icon"><svg viewBox="0 0 13 10" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.823 4.164L8.954.182a.592.592 0 0 0-.854 0 .635.635 0 0 0 0 .88l2.836 2.92H.604A.614.614 0 0 0 0 4.604c0 .344.27.622.604.622h10.332L8.1 8.146a.635.635 0 0 0 0 .88.594.594 0 0 0 .854 0l3.869-3.982a.635.635 0 0 0 0-.88z"
+                          fill-rule="nonzero" fill="#00396B"></path>
+                      </svg></span>
+                  </button>
+                </div>
+              </div>
+            </form>
             </div>
           </div>
         </div>
@@ -86,17 +118,6 @@
   </div>
 </header>
 <!-- ===== END OF: Header 04-->
-
-<div class="features-07" style="height: 600px; display: flex; align-items: center; background-image: linear-gradient(white, #F6F6F6);">
-  <div class="container container--large" style="max-width: 1420px;">
-    <h2 class="heading">How it all fits together...</h2>
-    <div class="features-07__wrapper embed-video__wrapper">
-        <iframe class="embed-video" src="https://www.youtube.com/embed/Xo4jtmaFIEU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
-    </div>
-  </div>
-</div>
-<!-- ===== END OF: Features 7-->
 
 <!-- START OF: Features 7 =====-->
 <div class="features-07" style="height: 800px; display: flex; align-items: center; background-color: #F6F6F6">
@@ -149,21 +170,55 @@
   <div class="container container--mid">
     <div class="title-box title-box--center">
       <div class="subheading">Join the Network</div>
-      <h2 class="heading">Fill the Application</h2>
       <p class="title-box__text">
-        We know you hate forms, but we need you to fill a short one. It will take you a minute.
+        You'll receive an invite on your email instantly
       </p>
     </div>
   </div>
+  
   <div class="container container--small">
-    <div class="cta_button-01__button_box">
-      <div class="cta_button-01__button_wrapper">
-        <div class="cta_button-01__tag"><!--<span class="tag tag--night"><span class="tag__text">Limited!</span></span>-->
-        </div> <a class="typeform-share button button--accent-bg" href="https://producerchat.typeform.com/to/bmYm9d" target="_blank">Sign Up</a> <script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() </script>
+    <form id="sign-up" class="form js-subscribe-mailchimp-form" action="https://slack.com/api/users.admin.invite?token=xoxp-397383219366-396043467059-410283874129-cf9d6200931cd9202c4558163fa5b6b0"
+      method="post" enctype="application/json">
+      <div class="form__inputs">
+        <div class="form__input">
+          <input class="text-input js-email-input" type="email" name="email" placeholder="Enter your email">
+          <div class="form__messages">
+            <div class="message message--error js-message js-error-message">
+              <div class="message__box">
+                <button class="message__close js-close-message" type="button"><img class="message__close_icon" src="img/icons/corner-top--blue.svg"></button>
+                <div class="message__body">
+                  <div class="message__in">
+                    <div class="message__bubble">
+                      <div class="message__bubble_text"><b>Success</b> Go check your inbox!<img class="emoji  "
+                          src="img/emoji/smirking.png" alt="Emoji">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form__button">
+          <button class="button js-submit-button button--accent-bg " type="submit"><span class="button__text">Sign Up For Free</span>
+            <div class="spinner"></div>
+            <div class="button__submit_success">
+              <div class="button__success_circle"></div>
+              <div><svg class="button__success_tick" width="13" height="13" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
+                  <path class="button__success_tick_path" stroke="#FFF" d="M0 8l5.119 3.873L11.709.381" fill="none"
+                    fill-rule="evenodd" stroke-linecap="square"></path>
+                </svg></div>
+            </div><span class="icon"><svg viewBox="0 0 13 10" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.823 4.164L8.954.182a.592.592 0 0 0-.854 0 .635.635 0 0 0 0 .88l2.836 2.92H.604A.614.614 0 0 0 0 4.604c0 .344.27.622.604.622h10.332L8.1 8.146a.635.635 0 0 0 0 .88.594.594 0 0 0 .854 0l3.869-3.982a.635.635 0 0 0 0-.88z"
+                  fill-rule="nonzero" fill="#00396B"></path>
+              </svg></span>
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
+
 <!-- ===== END OF: Button 01-->
     <div class="via-unicorn-platform">
       <!-- Thanks for being part of the Unicorn Platform community!-->

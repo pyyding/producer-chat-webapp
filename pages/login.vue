@@ -12,8 +12,8 @@
                   <a
                     class="warning--text"
                     target="_blank"
-                    href="https://producerchat.typeform.com/to/bmYm9d"
-                  >sign up application</a>
+                    href="https://www.producer.chat/welcome#sign-up"
+                  >sign up here</a>
                   to join the community.
                 </p>
               </v-flex>
@@ -43,7 +43,7 @@
               <v-layout row v-if="!showCheckEmailLabel && !showRedirecting">
                 <v-spacer/>
                 <p class="text--grey mt-3 text-xs-center" style="width: 300px">
-                  <a target="_blank" href="https://producerchat.typeform.com/to/bmYm9d">sign up</a>
+                  <a href="https://www.producer.chat/welcome#sign-up">sign up</a>
                 </p>
                 <v-spacer/>
               </v-layout>
