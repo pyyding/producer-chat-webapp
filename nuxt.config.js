@@ -7,7 +7,7 @@ module.exports = {
   ** Headers of the page
   */
     head: {
-        title: 'Producer Chat – Connect, give feedback and stay accountable',
+        title: 'Producer Chat – Connect, Give Feedback, Stay Accountable',
         meta: [
             { charset: 'utf-8' },
             {
