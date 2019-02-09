@@ -25,7 +25,9 @@
             wrap>
             <v-flex
               lg3
-              md12>
+              md3
+              sm4
+            >
               <v-layout
                 row
                 justify-center>
@@ -37,10 +39,13 @@
               </v-layout>
             </v-flex>
             <v-flex
-              lg6
-              md7
-              sm7
-              xs8>
+              lg9
+              md9
+              sm8
+              xs12
+              pl-2
+              pr-2
+            >
               <v-layout row >
                 <h1 class="header-text text-xl-center">
                   <!-- <span class="font-weight-regular">I'm</span> -->
@@ -206,10 +211,7 @@ export default {
 
 .header-text {
   font-size: 3em;
-}
-
-.hey-text {
-  font-size: 3em;
+    color: #e2e9ee;
 }
 
 .bio-text {
@@ -231,10 +233,9 @@ export default {
   top: 20px;
 }
 .header {
-	background: gainsboro;
+	background-image: url('~assets/default-cover-5.jpg');
 	border-radius: 3px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding: 20px;
 }
 
 .loadingSpinner {
