@@ -9081,7 +9081,6 @@ a.pswp__share--download:hover {
 
 .video-play-button {
     position: absolute;
-    z-index: 999;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
