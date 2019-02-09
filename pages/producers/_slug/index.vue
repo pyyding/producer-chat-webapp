@@ -158,7 +158,7 @@ import SoundcloudIcon from '~/components/icons/SoundcloudIcon.vue'
 import InstagramIcon from '~/components/icons/InstagramIcon.vue'
 import YoutubeIcon from '~/components/icons/YoutubeIcon.vue'
 import SpotifyIcon from '~/components/icons/SpotifyIcon.vue'
-import BandcampIcon from '~/components/icons/BandCampIcon.vue'
+import BandcampIcon from '~/components/icons/BandcampIcon.vue'
 import IconBase from '~/components/icons/IconBase.vue'
 
 export default {
