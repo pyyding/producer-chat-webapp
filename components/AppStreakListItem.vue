@@ -1,42 +1,46 @@
 <template>
-    <v-list-tile v-if="user">
-        <v-list-tile-avatar>
-            <img :src="user.photoURL" alt="avatar"/>
-        </v-list-tile-avatar>
-        <v-list-tile-content>
-            <v-list-tile-title>
-                <h3>{{`${user.displayName}`}}</h3>
-            </v-list-tile-title>
-            <v-list-tile-sub-title class="streak-item__sub-title">
-                <span class="tracks-chip d-inline-flex">
-                    <span class="streak-chip d-inline-flex mr-2" v-if="user.streak > 0">
-                        <span class="streak-chip__icon">
-                            🔥
-                        </span>
-                        <span class="streak-chip__text success--text">
-                            {{user.streak}}
-                        </span>
-                    </span>
-                    <span class="streak-chip__icon">
-                        🎹
-                    </span>
-                    <span class="streak-chip__text secondary--text">
-                        {{user.totalTracks}}
-                    </span>
-                </span>
-            </v-list-tile-sub-title>
-        </v-list-tile-content>
-    </v-list-tile>
+  <v-list-tile v-if="user">
+    <v-list-tile-avatar>
+      <img
+        :src="user.photoURL"
+        alt="avatar">
+    </v-list-tile-avatar>
+    <v-list-tile-content>
+      <v-list-tile-title>
+        <h3>{{ `${user.displayName}` }}</h3>
+      </v-list-tile-title>
+      <v-list-tile-sub-title class="streak-item__sub-title">
+        <span class="tracks-chip d-inline-flex">
+          <span
+            v-if="user.streak > 0"
+            class="streak-chip d-inline-flex mr-2">
+            <span class="streak-chip__icon">
+              🔥
+            </span>
+            <span class="streak-chip__text success--text">
+              {{ user.streak }}
+            </span>
+          </span>
+          <span class="streak-chip__icon">
+            🎹
+          </span>
+          <span class="streak-chip__text secondary--text">
+            {{ user.totalTracks }}
+          </span>
+        </span>
+      </v-list-tile-sub-title>
+    </v-list-tile-content>
+  </v-list-tile>
 </template>
 
 <script>
 export default {
-  props: {
-    user: {
-      type: Object,
-      default: null
+    props: {
+        user: {
+            type: Object,
+            default: null
+        }
     }
-  }
 }
 </script>
 

@@ -8,7 +8,7 @@
     <title
       :id="iconName"
     >
-        {{iconName}}
+      {{ iconName }}
     </title>
     <g :fill="iconColor">
       <slot />

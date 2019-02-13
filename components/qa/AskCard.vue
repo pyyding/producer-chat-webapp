@@ -1,64 +1,79 @@
 <template>
-	<div>
-		<v-card v-if="visible" color="" class="mb-2" flat>
-			<v-slide-y-transition>
-				<v-card-text>
-					<v-form>
-						<v-text-field required append-icon="link" v-model="question.link" label="track link (public soundcloud or clyp.it)"/>
-					</v-form>
-				</v-card-text>
-			</v-slide-y-transition>
-			<v-card-actions v-if="visible">
-				<v-spacer/>
-				<v-btn @click="visible = false" color="grey" flat>cancel</v-btn>
-				<v-btn :loading="loading" @click="ask" color="primary" flat>post</v-btn>
-			</v-card-actions>
-		</v-card>
-	</div>
+  <div>
+    <v-card
+      v-if="visible"
+      color=""
+      class="mb-2"
+      flat>
+      <v-slide-y-transition>
+        <v-card-text>
+          <v-form>
+            <v-text-field
+              v-model="question.link"
+              required
+              append-icon="link"
+              label="track link (public soundcloud or clyp.it)"/>
+          </v-form>
+        </v-card-text>
+      </v-slide-y-transition>
+      <v-card-actions v-if="visible">
+        <v-spacer/>
+        <v-btn
+          color="grey"
+          flat
+          @click="visible = false">cancel</v-btn>
+        <v-btn
+          :loading="loading"
+          color="primary"
+          flat
+          @click="ask">post</v-btn>
+      </v-card-actions>
+    </v-card>
+  </div>
 </template>
 
 <script>
 import fb from '~/plugins/firebase'
 
 export default {
-  computed: {
-    user() {
-      return this.$store.getters['auth/user']
-    }
-  },
-  data() {
-    return {
-      visible: false,
-      question: {
-        title: '',
-        link: '',
-        user: {},
-        ratingAvg: 0
-      },
-      createdAt: null
-    }
-  },
-  methods: {
-    show() {
-      this.visible = true
+    data() {
+        return {
+            visible: false,
+            question: {
+                title: '',
+                link: '',
+                user: {},
+                ratingAvg: 0
+            },
+            createdAt: null
+        }
     },
-    hide() {
-      this.visible = false
+    computed: {
+        user() {
+            return this.$store.getters['auth/user']
+        }
     },
-    ask() {
-      this.loading = true
-      this.question.createdAt = fb.serverTimestamp()
-      this.question.user = {
-        id: this.user.id,
-        displayName: this.user.displayName,
-        photoURL: this.user.photoURL
-      }
-      this.$store.dispatch('qa/ask', this.question).then(() => {
-        this.visible = false
-        this.loading = false
-      })
+    methods: {
+        show() {
+            this.visible = true
+        },
+        hide() {
+            this.visible = false
+        },
+        ask() {
+            this.loading = true
+            this.question.createdAt = fb.serverTimestamp()
+            this.question.user = {
+                id: this.user.id,
+                displayName: this.user.displayName,
+                photoURL: this.user.photoURL
+            }
+            this.$store.dispatch('qa/ask', this.question).then(() => {
+                this.visible = false
+                this.loading = false
+            })
+        }
     }
-  }
 }
 </script>
 

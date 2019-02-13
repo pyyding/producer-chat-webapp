@@ -1,12 +1,17 @@
 <template>
   <v-container>
-    <v-layout row justify-center>
+    <v-layout
+      row
+      justify-center>
       <v-flex xl4>
         <v-card flat>
           <v-card-text class="pa-5">
             <h2 style="text-align: center">log in to producer chat.</h2>
             <v-layout column>
-              <v-flex xs12 pt-3 class="text-xs-center">
+              <v-flex
+                xs12
+                pt-3
+                class="text-xs-center">
                 <p v-if="errorVisible">
                   This email account isn't part of Producer Chat community. Please fill
                   <a
@@ -17,41 +22,53 @@
                   to join the community.
                 </p>
               </v-flex>
-                <v-flex class="d-flex" v-if="!showCheckEmailLabel && !showRedirecting">
-                  <v-spacer/>
-                  <v-text-field
-                    type="email"
-                    class="email-input"
-                    v-model="email"
-                    label="Enter your email address"
-                    @keyup.native.enter="authWithEmail"
-                  />
-                  <v-spacer/>
-                </v-flex>
-                <v-flex class="d-flex" v-if="!showCheckEmailLabel && !showRedirecting">
-                  <v-spacer/>
-                  <v-btn
-                    :loading="loading"
-                    class="mt-5"
-                    color="primary"
-                    style="width: 50px"
-                    @click="authWithEmail"
-                    depressed
-                  >sign in</v-btn>
-                  <v-spacer/>
-                </v-flex>
-              <v-layout row v-if="!showCheckEmailLabel && !showRedirecting">
+              <v-flex
+                v-if="!showCheckEmailLabel && !showRedirecting"
+                class="d-flex">
                 <v-spacer/>
-                <p class="text--grey mt-3 text-xs-center" style="width: 300px">
+                <v-text-field
+                  v-model="email"
+                  type="email"
+                  class="email-input"
+                  label="Enter your email address"
+                  @keyup.native.enter="authWithEmail"
+                />
+                <v-spacer/>
+              </v-flex>
+              <v-flex
+                v-if="!showCheckEmailLabel && !showRedirecting"
+                class="d-flex">
+                <v-spacer/>
+                <v-btn
+                  :loading="loading"
+                  class="mt-5"
+                  color="primary"
+                  style="width: 50px"
+                  depressed
+                  @click="authWithEmail"
+                >sign in</v-btn>
+                <v-spacer/>
+              </v-flex>
+              <v-layout
+                v-if="!showCheckEmailLabel && !showRedirecting"
+                row>
+                <v-spacer/>
+                <p
+                  class="text--grey mt-3 text-xs-center"
+                  style="width: 300px">
                   <a href="https://www.producer.chat/welcome#sign-up">sign up</a>
                 </p>
                 <v-spacer/>
               </v-layout>
-              <v-layout row v-if="showCheckEmailLabel">
+              <v-layout
+                v-if="showCheckEmailLabel"
+                row>
                 <v-spacer/>go check your email!
                 <v-spacer/>
               </v-layout>
-              <v-layout row v-if="showRedirecting">
+              <v-layout
+                v-if="showRedirecting"
+                row>
                 <v-spacer/>redirecting...
                 <v-spacer/>
               </v-layout>
@@ -67,74 +84,76 @@
 import fb from '~/plugins/firebase'
 
 export default {
-  mounted() {
-    if (fb.firebase.auth().isSignInWithEmailLink(window.location.href)) {
-      // Additional state parameters can also be passed via URL.
-      // This can be used to continue the user's intended action before triggering
-      // the sign-in operation.
-      // Get the email if available. This should be available if the user completes
-      // the flow on the same device where they started it.
-      var email = window.localStorage.getItem('emailForSignIn')
-      if (!email) {
-        // User opened the link on a different device. To prevent session fixation
-        // attacks, ask the user to provide the associated email again. For example:
-        email = window.prompt('Please provide your email for confirmation')
-      }
-      this.showRedirecting = true
-      // The client SDK will parse the code from the link for you.
-      fb.firebase
-        .auth()
-        .signInWithEmailLink(email, window.location.href)
-        .then(function(result) {
-          // Clear email from storage.
-          window.localStorage.removeItem('emailForSignIn')
-          // You can access the new user via result.user
-          // Additional user info profile not available via:
-          // result.additionalUserInfo.profile == null
-          // You can check if the user is new or existing:
-          // result.additionalUserInfo.isNewUser
-        })
-        .catch(function(error) {
-          // Some error occurred, you can inspect the code: error.code
-          // Common errors could be invalid email and invalid or expired OTPs.
-          console.error(error)
-        })
+    data() {
+        return {
+            email: '',
+            loading: false,
+            errorVisible: false,
+            showCheckEmailLabel: false,
+            showRedirecting: false
+        }
+    },
+    computed: {
+        user() {
+            return this.$store.getters['auth/user']
+        }
+    },
+    watch: {
+        user: function(prevValue, newValue) {
+            this.$router.push('/activity')
+        }
+    },
+    mounted() {
+        if (fb.firebase.auth().isSignInWithEmailLink(window.location.href)) {
+            // Additional state parameters can also be passed via URL.
+            // This can be used to continue the user's intended action before triggering
+            // the sign-in operation.
+            // Get the email if available. This should be available if the user completes
+            // the flow on the same device where they started it.
+            var email = window.localStorage.getItem('emailForSignIn')
+            if (!email) {
+                // User opened the link on a different device. To prevent session fixation
+                // attacks, ask the user to provide the associated email again. For example:
+                email = window.prompt(
+                    'Please provide your email for confirmation'
+                )
+            }
+            this.showRedirecting = true
+            // The client SDK will parse the code from the link for you.
+            fb.firebase
+                .auth()
+                .signInWithEmailLink(email, window.location.href)
+                .then(function(result) {
+                    // Clear email from storage.
+                    window.localStorage.removeItem('emailForSignIn')
+                    // You can access the new user via result.user
+                    // Additional user info profile not available via:
+                    // result.additionalUserInfo.profile == null
+                    // You can check if the user is new or existing:
+                    // result.additionalUserInfo.isNewUser
+                })
+                .catch(function(error) {
+                    // Some error occurred, you can inspect the code: error.code
+                    // Common errors could be invalid email and invalid or expired OTPs.
+                    console.error(error)
+                })
+        }
+    },
+    methods: {
+        authWithEmail: function() {
+            this.loading = true
+            this.$store
+                .dispatch('auth/loginWithEmail', this.email)
+                .then(() => {
+                    this.showCheckEmailLabel = true
+                    this.loading = false
+                })
+                .catch(error => {
+                    this.errorVisible = true
+                    this.loading = false
+                })
+        }
     }
-  },
-  computed: {
-    user() {
-      return this.$store.getters['auth/user']
-    }
-  },
-  data() {
-    return {
-      email: '',
-      loading: false,
-      errorVisible: false,
-      showCheckEmailLabel: false,
-      showRedirecting: false
-    }
-  },
-  watch: {
-    user: function(prevValue, newValue) {
-      this.$router.push('/activity')
-    }
-  },
-  methods: {
-    authWithEmail: function() {
-      this.loading = true
-      this.$store
-        .dispatch('auth/loginWithEmail', this.email)
-        .then(() => {
-          this.showCheckEmailLabel = true
-          this.loading = false
-        })
-        .catch(error => {
-          this.errorVisible = true
-          this.loading = false
-        })
-    }
-  }
 }
 </script>
 
