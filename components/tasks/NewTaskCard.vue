@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.ask-card--cta {
+.track-form--cta {
   cursor: pointer;
 }
 </style>

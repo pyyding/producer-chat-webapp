@@ -33,7 +33,7 @@
             icon
             title="delete question"
             class="pull-right"
-            @click="deleteQuestion"
+            @click="deleteTrack"
           >
             <v-icon
               color="grey"
@@ -114,7 +114,7 @@ export default {
     data() {
         return {
             extended: false,
-            showAnswerForm: false
+            showTrackReplyForm: false
         }
     },
     computed: {
@@ -123,8 +123,8 @@ export default {
         }
     },
     methods: {
-        deleteQuestion() {
-            this.$store.dispatch('qa/deleteQuestion', this.question.id)
+        deleteTrack() {
+            this.$store.dispatch('tracks/deleteTrack', this.question.id)
         }
     }
 }

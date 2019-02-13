@@ -26,7 +26,7 @@
           :loading="loading"
           color="primary"
           flat
-          @click="ask">post</v-btn>
+          @click="postTrack">post</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -60,7 +60,7 @@ export default {
         hide() {
             this.visible = false
         },
-        ask() {
+        postTrack() {
             this.loading = true
             this.question.createdAt = fb.serverTimestamp()
             this.question.user = {
@@ -68,7 +68,7 @@ export default {
                 displayName: this.user.displayName,
                 photoURL: this.user.photoURL
             }
-            this.$store.dispatch('qa/ask', this.question).then(() => {
+            this.$store.dispatch('tracks/postTrack', this.question).then(() => {
                 this.visible = false
                 this.loading = false
             })
@@ -78,7 +78,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.ask-card--cta {
+.track-form--cta {
 	cursor: pointer;
 }
 </style>

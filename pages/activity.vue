@@ -13,7 +13,7 @@
           v-if="user"
           color=""
           flat
-          @click="showAskCard()">
+          @click="showPostTrackForm()">
           🎹 post a track
         </v-btn>
       </v-flex>
@@ -23,13 +23,13 @@
         md7
         sm7>
         <v-layout column>
-          <ask-card ref="askCard"/>
+          <track-form ref="trackForm"/>
           <new-task-card ref="newTaskCard"/>
           <div
             v-for="post in posts"
             :key="post.createdAt.seconds"
             class="mb-2">
-            <question-card
+            <track-card
               v-if="post.type === POST_TYPES.TRACK"
               :question="post.data"
               :date-string="post.dateString"/>
@@ -55,18 +55,18 @@
 
 <script>
 import { POST_TYPES } from '~/utils/constants.js'
-import QuestionCard from '~/components/qa/QuestionCard.vue'
+import TrackCard from '~/components/tracks/TrackCard.vue'
 import PostTaskCard from '~/components/posts/PostTaskCard.vue'
 import AppStreakList from '~/components/AppStreakList.vue'
-import AskCard from '~/components/qa/AskCard.vue'
+import TrackForm from '~/components/tracks/TrackForm.vue'
 import NewTaskCard from '~/components/tasks/NewTaskCard.vue'
 
 export default {
     components: {
-        QuestionCard,
+        TrackCard,
         PostTaskCard,
         AppStreakList,
-        AskCard,
+        TrackForm,
         NewTaskCard
     },
     data() {
@@ -86,13 +86,13 @@ export default {
         this.$store.dispatch('activity/fetchPosts')
     },
     methods: {
-        showAskCard() {
-            this.$refs.askCard.show()
+        showPostTrackForm() {
+            this.$refs.trackForm.show()
             this.$refs.newTaskCard.hide()
         },
         showNewTaskCard() {
             this.$refs.newTaskCard.show()
-            this.$refs.askCard.hide()
+            this.$refs.trackForm.hide()
         }
     }
 }

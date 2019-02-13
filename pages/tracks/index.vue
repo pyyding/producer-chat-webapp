@@ -4,14 +4,14 @@
       <v-flex>
         <v-layout row>
           <v-flex xl6>
-            <ask-card/>
+            <track-form/>
           </v-flex>
         </v-layout>
         <v-layout row>
           <v-flex
             xl6
             align-center>
-            <question-card
+            <track-card
               v-for="question in questions"
               :key="question.id"
               :question="question"
@@ -24,19 +24,19 @@
 </template>
 
 <script>
-import QuestionCard from '~/components/qa/QuestionCard'
-import AskCard from '~/components/qa/AskCard'
+import TrackCard from '~/components/tracks/TrackCard'
+import TrackForm from '~/components/tracks/TrackForm'
 import AppStreakList from '~/components/AppStreakList'
 
 export default {
-    components: { QuestionCard, AskCard, AppStreakList },
+    components: { TrackCard, TrackForm, AppStreakList },
     computed: {
         questions() {
-            return this.$store.getters['qa/questions']
+            return this.$store.getters['tracks/questions']
         }
     },
     beforeCreate() {
-        this.$store.dispatch('qa/getQuestions')
+        this.$store.dispatch('tracks/getTracks')
     }
 }
 </script>

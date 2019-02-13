@@ -2,7 +2,7 @@
   <v-container v-if="questionData">
     <v-layout>
       <v-flex>
-        <question-card
+        <track-card
           v-if="questionData.question"
           :question="questionData.question"/>
       </v-flex>
@@ -21,7 +21,7 @@
               v-for="answer in questionData.answers"
               :key="answer.id"
               class="">
-              <answer-card
+              <track-reply-card
                 :answer="answer"
                 :user="user"/>
             </div>
@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import AnswerForm from '~/components/qa/AnswerForm.vue'
-import AnswerCard from '~/components/qa/AnswerCard.vue'
-import QuestionCard from '~/components/qa/QuestionCard.vue'
+import TrackReplyForm from '~/components/tracks/TrackReplyForm.vue'
+import TrackReplyCard from '~/components/tracks/TrackReplyCard.vue'
+import TrackCard from '~/components/tracks/TrackCard.vue'
 export default {
-    components: { AnswerForm, AnswerCard, QuestionCard },
+    components: { TrackReplyForm, TrackReplyCard, TrackCard },
     data() {
         return {}
     },
@@ -67,14 +67,14 @@ export default {
             return this.$store.getters['auth/user']
         },
         questionData() {
-            const data = this.$store.getters['qa/questionData']
+            const data = this.$store.getters['tracks/questionData']
             if (data.question && data.question.id !== this.questionID) return
             return data
         }
     },
     beforeCreate() {
         this.questionID = this.$route.params.id
-        this.$store.dispatch('qa/getQuestionData', this.questionID)
+        this.$store.dispatch('tracks/getTrackData', this.questionID)
     }
 }
 </script>

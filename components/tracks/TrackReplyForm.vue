@@ -70,7 +70,7 @@ export default {
                 questionID: this.questionID,
                 voteSum: 0
             }
-            this.$store.dispatch('qa/submitAnswer', answerObject).then(() => {
+            this.$store.dispatch('tracks/postTrackReply', answerObject).then(() => {
                 this.answerText = ''
             })
         }

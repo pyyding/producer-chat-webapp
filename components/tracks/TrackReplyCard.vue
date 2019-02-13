@@ -20,7 +20,7 @@
           v-if="user && user.id === answer.user.id"
           title="delete feedback"
           icon
-          @click="deleteAnswer"><v-icon
+          @click="deleteTrackReply"><v-icon
             color="grey"
             small>clear</v-icon></v-btn>
       </v-layout>
@@ -115,13 +115,15 @@ export default {
         this.fetchUserVote()
     },
     methods: {
-        deleteAnswer() {
-            this.$store.dispatch('qa/deleteAnswer', this.answer.id).then(() => {
-                this.$store.dispatch(
-                    'qa/getQuestionData',
-                    this.answer.questionID
-                )
-            })
+        deleteTrackReply() {
+            this.$store
+                .dispatch('tracks/deleteTrackReply', this.answer.id)
+                .then(() => {
+                    this.$store.dispatch(
+                        'tracks/getTrackData',
+                        this.answer.questionID
+                    )
+                })
         },
         async castVote(isUpvote) {
             const vote = {
@@ -137,7 +139,7 @@ export default {
             this.userVote = {
                 isUpvote: isUpvote
             }
-            await this.$store.dispatch('qa/castVote', params)
+            await this.$store.dispatch('tracks/castVote', params)
         },
         async submitReply() {
             if (!this.user) return
@@ -151,13 +153,13 @@ export default {
                 text: this.replyText,
                 createdAt: fb.serverTimestamp()
             }
-            await this.$store.dispatch('qa/submitReply', reply)
+            await this.$store.dispatch('tracks/submitReply', reply)
             this.replyText = ''
             this.fetchReplies()
             this.replyVisible = false
         },
         async deleteReply(reply) {
-            await this.$store.dispatch('qa/deleteReply', { id: reply.id })
+            await this.$store.dispatch('tracks/deleteReply', { id: reply.id })
             this.fetchReplies()
         },
         async fetchUserVote() {
@@ -166,12 +168,12 @@ export default {
                 return
             }
             this.userVote = await this.$store.dispatch(
-                'qa/fetchUserAnswerVote',
+                'tracks/fetchUserAnswerVote',
                 { answerID: this.answer.id, userID: this.user.id }
             )
         },
         async fetchReplies() {
-            this.replies = await this.$store.dispatch('qa/fetchReplies', {
+            this.replies = await this.$store.dispatch('tracks/fetchReplies', {
                 answerID: this.answer.id
             })
         }
