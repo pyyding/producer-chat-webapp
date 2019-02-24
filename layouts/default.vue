@@ -33,7 +33,7 @@
         </v-btn> -->
         <v-btn
           v-if="user"
-          :to="'/producers/' + user.id + '/tasks'"
+          :to="'/' + user.slug + '/tasks'"
           class="font-weight-bold"
           flat>
           <v-icon
@@ -55,7 +55,7 @@
               alt="avatar"></v-avatar>
           </v-btn>
           <v-list>
-            <v-list-tile :to="`/producers/${user.id}`">
+            <v-list-tile :to="`/${user.slug}`">
               my profile
             </v-list-tile>
             <v-list-tile

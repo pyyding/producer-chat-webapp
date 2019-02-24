@@ -18,14 +18,25 @@ export const mutations = {
 }
 
 export const actions = {
-    async fetchProducer({ commit }, id) {
-        // @TODO create user slugs trigger
+    async fetchProducerById({ commit }, id) {
         const snapshot = await fb.db
             .collection('users')
             .doc(id)
             .get()
         const producer = snapshot.data()
         producer.id = snapshot.id
+
+        producer.photoURLLarge = producer.photoURL.slice(0, -6) + '512.png'
+        commit('setProducer', producer)
+        return producer
+    },
+    async fetchProducer({ commit }, slug) {
+        const snapshot = await fb.db
+            .collection('users')
+            .where('slug', '==', slug)
+            .get()
+        const producer = snapshot.docs[0].data()
+        producer.id = snapshot.docs[0].id
 
         producer.photoURLLarge = producer.photoURL.slice(0, -6) + '512.png'
         commit('setProducer', producer)
@@ -60,7 +71,7 @@ export const actions = {
     async edit({ dispatch }, { id, data }) {
         const userRef = fb.db.collection('users').doc(id)
         await userRef.update(data)
-        dispatch('fetchProducer', id)
+        dispatch('fetchProducerById', id)
     }
 }
 

@@ -193,8 +193,9 @@ export default {
     },
     beforeCreate() {
         const slug = this.$route.params.slug
-        this.$store.dispatch('producer/fetchProducer', slug)
-        this.$store.dispatch('producer/fetchPosts', slug)
+        this.$store.dispatch('producer/fetchProducer', slug).then(producer => {
+            this.$store.dispatch('producer/fetchPosts', producer.id)
+        })
     },
     methods: {
         signOut() {
