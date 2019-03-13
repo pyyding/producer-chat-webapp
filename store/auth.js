@@ -19,38 +19,6 @@ function delay(t, v) {
 }
 
 export const actions = {
-    async loginWithGoogle({ dispatch, commit }) {
-        const signInResponse = await fb.firebase
-            .auth()
-            .signInWithPopup(fb.providers.googleProvider)
-
-        const googleUser = signInResponse.user
-
-        const users = fb.db.collection('users')
-        let userExistsSnapshot = await users
-            .where('email', '==', googleUser.email)
-            .get()
-        if (!userExistsSnapshot.empty) {
-            const doc = userExistsSnapshot[0]
-            const user = doc.data()
-            user.id = doc.id
-            commit('setUser', user)
-            return user
-        } else {
-            return delay(1000).then(() => {
-                return users
-                    .where('email', '==', googleUser.email)
-                    .get()
-                    .then(snapshot => {
-                        const doc = snapshot.docs[0]
-                        const user = doc.data()
-                        user.id = doc.id
-                        commit('setUser', user)
-                        return user
-                    })
-            })
-        }
-    },
     loginWithEmail({}, email) {
         const redirectUrl =
             process.env.NODE_ENV === 'development'
@@ -80,16 +48,29 @@ export const actions = {
     },
     async initUserWithEmail({ commit }, email) {
         const users = fb.db.collection('users')
-        const userExistsSnapshot = await users.where('email', '==', email).get()
-        if (!userExistsSnapshot.empty) {
-            userExistsSnapshot.forEach(function(doc) {
-                const user = doc.data()
-                user.id = doc.id
-                commit('setUser', user)
-                return user
-            })
+        let snapshot = await users.where('email', '==', email).get()
+        if (snapshot.empty) {
+            setTimeout(() => {
+                users
+                    .where('email', '==', email)
+                    .get()
+                    .then(secondSnapshot => {
+                        const user = buildUser(secondSnapshot.docs[0])
+                        commit('setUser', user)
+                    })
+            }, 5000)
+        } else {
+            const user = buildUser(snapshot.docs[0])
+            commit('setUser', user)
         }
     }
+}
+
+function buildUser(doc) {
+    if (!doc) throw new Error('no user found')
+    const user = doc.data()
+    user.id = doc.id
+    return user
 }
 
 export const getters = {
