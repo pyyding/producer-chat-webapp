@@ -5,9 +5,9 @@ export const COLLECTIONS = {
     TASKS: 'tasks',
     USERS: 'users',
     VOTES: 'votes'
-};
+}
 
-export const POST_TYPES = { 
-    TASK: 'task', 
+export const POST_TYPES = {
+    TASK: 'task',
     TRACK: 'track'
 }

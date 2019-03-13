@@ -70,9 +70,11 @@ export default {
                 questionID: this.questionID,
                 voteSum: 0
             }
-            this.$store.dispatch('tracks/postTrackReply', answerObject).then(() => {
-                this.answerText = ''
-            })
+            this.$store
+                .dispatch('tracks/postTrackReply', answerObject)
+                .then(() => {
+                    this.answerText = ''
+                })
         }
     }
 }
