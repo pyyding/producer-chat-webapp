@@ -1,22 +1,28 @@
 <template>
   <v-card
     color
-    flat>
+    flat
+  >
     <v-card-title class="pl-4">
       <v-layout>
         <div class="d-flex align-items-top">
           <v-avatar
             class="mr-2"
-            size="36px">
+            size="36px"
+          >
             <img
               :src="question.user.photoURL"
-              alt="avatar">
+              alt="avatar"
+            >
           </v-avatar>
           <div class="d-inline-block ml-1">
             <span>
-              <strong>{{ question.user.displayName }}</strong> posted a track
+              <strong>{{ question.user.displayName }}</strong>
+              posted a track
             </span>
-            <div class="caption grey--text">{{ dateString }}</div>
+            <div class="caption grey--text">
+              {{ dateString }}
+            </div>
           </div>
           <v-rating
             v-model="question.ratingAvg"
@@ -37,7 +43,10 @@
           >
             <v-icon
               color="grey"
-              small>clear</v-icon>
+              small
+            >
+              clear
+            </v-icon>
           </v-btn>
         </div>
       </v-layout>
@@ -45,7 +54,11 @@
     <v-card-text>
       <iframe
         v-if="question.link.includes('soundcloud')"
-        :src="`https://w.soundcloud.com/player/?url=${question.link}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true`"
+        :src="
+          `https://w.soundcloud.com/player/?url=${
+            question.link
+          }&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true`
+        "
         class="mb-4"
         width="100%"
         height="100"
@@ -75,15 +88,20 @@
         v-else
         mt-2
         mb-4
-        class="text-xs-center">
-        <span style="display: inline-flex; flex-direction: column; cursor: pointer">
+        class="text-xs-center"
+      >
+        <span
+          style="display: inline-flex; flex-direction: column; cursor: pointer"
+        >
           <v-icon
             :href="question.link"
             target="_blank"
-            color="primary">play_circle_filled</v-icon>
+            color="primary"
+          >play_circle_filled</v-icon>
           <a
             :href="question.link"
-            target="_blank">listen from here</a>
+            target="_blank"
+          >listen from here</a>
         </span>
       </v-flex>
     </v-card-text>
@@ -94,7 +112,9 @@
         depressed
         color="success"
         flat
-      >see thread</v-btn>
+      >
+        see thread
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -141,4 +161,5 @@ export default {
 
 .v-card__actions {
   padding: 0 8px 8px 8px;
-}</style>
+}
+</style>

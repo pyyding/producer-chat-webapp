@@ -3,13 +3,15 @@
     <v-card
       v-if="user"
       flat
-      color="">
+      color=""
+    >
       <v-card-text>
         <v-layout row>
           <v-flex>
             <v-textarea
               v-model="answerText"
-              label="Write your feedback here..."/>
+              label="Write your feedback here..."
+            />
           </v-flex>
         </v-layout>
         <v-layout row>
@@ -21,12 +23,15 @@
         </v-layout>
       </v-card-text>
       <v-card-actions>
-        <v-spacer/>
+        <v-spacer />
         <v-btn
           class="ml-0"
           color="success"
           flat
-          @click="submit">post</v-btn>
+          @click="submit"
+        >
+          post
+        </v-btn>
       </v-card-actions>
     </v-card>
   </div>

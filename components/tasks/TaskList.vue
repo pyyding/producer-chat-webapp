@@ -4,7 +4,8 @@
       v-for="task in tasks"
       :key="task.id"
       class="task-item"
-      subheader>
+      subheader
+    >
       <v-list-tile-action>
         <v-checkbox
           :disabled="disabled"
@@ -15,15 +16,19 @@
       <v-list-tile-content>
         <v-list-tile-title>{{ task.text }}</v-list-tile-title>
       </v-list-tile-content>
-      <v-spacer/>
+      <v-spacer />
       <v-list-tile-action v-if="user && task.user.id === user.id">
         <v-btn
           class="task-item__delete-button"
           icon
-          @click="deleteTask(task)">
+          @click="deleteTask(task)"
+        >
           <v-icon
             small
-            class="grey--text">clear</v-icon>
+            class="grey--text"
+          >
+            clear
+          </v-icon>
         </v-btn>
       </v-list-tile-action>
     </v-list-tile>
@@ -35,8 +40,11 @@
       />
       <v-btn
         icon
-        @click="createTask">
-        <v-icon color="secondary">create</v-icon>
+        @click="createTask"
+      >
+        <v-icon color="secondary">
+          create
+        </v-icon>
       </v-btn>
     </v-list-tile>
   </v-list>

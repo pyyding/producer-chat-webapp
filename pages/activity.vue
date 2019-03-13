@@ -3,17 +3,22 @@
     <v-layout row>
       <v-flex
         md7
-        sm7>
+        sm7
+      >
         <v-btn
           v-if="user"
           flat
           color=""
-          @click="showNewTaskCard"> ✅ add a task</v-btn>
+          @click="showNewTaskCard"
+        >
+          ✅ add a task
+        </v-btn>
         <v-btn
           v-if="user"
           color=""
           flat
-          @click="showPostTrackForm()">
+          @click="showPostTrackForm()"
+        >
           🎹 post a track
         </v-btn>
       </v-flex>
@@ -21,21 +26,25 @@
     <v-layout row>
       <v-flex
         md7
-        sm7>
+        sm7
+      >
         <v-layout column>
-          <track-form ref="trackForm"/>
-          <new-task-card ref="newTaskCard"/>
+          <track-form ref="trackForm" />
+          <new-task-card ref="newTaskCard" />
           <div
             v-for="post in posts"
             :key="post.createdAt.seconds"
-            class="mb-2">
+            class="mb-2"
+          >
             <track-card
               v-if="post.type === POST_TYPES.TRACK"
               :question="post.data"
-              :date-string="post.dateString"/>
+              :date-string="post.dateString"
+            />
             <post-task-card
               v-if="post.type === POST_TYPES.TASK"
-              :post="post"/>
+              :post="post"
+            />
           </div>
         </v-layout>
       </v-flex>
@@ -44,9 +53,10 @@
         lg4
         md5
         sm5
-        hidden-xs-only>
+        hidden-xs-only
+      >
         <v-layout row>
-          <app-streak-list/>
+          <app-streak-list />
         </v-layout>
       </v-flex>
     </v-layout>

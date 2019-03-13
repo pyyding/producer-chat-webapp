@@ -4,7 +4,8 @@
       v-if="visible"
       color=""
       class="mb-2"
-      flat>
+      flat
+    >
       <v-slide-y-transition>
         <v-card-text>
           <v-form>
@@ -12,21 +13,28 @@
               v-model="question.link"
               required
               append-icon="link"
-              label="track link (public soundcloud or clyp.it)"/>
+              label="track link (public soundcloud or clyp.it)"
+            />
           </v-form>
         </v-card-text>
       </v-slide-y-transition>
       <v-card-actions v-if="visible">
-        <v-spacer/>
+        <v-spacer />
         <v-btn
           color="grey"
           flat
-          @click="visible = false">cancel</v-btn>
+          @click="visible = false"
+        >
+          cancel
+        </v-btn>
         <v-btn
           :loading="loading"
           color="primary"
           flat
-          @click="postTrack">post</v-btn>
+          @click="postTrack"
+        >
+          post
+        </v-btn>
       </v-card-actions>
     </v-card>
   </div>

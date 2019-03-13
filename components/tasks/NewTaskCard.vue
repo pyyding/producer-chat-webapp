@@ -3,7 +3,8 @@
     v-if="visible"
     color
     flat
-    class="mb-2">
+    class="mb-2"
+  >
     <v-card-text>
       <v-form>
         <v-layout column>
@@ -15,21 +16,28 @@
           <v-checkbox
             v-model="isDone"
             class="d-inline-block"
-            label="mark task as done?"/>
+            label="mark task as done?"
+          />
         </v-layout>
       </v-form>
     </v-card-text>
     <v-card-actions v-if="visible">
-      <v-spacer/>
+      <v-spacer />
       <v-btn
         color="grey"
         flat
-        @click="visible = false">cancel</v-btn>
+        @click="visible = false"
+      >
+        cancel
+      </v-btn>
       <v-btn
         :loading="loading"
         color="primary"
         flat
-        @click="post">post</v-btn>
+        @click="post"
+      >
+        post
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>

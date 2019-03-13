@@ -2,20 +2,25 @@
   <v-container>
     <v-layout
       row
-      justify-center>
+      justify-center
+    >
       <v-flex xl4>
         <v-card flat>
           <v-card-text class="pa-5">
-            <h2 style="text-align: center">log in to producer chat.</h2>
+            <h2 style="text-align: center">
+              log in to producer chat.
+            </h2>
             <v-layout column>
               <v-flex
                 xs12
                 pt-3
-                class="text-xs-center"/>
+                class="text-xs-center"
+              />
               <v-flex
                 v-if="!showCheckEmailLabel && !showRedirecting"
-                class="d-flex">
-                <v-spacer/>
+                class="d-flex"
+              >
+                <v-spacer />
                 <v-text-field
                   v-model="email"
                   type="email"
@@ -23,12 +28,13 @@
                   label="Enter your email address"
                   @keyup.native.enter="authWithEmail"
                 />
-                <v-spacer/>
+                <v-spacer />
               </v-flex>
               <v-flex
                 v-if="!showCheckEmailLabel && !showRedirecting"
-                class="d-flex">
-                <v-spacer/>
+                class="d-flex"
+              >
+                <v-spacer />
                 <v-btn
                   :loading="loading"
                   class="mt-5"
@@ -36,31 +42,39 @@
                   style="width: 50px"
                   depressed
                   @click="authWithEmail"
-                >sign in</v-btn>
-                <v-spacer/>
+                >
+                  sign in
+                </v-btn>
+                <v-spacer />
               </v-flex>
               <v-layout
                 v-if="!showCheckEmailLabel && !showRedirecting"
-                row>
-                <v-spacer/>
+                row
+              >
+                <v-spacer />
                 <p
                   class="text--grey mt-3 text-xs-center"
-                  style="width: 300px">
-                  <a href="https://www.producer.chat/welcome#sign-up">sign up</a>
+                  style="width: 300px"
+                >
+                  <a
+                    href="https://www.producer.chat/welcome#sign-up"
+                  >sign up</a>
                 </p>
-                <v-spacer/>
+                <v-spacer />
               </v-layout>
               <v-layout
                 v-if="showCheckEmailLabel"
-                row>
-                <v-spacer/>go check your email!
-                <v-spacer/>
+                row
+              >
+                <v-spacer />go check your email!
+                <v-spacer />
               </v-layout>
               <v-layout
                 v-if="showRedirecting"
-                row>
-                <v-spacer/>redirecting...
-                <v-spacer/>
+                row
+              >
+                <v-spacer />redirecting...
+                <v-spacer />
               </v-layout>
             </v-layout>
           </v-card-text>

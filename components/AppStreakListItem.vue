@@ -3,7 +3,8 @@
     <v-list-tile-avatar>
       <img
         :src="user.photoURL"
-        alt="avatar">
+        alt="avatar"
+      >
     </v-list-tile-avatar>
     <v-list-tile-content>
       <v-list-tile-title>
@@ -13,7 +14,8 @@
         <span class="tracks-chip d-inline-flex">
           <span
             v-if="user.streak > 0"
-            class="streak-chip d-inline-flex mr-2">
+            class="streak-chip d-inline-flex mr-2"
+          >
             <span class="streak-chip__icon">
               🔥
             </span>

@@ -1,7 +1,8 @@
 <template>
   <v-layout
     column
-    align-center/>
+    align-center
+  />
 </template>
 
 <script>

@@ -5,26 +5,33 @@
       dark
       flat
       scroll-off-screen
-      color="primary">
+      color="primary"
+    >
       <v-toolbar-title>
         <nuxt-link to="/activity">
           <img
             class="toolbar__logo hidden-xs-only"
-            src="/toolbar_logo.svg">
+            src="/toolbar_logo.svg"
+          >
           <img
             class="toolbar__logo--small hidden-sm-and-up"
-            src="/toolbar_logo_small.svg">
+            src="/toolbar_logo_small.svg"
+          >
         </nuxt-link>
       </v-toolbar-title>
-      <v-spacer/>
-      <v-toolbar-items >
+      <v-spacer />
+      <v-toolbar-items>
         <v-btn
           class="font-weight-bold"
           flat
-          to="/activity">
+          to="/activity"
+        >
           <v-icon
             left
-            small>web</v-icon>
+            small
+          >
+            web
+          </v-icon>
           activity
         </v-btn>
         <!-- <v-btn class="font-weight-bold" flat to="/tracks">
@@ -35,10 +42,14 @@
           v-if="user"
           :to="'/' + user.slug + '/tasks'"
           class="font-weight-bold"
-          flat>
+          flat
+        >
           <v-icon
             left
-            small>check_circle</v-icon>
+            small
+          >
+            check_circle
+          </v-icon>
           my tasks
         </v-btn>
         <v-menu
@@ -50,17 +61,20 @@
             class="font-weight-bold"
             flat
           >
-            <v-avatar size="36px"><img
-              :src="user.photoURL"
-              alt="avatar"></v-avatar>
+            <v-avatar
+              size="36px"
+            >
+              <img
+                :src="user.photoURL"
+                alt="avatar"
+              >
+            </v-avatar>
           </v-btn>
           <v-list>
             <v-list-tile :to="`/${user.slug}`">
               my profile
             </v-list-tile>
-            <v-list-tile
-              @click="signOut"
-            >
+            <v-list-tile @click="signOut">
               <v-list-tile-title>sign out</v-list-tile-title>
             </v-list-tile>
           </v-list>
@@ -69,10 +83,14 @@
           v-if="!user"
           class="font-weight-bold"
           flat
-          to="/login">
+          to="/login"
+        >
           <v-icon
             left
-            small>account_circle</v-icon>
+            small
+          >
+            account_circle
+          </v-icon>
           login
         </v-btn>
       </v-toolbar-items>
@@ -85,7 +103,8 @@
     <v-footer
       height="10px"
       absolute
-      app>
+      app
+    >
       <span class="ml-4">Producer Chat &copy; 2018</span>
     </v-footer>
   </v-app>

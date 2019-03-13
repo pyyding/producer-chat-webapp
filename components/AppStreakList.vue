@@ -1,16 +1,17 @@
 <template>
   <v-card
     flat
-    style="width: 100%">
-    <v-card-title >
+    style="width: 100%"
+  >
+    <v-card-title>
       <h2>top producers</h2>
     </v-card-title>
     <v-card-text>
       <v-list two-line>
         <template v-for="user in topUsers">
           <app-streak-list-item
-            :user="user"
             :key="user.id"
+            :user="user"
           />
         </template>
       </v-list>

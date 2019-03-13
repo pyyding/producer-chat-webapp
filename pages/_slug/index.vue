@@ -4,14 +4,16 @@
       v-if="!producer"
       class="loadingSpinner"
       indeterminate
-      color="primary"/>
+      color="primary"
+    />
     <v-fade-transition>
       <v-layout
         v-show="producer"
         row
         wrap
         align-center
-        justify-center>
+        justify-center
+      >
         <EditProfileDialog
           v-if="user && producer.id === user.id"
           :producer="producer"
@@ -19,10 +21,12 @@
         />
         <v-flex
           xs12
-          class="header">
+          class="header"
+        >
           <v-layout
             row
-            wrap>
+            wrap
+          >
             <v-flex
               lg3
               md3
@@ -30,11 +34,13 @@
             >
               <v-layout
                 row
-                justify-center>
+                justify-center
+              >
                 <v-avatar :size="avatarSize">
                   <img
                     :src="producer.photoURLLarge"
-                    alt="avatar">
+                    alt="avatar"
+                  >
                 </v-avatar>
               </v-layout>
             </v-flex>
@@ -46,7 +52,7 @@
               pl-2
               pr-2
             >
-              <v-layout row >
+              <v-layout row>
                 <h1 class="header-text text-xl-center">
                   <!-- <span class="font-weight-regular">I'm</span> -->
                   {{ producer.displayName }}
@@ -54,8 +60,11 @@
               </v-layout>
               <v-layout
                 row
-                mt-2>
-                <p class="bio-text">{{ producer.bio }}</p>
+                mt-2
+              >
+                <p class="bio-text">
+                  {{ producer.bio }}
+                </p>
               </v-layout>
               <v-layout>
                 <a
@@ -68,7 +77,8 @@
                     width="25"
                     height="25"
                     icon-color="#44A1A0"
-                    icon-name="soundcloud"><soundcloud-icon /></icon-base>
+                    icon-name="soundcloud"
+                  ><soundcloud-icon /></icon-base>
                 </a>
 
                 <a
@@ -95,7 +105,8 @@
                     width="25"
                     height="25"
                     icon-color="#44A1A0"
-                    icon-name="bandcamp"><bandcamp-icon /></icon-base>
+                    icon-name="bandcamp"
+                  ><bandcamp-icon /></icon-base>
                 </a>
 
                 <a
@@ -108,7 +119,8 @@
                     width="25"
                     height="25"
                     icon-color="#44A1A0"
-                    icon-name="youtube"><youtube-icon /></icon-base>
+                    icon-name="youtube"
+                  ><youtube-icon /></icon-base>
                 </a>
 
                 <a
@@ -121,7 +133,8 @@
                     width="25"
                     height="25"
                     icon-color="#44A1A0"
-                    icon-name="spotify"><spotify-icon /></icon-base>
+                    icon-name="spotify"
+                  ><spotify-icon /></icon-base>
                 </a>
               </v-layout>
             </v-flex>
@@ -129,13 +142,15 @@
         </v-flex>
         <v-layout
           row
-          mt-2>
+          mt-2
+        >
           <v-flex md12>
             <v-layout column>
               <div
                 v-for="post in posts"
                 :key="post.createdAt.seconds"
-                class="mb-2">
+                class="mb-2"
+              >
                 <track-card
                   v-if="post.type === POST_TYPES.TRACK"
                   :question="post.data"

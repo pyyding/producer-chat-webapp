@@ -2,42 +2,76 @@
   <v-card
     v-if="answer"
     flat
-    class="mb-2">
+    class="mb-2"
+  >
     <v-card-text>
       <v-layout
         row
-        align-center>
+        align-center
+      >
         <v-avatar
           class="ml-2 mr-2"
-          size="36px"><img
+          size="36px"
+        >
+          <img
             :src="answer.user.photoURL"
-            alt="avatar"></v-avatar>
+            alt="avatar"
+          >
+          />
+        </v-avatar>
+
         <div>
           <strong>{{ answer.user.displayName }}</strong>
-          <div><span class="grey--text">{{ answer.createdAt.toDate().toLocaleDateString() }}</span></div>
+          <div>
+            <span class="grey--text">{{
+              answer.createdAt.toDate().toLocaleDateString()
+            }}</span>
+          </div>
         </div>
         <v-btn
           v-if="user && user.id === answer.user.id"
           title="delete feedback"
           icon
-          @click="deleteTrackReply"><v-icon
+          @click="deleteTrackReply"
+        >
+          <v-icon
             color="grey"
-            small>clear</v-icon></v-btn>
+            small
+          >
+            clear
+          </v-icon>
+        </v-btn>
       </v-layout>
       <v-layout row>
         <div class="vote-widget">
           <v-btn
             small
             icon
-            @click="castVote(true)">
-            <v-icon :class="{ 'success--text' : userVote && userVote.isUpvote}">arrow_drop_up</v-icon>
+            @click="castVote(true)"
+          >
+            <v-icon
+              :class="{
+                'success--text': userVote && userVote.isUpvote
+              }"
+            >
+              arrow_drop_up
+            </v-icon>
           </v-btn>
-          <h2 class="vote-widget__count">{{ temporaryVoteSum || answer.voteSum }}</h2>
+          <h2 class="vote-widget__count">
+            {{ temporaryVoteSum || answer.voteSum }}
+          </h2>
           <v-btn
             small
             icon
-            @click="castVote(false)">
-            <v-icon :class="{ 'success--text' : userVote && !userVote.isUpvote}">arrow_drop_down</v-icon>
+            @click="castVote(false)"
+          >
+            <v-icon
+              :class="{
+                'success--text': userVote && !userVote.isUpvote
+              }"
+            >
+              arrow_drop_down
+            </v-icon>
           </v-btn>
         </div>
         <v-flex pt-3>
@@ -46,11 +80,14 @@
           </p>
           <v-flex
             v-for="reply in replies"
-            :key="reply.id">
+            :key="reply.id"
+          >
             <v-divider class="mb-2 mt-2 grey lighten-4" />
             <v-layout align-center>
               <v-flex>
-                <strong class="">{{ reply.user.displayName }}</strong><span class=""> {{ reply.text }}</span>
+                <strong class="">{{
+                  reply.user.displayName
+                }}</strong><span class=""> {{ reply.text }}</span>
               </v-flex>
               <v-btn
                 v-if="user && user.id === reply.user.id"
@@ -61,7 +98,10 @@
               >
                 <v-icon
                   color="grey"
-                  small>clear</v-icon>
+                  small
+                >
+                  clear
+                </v-icon>
               </v-btn>
             </v-layout>
           </v-flex>
@@ -73,16 +113,25 @@
         v-if="!replyVisible && user"
         color="success"
         flat
-        @click="replyVisible = true">reply</v-btn>
+        @click="replyVisible = true"
+      >
+        reply
+      </v-btn>
       <v-text-field
         v-if="replyVisible"
         v-model="replyText"
         autofocus
         label="Reply..."
-        @keyup.native.enter="submitReply"/><v-btn
-          v-if="replyVisible"
-          icon
-          @click="submitReply"><v-icon color="success" >send</v-icon></v-btn>
+        @keyup.native.enter="submitReply"
+      /><v-btn
+        v-if="replyVisible"
+        icon
+        @click="submitReply"
+      >
+        <v-icon color="success">
+          send
+        </v-icon>
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -182,12 +231,12 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-	.answer--text
-		&:first-line
-			line-height 0
-		white-space pre-line
-		word-break break-word
-	.vote-widget
-		.vote-widget__count
-			text-align center
+.answer--text
+	&:first-line
+		line-height 0
+	white-space pre-line
+	word-break break-word
+.vote-widget
+	.vote-widget__count
+		text-align center
 </style>

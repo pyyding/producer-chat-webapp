@@ -4,13 +4,14 @@
       <v-flex>
         <v-layout row>
           <v-flex xl6>
-            <track-form/>
+            <track-form />
           </v-flex>
         </v-layout>
         <v-layout row>
           <v-flex
             xl6
-            align-center>
+            align-center
+          >
             <track-card
               v-for="question in questions"
               :key="question.id"
@@ -26,10 +27,9 @@
 <script>
 import TrackCard from '~/components/tracks/TrackCard'
 import TrackForm from '~/components/tracks/TrackForm'
-import AppStreakList from '~/components/AppStreakList'
 
 export default {
-    components: { TrackCard, TrackForm, AppStreakList },
+    components: { TrackCard, TrackForm },
     computed: {
         questions() {
             return this.$store.getters['tracks/questions']
@@ -41,6 +41,4 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-
-</style>
+<style lang="stylus" scoped></style>
