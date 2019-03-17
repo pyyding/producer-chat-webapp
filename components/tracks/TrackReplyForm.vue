@@ -69,6 +69,7 @@ export default {
                 createdAt: fb.serverTimestamp(),
                 user: {
                     id: this.user.id,
+                    slug: this.user.slug,
                     displayName: this.user.displayName,
                     photoURL: this.user.photoURL
                 },

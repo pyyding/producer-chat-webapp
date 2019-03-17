@@ -30,17 +30,23 @@ export const actions = {
         commit('setProducer', producer)
         return producer
     },
-    async fetchProducer({ commit }, slug) {
-        const snapshot = await fb.db
-            .collection('users')
-            .where('slug', '==', slug)
-            .get()
-        const producer = snapshot.docs[0].data()
-        producer.id = snapshot.docs[0].id
+    async fetchProducer({ commit, dispatch }, slug) {
+        try {
+            const snapshot = await fb.db
+                .collection('users')
+                .where('slug', '==', slug)
+                .get()
+            const doc = snapshot.docs[0]
+            if (!doc) return dispatch('fetchProducerById', slug)
+            const producer = snapshot.docs[0].data()
+            producer.id = snapshot.docs[0].id
 
-        producer.photoURLLarge = producer.photoURL.slice(0, -6) + '512.png'
-        commit('setProducer', producer)
-        return producer
+            producer.photoURLLarge = producer.photoURL.slice(0, -6) + '512.png'
+            commit('setProducer', producer)
+            return producer
+        } catch (e) {
+            console.error(e)
+        }
     },
     async fetchPosts({ commit }, id) {
         const posts = []

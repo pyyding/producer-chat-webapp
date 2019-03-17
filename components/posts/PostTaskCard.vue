@@ -4,20 +4,22 @@
     flat
   >
     <v-card-title class="align-center pb-0 pl-4">
-      <v-avatar
-        class="mr-2"
-        size="36px"
-      >
-        <img
-          :src="post.user.photoURL"
-          alt="avatar"
+      <nuxt-link :to="`/${post.user.slug || post.user.id}`">
+        <v-avatar
+          class="mr-2"
+          size="36px"
         >
-      </v-avatar>
+          <img
+            :src="post.user.photoURL"
+            alt="avatar"
+          >
+        </v-avatar>
+      </nuxt-link>
       <div class="d-inline-block ml-1">
-        <span>
+        <nuxt-link :to="`/${post.user.slug || post.user.id}`">
           <strong>{{ post.user.displayName }}</strong>
-          completed {{ post.data.length === 1 ? 'a task' : 'tasks' }}
-        </span>
+        </nuxt-link>
+        completed {{ post.data.length === 1 ? 'a task' : 'tasks' }}
         <div class="caption grey--text">
           {{ post.dateString }}
         </div>

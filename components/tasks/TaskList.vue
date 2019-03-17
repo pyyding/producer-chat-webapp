@@ -91,6 +91,7 @@ export default {
                 text: this.newTaskText,
                 user: {
                     id: this.user.id,
+                    slug: this.user.slug,
                     displayName: this.user.displayName,
                     photoURL: this.user.photoURL
                 },

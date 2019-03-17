@@ -73,6 +73,7 @@ export default {
             this.question.createdAt = fb.serverTimestamp()
             this.question.user = {
                 id: this.user.id,
+                slug: this.user.slug,
                 displayName: this.user.displayName,
                 photoURL: this.user.photoURL
             }

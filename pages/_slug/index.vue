@@ -212,6 +212,9 @@ export default {
             this.$store.dispatch('producer/fetchPosts', producer.id)
         })
     },
+    beforeDestroy() {
+        this.$store.commit('producer/setProducer', false)
+    },
     methods: {
         signOut() {
             this.$store.dispatch('auth/signOut')

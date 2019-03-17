@@ -1,5 +1,8 @@
 <template>
-  <v-list-tile v-if="user">
+  <v-list-tile
+    v-if="user"
+    :to="`/${user.slug}`"
+  >
     <v-list-tile-avatar>
       <img
         :src="user.photoURL"

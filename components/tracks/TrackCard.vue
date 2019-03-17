@@ -6,18 +6,22 @@
     <v-card-title class="pl-4">
       <v-layout>
         <div class="d-flex align-items-top">
-          <v-avatar
-            class="mr-2"
-            size="36px"
-          >
-            <img
-              :src="question.user.photoURL"
-              alt="avatar"
+          <nuxt-link :to="`/${question.user.slug || question.user.id}`">
+            <v-avatar
+              class="mr-2"
+              size="36px"
             >
-          </v-avatar>
+              <img
+                :src="question.user.photoURL"
+                alt="avatar"
+              >
+            </v-avatar>
+          </nuxt-link>
           <div class="d-inline-block ml-1">
             <span>
-              <strong>{{ question.user.displayName }}</strong>
+              <nuxt-link :to="`/${question.user.slug || question.user.id}`">
+                <strong>{{ question.user.displayName }}</strong>
+              </nuxt-link>
               posted a track
             </span>
             <div class="caption grey--text">
