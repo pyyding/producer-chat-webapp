@@ -78,7 +78,15 @@
                 v-if="showRedirecting"
                 row
               >
-                <v-spacer />redirecting...
+                <v-spacer />
+                <div>
+                  <v-progress-circular
+                    class="loadingSpinner"
+                    indeterminate
+                    color="primary"
+                  />
+                  redirecting...
+                </div>
                 <v-spacer />
               </v-layout>
             </v-layout>
@@ -169,5 +177,9 @@ export default {
 <style lang="stylus" scoped>
 .form {
   max-width: 350px;
+}
+
+.loadingSpinner {
+    margin-bottom: 20px;
 }
 </style>

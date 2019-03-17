@@ -29,6 +29,12 @@
         sm7
       >
         <v-layout column>
+          <v-progress-circular
+            v-if="posts.length === 0"
+            class="loadingSpinner"
+            indeterminate
+            color="primary"
+          />
           <track-form ref="trackForm" />
           <new-task-card ref="newTaskCard" />
           <div
@@ -109,4 +115,10 @@ export default {
 </script>
 
 <style>
+.loadingSpinner {
+    margin-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 </style>
