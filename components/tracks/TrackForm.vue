@@ -8,12 +8,13 @@
     >
       <v-slide-y-transition>
         <v-card-text>
-          <v-form>
+          <v-form v-model="valid">
             <v-text-field
               v-model="question.link"
+              :rules="linkRules"
               required
               append-icon="link"
-              label="track link (public soundcloud or clyp.it)"
+              label="public soundcloud link"
             />
           </v-form>
         </v-card-text>
@@ -53,7 +54,14 @@ export default {
                 user: {},
                 ratingAvg: 0
             },
-            createdAt: null
+            createdAt: null,
+            valid: true,
+            linkRules: [
+                v => !!v || 'link is required',
+                v =>
+                    /.+soundcloud.+/.test(v) ||
+                    'must be a valid soundcloud link'
+            ]
         }
     },
     computed: {
