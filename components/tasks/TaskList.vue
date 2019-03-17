@@ -6,7 +6,7 @@
       class="task-item"
       subheader
     >
-      <v-list-tile-action>
+      <v-list-tile-action class="checkbox-action">
         <v-checkbox
           :disabled="disabled"
           :input-value="task.isDone"
@@ -109,8 +109,8 @@ export default {
 </script>
 
 <style lang="stylus">
-.v-input--selection-controls .v-input__slot {
-  margin-bottom: initial;
+.checkbox-action .v-input--selection-controls .v-input__slot {
+  margin-bottom: 0;
 }
 
 .task-item:hover {

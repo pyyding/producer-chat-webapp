@@ -152,6 +152,10 @@
                 :key="post.createdAt.seconds"
                 class="mb-2"
               >
+                <post-task-card
+                  v-if="post.type === POST_TYPES.TASK"
+                  :post="post"
+                />
                 <track-card
                   v-if="post.type === POST_TYPES.TRACK"
                   :question="post.data"
@@ -170,6 +174,7 @@
 import { POST_TYPES } from '~/utils/constants.js'
 import EditProfileDialog from '~/components/producers/EditProfileDialog.vue'
 import TrackCard from '~/components/tracks/TrackCard.vue'
+import PostTaskCard from '~/components/posts/PostTaskCard.vue'
 import SoundcloudIcon from '~/components/icons/SoundcloudIcon.vue'
 import InstagramIcon from '~/components/icons/InstagramIcon.vue'
 import YoutubeIcon from '~/components/icons/YoutubeIcon.vue'
@@ -186,7 +191,8 @@ export default {
         InstagramIcon,
         YoutubeIcon,
         BandcampIcon,
-        SpotifyIcon
+        SpotifyIcon,
+        PostTaskCard
     },
     data() {
         return {
