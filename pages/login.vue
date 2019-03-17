@@ -21,13 +21,18 @@
                 class="d-flex"
               >
                 <v-spacer />
-                <v-text-field
-                  v-model="email"
-                  type="email"
-                  class="email-input"
-                  label="Enter your email address"
-                  @keyup.native.enter="authWithEmail"
-                />
+                <v-form
+                  v-model="valid"
+                  class="form"
+                >
+                  <v-text-field
+                    v-model="email"
+                    :rules="emailRules"
+                    type="email"
+                    label="Enter your email address"
+                    @keyup.native.enter="authWithEmail"
+                  />
+                </v-form>
                 <v-spacer />
               </v-flex>
               <v-flex
@@ -66,7 +71,7 @@
                 v-if="showCheckEmailLabel"
                 row
               >
-                <v-spacer />go check your email!
+                <v-spacer />Login link has been sent to your email!
                 <v-spacer />
               </v-layout>
               <v-layout
@@ -94,7 +99,12 @@ export default {
             loading: false,
             errorVisible: false,
             showCheckEmailLabel: false,
-            showRedirecting: false
+            showRedirecting: false,
+            valid: true,
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+/.test(v) || 'E-mail must be valid'
+            ]
         }
     },
     computed: {
@@ -157,7 +167,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.email-input {
-  max-width: 300px;
+.form {
+  max-width: 350px;
 }
 </style>
