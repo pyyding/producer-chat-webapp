@@ -103,7 +103,18 @@ export default {
         }
     },
     watch: {
-        user: function(prevValue, newValue) {
+        user: function(newValue, prevValue) {
+            const userHasFilledInfo =
+                'soundcloud' in newValue ||
+                'bandcamp' in newValue ||
+                'bio' in newValue ||
+                'spotify' in newValue ||
+                'youtube' in newValue ||
+                'instagram' in newValue
+            if (!userHasFilledInfo) {
+                this.$router.push(`/${newValue.slug}?openDialog=true`)
+                return
+            }
             this.$router.push('/activity')
         }
     },

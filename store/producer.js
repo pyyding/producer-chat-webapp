@@ -4,7 +4,7 @@ import Post from '~/models/post.js'
 import moment from 'moment'
 
 export const state = () => ({
-    producer: false,
+    producer: null,
     posts: []
 })
 

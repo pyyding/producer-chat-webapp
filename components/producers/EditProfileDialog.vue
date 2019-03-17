@@ -7,7 +7,7 @@
       slot="activator"
       class="edit-button"
       icon
-      @click="isVisible = true"
+      :on-click="openDialog"
     >
       <v-icon>edit</v-icon>
     </v-btn>
@@ -18,7 +18,10 @@
           <h1>edit profile</h1>
         </v-card-title>
 
-        <v-form @keyup.native.enter="edit">
+        <v-form
+          v-if="producer"
+          @keyup.native.enter="edit"
+        >
           <v-card-text>
             <v-flex
               mb-2
@@ -100,25 +103,33 @@ export default {
             editData: {}
         }
     },
-    mounted() {
-        this.editData = {
-            bio: this.producer.bio || '',
-            soundcloud: this.producer.soundcloud || '',
-            instagram: this.producer.instagram || '',
-            youtube: this.producer.youtube || '',
-            spotify: this.producer.spotify || '',
-            bandcamp: this.producer.bandcamp || ''
+    watch: {
+        producer(newValue, oldValue) {
+            this.editData = {
+                bio: newValue.bio || '',
+                soundcloud: newValue.soundcloud || '',
+                instagram: newValue.instagram || '',
+                youtube: newValue.youtube || '',
+                spotify: newValue.spotify || '',
+                bandcamp: newValue.bandcamp || ''
+            }
         }
     },
     methods: {
         async edit() {
             this.isLoading = true
+            if (this.$route.query.openDialog) {
+                this.$route.query.openDialog = false
+            }
             await this.$store.dispatch('producer/edit', {
                 id: this.producer.id,
                 data: this.editData
             })
             this.isVisible = false
             this.isLoading = false
+        },
+        openDialog() {
+            this.isVisible = true
         }
     }
 }

@@ -6,19 +6,20 @@
       indeterminate
       color="primary"
     />
+    <EditProfileDialog
+      v-show="user && producer && producer.id === user.id"
+      ref="editDialog"
+      :producer="producer"
+      class="edit-button"
+    />
     <v-fade-transition>
       <v-layout
-        v-show="producer"
+        v-if="producer"
         row
         wrap
         align-center
         justify-center
       >
-        <EditProfileDialog
-          v-if="user && producer.id === user.id"
-          :producer="producer"
-          class="edit-button"
-        />
         <v-flex
           xs12
           class="header"
@@ -204,6 +205,16 @@ export default {
         },
         posts() {
             return this.$store.getters['producer/posts']
+        },
+        hasBothUserAndProducer() {
+            return this.producer && this.user
+        }
+    },
+    watch: {
+        hasBothUserAndProducer: function(newValue, prevValue) {
+            if (newValue && this.$route.query.openDialog) {
+                this.$refs.editDialog.openDialog()
+            }
         }
     },
     beforeCreate() {
