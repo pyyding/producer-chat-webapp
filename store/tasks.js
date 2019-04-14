@@ -34,7 +34,7 @@ export const actions = {
         commit('setTasks', tasks)
         return tasks
     },
-    async createTask({ dispatch, commit, getters }, task) {
+    async createCheckIn({ dispatch, commit, getters }, task) {
         const newTaskRef = await fb.db.collection('tasks').doc()
         const snapshot = await newTaskRef.set(task)
         const newTask = { ...task, id: newTaskRef.id }

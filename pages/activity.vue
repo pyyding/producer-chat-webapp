@@ -7,11 +7,11 @@
       >
         <v-btn
           v-if="user"
-          flat
-          color=""
-          @click="showNewTaskCard"
+          color="primary"
+          depressed
+          @click="showNewCheckInCard"
         >
-          ✅ add a task
+          ✅ check in
         </v-btn>
         <v-btn
           v-if="user"
@@ -36,7 +36,7 @@
             color="primary"
           />
           <track-form ref="trackForm" />
-          <new-task-card ref="newTaskCard" />
+          <new-check-in-card ref="newCheckInCard" />
           <div
             v-for="post in posts"
             :key="post.createdAt.seconds"
@@ -75,7 +75,7 @@ import TrackCard from '~/components/tracks/TrackCard.vue'
 import PostTaskCard from '~/components/posts/PostTaskCard.vue'
 import AppStreakList from '~/components/AppStreakList.vue'
 import TrackForm from '~/components/tracks/TrackForm.vue'
-import NewTaskCard from '~/components/tasks/NewTaskCard.vue'
+import NewCheckInCard from '~/components/tasks/NewCheckInCard.vue'
 
 export default {
     components: {
@@ -83,7 +83,7 @@ export default {
         PostTaskCard,
         AppStreakList,
         TrackForm,
-        NewTaskCard
+        NewCheckInCard
     },
     data() {
         return {
@@ -104,10 +104,10 @@ export default {
     methods: {
         showPostTrackForm() {
             this.$refs.trackForm.show()
-            this.$refs.newTaskCard.hide()
+            this.$refs.newCheckInCard.hide()
         },
-        showNewTaskCard() {
-            this.$refs.newTaskCard.show()
+        showNewCheckInCard() {
+            this.$refs.newCheckInCard.show()
             this.$refs.trackForm.hide()
         }
     }

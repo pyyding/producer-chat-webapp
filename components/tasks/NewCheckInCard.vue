@@ -9,14 +9,9 @@
       <v-form>
         <v-layout column>
           <v-text-field
-            v-model="newTaskText"
-            placeholder="Finish the beat from last night"
-            @keyup.native.enter="createTask"
-          />
-          <v-checkbox
-            v-model="isDone"
-            class="d-inline-block"
-            label="mark task as done?"
+            v-model="newCheckInText"
+            placeholder="Add a note (optional)"
+            @keyup.native.enter="post"
           />
         </v-layout>
       </v-form>
@@ -36,7 +31,7 @@
         flat
         @click="post"
       >
-        post
+        check in
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -49,7 +44,7 @@ export default {
     data() {
         return {
             visible: false,
-            newTaskText: '',
+            newCheckInText: '',
             isDone: false
         }
     },
@@ -66,8 +61,8 @@ export default {
             this.visible = false
         },
         post() {
-            const task = {
-                text: this.newTaskText,
+            const checkIn = {
+                text: this.newCheckInText,
                 user: {
                     id: this.user.id,
                     slug: this.user.slug,
@@ -75,13 +70,13 @@ export default {
                     photoURL: this.user.photoURL
                 },
                 createdAt: fb.serverTimestamp(),
-                isDone: this.isDone
+                isDone: true
             }
             if (this.isDone) {
-                task.doneAt = fb.serverTimestamp()
+                checkIn.doneAt = fb.serverTimestamp()
             }
-            this.$store.dispatch('tasks/createTask', task)
-            this.newTaskText = ''
+            this.$store.dispatch('tasks/createCheckIn', checkIn)
+            this.newCheckInText = ''
             this.visible = false
         }
     }

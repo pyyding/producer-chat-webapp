@@ -21,7 +21,9 @@ if (!firebase.apps.length) {
         messagingSenderId: '958668948594'
     })
     const db = firebase.firestore()
-    const settings = { /* your settings... */ timestampsInSnapshots: true }
+    const settings = {
+        /* your settings... */
+    }
     db.settings(settings)
 
     const googleProvider = new firebase.auth.GoogleAuthProvider()

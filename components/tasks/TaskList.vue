@@ -36,11 +36,11 @@
       <v-text-field
         v-model="newTaskText"
         placeholder="Finish the beat from last night"
-        @keyup.native.enter="createTask"
+        @keyup.native.enter="createCheckIn"
       />
       <v-btn
         icon
-        @click="createTask"
+        @click="createCheckIn"
       >
         <v-icon color="secondary">
           create
@@ -86,7 +86,7 @@ export default {
             }
             this.$store.dispatch('tasks/setTaskStatus', params)
         },
-        createTask() {
+        createCheckIn() {
             const task = {
                 text: this.newTaskText,
                 user: {
@@ -98,7 +98,7 @@ export default {
                 createdAt: fb.serverTimestamp(),
                 isDone: false
             }
-            this.$store.dispatch('tasks/createTask', task)
+            this.$store.dispatch('tasks/createCheckIn', task)
             this.newTaskText = ''
         },
         deleteTask(task) {

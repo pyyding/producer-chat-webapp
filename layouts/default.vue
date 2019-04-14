@@ -38,20 +38,20 @@
           <v-icon left small>album</v-icon>
           tracks
         </v-btn> -->
-        <v-btn
-          v-if="user"
-          :to="'/' + user.slug + '/tasks'"
-          class="font-weight-bold"
-          flat
-        >
-          <v-icon
-            left
-            small
-          >
-            check_circle
-          </v-icon>
-          my tasks
-        </v-btn>
+        <!--        <v-btn-->
+        <!--          v-if="user"-->
+        <!--          :to="'/' + user.slug + '/tasks'"-->
+        <!--          class="font-weight-bold"-->
+        <!--          flat-->
+        <!--        >-->
+        <!--          <v-icon-->
+        <!--            left-->
+        <!--            small-->
+        <!--          >-->
+        <!--            check_circle-->
+        <!--          </v-icon>-->
+        <!--          my tasks-->
+        <!--        </v-btn>-->
         <v-menu
           v-if="user"
           offset-y

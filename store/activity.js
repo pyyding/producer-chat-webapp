@@ -15,38 +15,7 @@ export const mutations = {
 
 export const actions = {
     async fetchPosts({ commit }) {
-        const tasksSnapshot = await fb.db
-            .collection(COLLECTIONS.TASKS)
-            .where('isDone', '==', true)
-            .orderBy('createdAt', 'desc')
-            .limit(30)
-            .get()
-        let posts = []
-
-        for (const doc of tasksSnapshot.docs) {
-            const task = doc.data()
-            const taskDate = task.createdAt.toDate().getDate()
-            const match = posts.find(post => {
-                const postDate = post.createdAt.toDate().getDate()
-                return post.user.id === task.user.id && postDate === taskDate
-            })
-            if (match) {
-                match.data.push(task)
-            } else {
-                const dateMoment = moment(task.createdAt.toDate())
-                const dateString = dateMoment.fromNow()
-
-                const post = new Post(
-                    [task],
-                    POST_TYPES.TASK,
-                    task.createdAt,
-                    task.user,
-                    dateString
-                )
-                posts.push(post)
-            }
-        }
-
+        const posts = []
         const tracksSnapshot = await fb.db
             .collection(COLLECTIONS.TRACKS)
             .orderBy('createdAt', 'desc')
