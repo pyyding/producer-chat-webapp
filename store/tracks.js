@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import fb from '~/plugins/firebase'
 
 export const state = () => ({
@@ -31,8 +32,25 @@ export const actions = {
         commit('setQuestions', questions)
     },
     async postTrack({ commit, dispatch }, question) {
-        const newQuestionRef = await fb.db.collection('questions ').doc()
-        await newQuestionRef.set(question)
+        const newQuestionRef = await fb.db.collection('questions').doc()
+        await newQuestionRef.set(question, error => {
+            if (error) {
+                Vue.notify({
+                    group: 'notifications',
+                    title: 'Woops',
+                    text:
+                        'Something went wrong, please refresh the page and try again.',
+                    type: 'error'
+                })
+            } else {
+                Vue.notify({
+                    group: 'notifications',
+                    title: 'Success',
+                    text: 'Your track is now posted, keep up the hustle!',
+                    type: 'success'
+                })
+            }
+        })
         dispatch('getTracks')
     },
     async deleteTrack({ commit, dispatch }, id) {
