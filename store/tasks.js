@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import fb from '~/plugins/firebase'
 
 export const state = () => ({
@@ -38,36 +37,13 @@ export const actions = {
     async createCheckIn({ dispatch, commit, getters }, task) {
         try {
             const newTaskRef = await fb.db.collection('tasks').doc()
-            await newTaskRef.set(task, error => {
-                if (error) {
-                    Vue.notify({
-                        group: 'notifications',
-                        title: 'Woops',
-                        text:
-                            'Something went wrong, please refresh the page and try again.',
-                        type: 'error'
-                    })
-                } else {
-                    Vue.notify({
-                        group: 'notifications',
-                        title: 'Success',
-                        text: "You're checked in for today, see you tomorrow",
-                        type: 'success'
-                    })
-                }
-            })
+            const snapshot = await newTaskRef.set(task)
             const newTask = { ...task, id: newTaskRef.id }
             const tasks = getters.tasks
             commit('setTasks', [...tasks, newTask])
             return true
         } catch (e) {
-            Vue.notify({
-                group: 'notifications',
-                title: 'Woops',
-                text:
-                    'Something went wrong, please refresh the page and try again.',
-                type: 'error'
-            })
+            console.error(e)
             return null
         }
     },

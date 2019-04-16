@@ -86,7 +86,14 @@ export default {
                 displayName: this.user.displayName,
                 photoURL: this.user.photoURL
             }
-            this.$store.dispatch('tracks/postTrack', this.question)
+            this.$store.dispatch('tracks/postTrack', this.question).then(() => {
+                this.$notify({
+                    group: 'notifications',
+                    title: 'Success',
+                    text: 'Track successfully posted, keep up the hustle!',
+                    type: 'success'
+                })
+            })
             this.visible = false
             this.loading = false
         }
