@@ -71,10 +71,8 @@ export default {
                     photoURL: this.user.photoURL
                 },
                 createdAt: fb.serverTimestamp(),
+                doneAt: fb.serverTimestamp(),
                 isDone: true
-            }
-            if (this.isDone) {
-                checkIn.doneAt = fb.serverTimestamp()
             }
             this.$store.dispatch('tasks/createCheckIn', checkIn)
             this.$notify({
