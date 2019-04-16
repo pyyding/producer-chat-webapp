@@ -47,6 +47,7 @@ import fb from '~/plugins/firebase'
 export default {
     data() {
         return {
+            loading: false,
             visible: false,
             question: {
                 title: '',
@@ -86,9 +87,15 @@ export default {
                 photoURL: this.user.photoURL
             }
             this.$store.dispatch('tracks/postTrack', this.question).then(() => {
-                this.visible = false
-                this.loading = false
+                this.$notify({
+                    group: 'notifications',
+                    title: 'Success',
+                    text: 'Track successfully posted, keep up the hustle!',
+                    type: 'success'
+                })
             })
+            this.visible = false
+            this.loading = false
         }
     }
 }

@@ -45,7 +45,8 @@ export default {
         return {
             visible: false,
             newCheckInText: '',
-            isDone: false
+            isDone: false,
+            loading: false
         }
     },
     computed: {
@@ -76,6 +77,12 @@ export default {
                 checkIn.doneAt = fb.serverTimestamp()
             }
             this.$store.dispatch('tasks/createCheckIn', checkIn)
+            this.$notify({
+                group: 'notifications',
+                title: 'Success',
+                text: "You're checked in for today, see you tomorrow",
+                type: 'success'
+            })
             this.newCheckInText = ''
             this.visible = false
         }

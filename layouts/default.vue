@@ -34,24 +34,6 @@
           </v-icon>
           activity
         </v-btn>
-        <!-- <v-btn class="font-weight-bold" flat to="/tracks">
-          <v-icon left small>album</v-icon>
-          tracks
-        </v-btn> -->
-        <!--        <v-btn-->
-        <!--          v-if="user"-->
-        <!--          :to="'/' + user.slug + '/tasks'"-->
-        <!--          class="font-weight-bold"-->
-        <!--          flat-->
-        <!--        >-->
-        <!--          <v-icon-->
-        <!--            left-->
-        <!--            small-->
-        <!--          >-->
-        <!--            check_circle-->
-        <!--          </v-icon>-->
-        <!--          my tasks-->
-        <!--        </v-btn>-->
         <v-menu
           v-if="user"
           offset-y
@@ -107,6 +89,10 @@
     >
       <span class="ml-4">Producer Chat &copy; 2018</span>
     </v-footer>
+    <notifications
+      group="notifications"
+      position="bottom right"
+    />
   </v-app>
 </template>
 

@@ -35,12 +35,17 @@ export const actions = {
         return tasks
     },
     async createCheckIn({ dispatch, commit, getters }, task) {
-        const newTaskRef = await fb.db.collection('tasks').doc()
-        const snapshot = await newTaskRef.set(task)
-        const newTask = { ...task, id: newTaskRef.id }
-        const tasks = getters.tasks
-        commit('setTasks', [...tasks, newTask])
-        return snapshot
+        try {
+            const newTaskRef = await fb.db.collection('tasks').doc()
+            const snapshot = await newTaskRef.set(task)
+            const newTask = { ...task, id: newTaskRef.id }
+            const tasks = getters.tasks
+            commit('setTasks', [...tasks, newTask])
+            return true
+        } catch (e) {
+            console.error(e)
+            return null
+        }
     },
     async setTaskStatus({ commit }, { task, isDone }) {
         commit('setStatus', task, isDone)
