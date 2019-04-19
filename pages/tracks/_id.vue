@@ -54,12 +54,7 @@
               >
                 <v-card-text>
                   <h2>
-                    {{
-                      questionData.question.user
-                        .displayName
-                    }}
-                    would be super thankful for your
-                    feedback!
+                    What are your thoughts on the production, mix?
                   </h2>
                 </v-card-text>
               </v-layout>

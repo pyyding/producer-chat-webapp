@@ -28,21 +28,12 @@
               {{ dateString }}
             </div>
           </div>
-          <v-rating
-            v-model="question.ratingAvg"
-            half-increments
-            readonly
-            small
-            dense
-            class="d-inline-block"
-            color="secondary"
-          />
           <v-btn
             v-if="user && user.id === question.user.id"
             small
             icon
             title="delete question"
-            class="pull-right"
+            class="delete_button"
             @click="deleteTrack"
           >
             <v-icon
@@ -155,15 +146,20 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.v-card__title {
-  padding: 16px 16px 8px 16px;
-}
+.v-card__title
+  padding 16px 16px 8px 16px
 
-.v-card__text {
-  padding: 15px 16px;
-}
+.v-card__text
+  padding 15px 16px
 
-.v-card__actions {
-  padding: 0 8px 8px 8px;
-}
+
+.v-card__actions
+  padding 0 8px 8px 8px
+
+
+.delete_button
+    position absolute
+    top 5px
+    right 0
+
 </style>
