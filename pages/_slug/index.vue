@@ -147,6 +147,7 @@
         >
           <v-flex md12>
             <v-layout column>
+              <check-in-heat-map class="mb-4" />
               <div
                 v-for="post in posts"
                 :key="post.createdAt.seconds"
@@ -181,9 +182,11 @@ import YoutubeIcon from '~/components/icons/YoutubeIcon.vue'
 import SpotifyIcon from '~/components/icons/SpotifyIcon.vue'
 import BandcampIcon from '~/components/icons/BandcampIcon.vue'
 import IconBase from '~/components/icons/IconBase.vue'
+import CheckInHeatMap from '../../components/producers/CheckInHeatMap'
 
 export default {
     components: {
+        CheckInHeatMap,
         EditProfileDialog,
         TrackCard,
         IconBase,
@@ -227,6 +230,7 @@ export default {
         const slug = this.$route.params.slug
         this.$store.dispatch('producer/fetchProducer', slug).then(producer => {
             this.$store.dispatch('producer/fetchPosts', producer.id)
+            this.$store.dispatch('tasks/fetchTasks', producer.id, true)
         })
     },
     beforeDestroy() {

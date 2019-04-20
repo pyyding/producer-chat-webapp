@@ -55,7 +55,8 @@ module.exports = {
         '@/plugins/auth',
         '@/plugins/vuetify',
         '@/plugins/vue-notifications',
-        '@/plugins/vuetify-confirm'
+        '@/plugins/vuetify-confirm',
+        '@/plugins/vue-calendar-heatmap'
     ],
     /*
   ** Nuxt.js modules

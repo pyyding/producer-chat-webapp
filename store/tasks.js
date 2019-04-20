@@ -1,7 +1,9 @@
 import fb from '~/plugins/firebase'
+import { COLLECTIONS } from '~/utils/constants.js'
 
 export const state = () => ({
-    tasks: []
+    tasks: [],
+    loading: false
 })
 
 export const mutations = {
@@ -10,15 +12,28 @@ export const mutations = {
     },
     setStatus(state, task, status) {
         task.status = status
+    },
+    setLoading(state, isLoading) {
+        state.loading = isLoading
     }
 }
 
 export const actions = {
-    async fetchTasks({ commit }, userID) {
-        const snapshot = await fb.db
-            .collection('tasks')
-            .where('user.id', '==', userID)
-            .get()
+    async fetchTasks({ commit }, userID, isDone) {
+        let ref
+        commit('setLoading', true)
+        if (isDone) {
+            ref = fb.db
+                .collection(COLLECTIONS.TASKS)
+                .where('user.id', '==', userID)
+                .where(isDone, '==', userID)
+                .orderBy('doneAt', 'desc')
+        } else {
+            ref = fb.db
+                .collection(COLLECTIONS.TASKS)
+                .where('user.id', '==', userID)
+        }
+        const snapshot = await ref.get()
         if (!snapshot.docs.length) return null
         let tasks = []
         snapshot.forEach(doc => {
@@ -32,6 +47,7 @@ export const actions = {
             )
         })
         commit('setTasks', tasks)
+        commit('setLoading', false)
         return tasks
     },
     async createCheckIn({ dispatch, commit, getters }, task) {
@@ -65,6 +81,9 @@ export const actions = {
 }
 
 export const getters = {
+    loading(state) {
+        return state.loading
+    },
     tasks(state) {
         return state.tasks
     },
