@@ -93,11 +93,14 @@
       group="notifications"
       position="bottom right"
     />
+    <check-in-notification />
   </v-app>
 </template>
 
 <script>
+import CheckInNotification from '~/components/CheckInNotification'
 export default {
+    components: { CheckInNotification },
     data() {
         return {
             drawer: true,
