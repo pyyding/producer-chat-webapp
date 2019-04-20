@@ -139,7 +139,16 @@ export default {
     },
     methods: {
         deleteTrack() {
-            this.$store.dispatch('tracks/deleteTrack', this.question.id)
+            this.$confirm('Do you really want to delete your track?').then(
+                res => {
+                    if (res) {
+                        this.$store.dispatch(
+                            'tracks/deleteTrack',
+                            this.question.id
+                        )
+                    }
+                }
+            )
         }
     }
 }

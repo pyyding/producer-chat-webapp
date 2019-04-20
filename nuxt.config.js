@@ -54,7 +54,8 @@ module.exports = {
     plugins: [
         '@/plugins/auth',
         '@/plugins/vuetify',
-        '@/plugins/vue-notifications'
+        '@/plugins/vue-notifications',
+        '@/plugins/vuetify-confirm'
     ],
     /*
   ** Nuxt.js modules

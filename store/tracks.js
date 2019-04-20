@@ -31,7 +31,7 @@ export const actions = {
         commit('setQuestions', questions)
     },
     async postTrack({ commit, dispatch }, question) {
-        const newQuestionRef = await fb.db.collection('questions ').doc()
+        const newQuestionRef = await fb.db.collection('questions').doc()
         await newQuestionRef.set(question)
         dispatch('getTracks')
     },
