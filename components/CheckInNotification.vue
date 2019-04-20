@@ -17,8 +17,9 @@
         <div class="image_row">
           <v-img
             max-width="300px"
+            min-height="100px"
             :src="gif"
-            :lazy-src="require('~/assets/dilla-placeholder.jpg')"
+            lazy-src="/dilla-placeholder.jpg"
           />
         </div>
         <div class="text_row">

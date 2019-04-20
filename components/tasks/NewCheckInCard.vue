@@ -77,9 +77,9 @@ export default {
             this.$store.dispatch('tasks/createCheckIn', checkIn)
             this.$notify({
                 group: 'checkin',
-                title: 'Success',
-                text: "You're checked in for today, see you tomorrow!",
-                type: 'success'
+                title: "You're checked in for today, see you tomorrow!",
+                type: 'success',
+                duration: 6000
             })
             this.newCheckInText = ''
             this.visible = false
