@@ -22,6 +22,17 @@
       <v-spacer />
       <v-toolbar-items>
         <v-btn
+          flat
+          href="slack://open?team=TBPB96FAS"
+          class="font-weight-bold"
+        >
+          <img
+            class="slack-logo"
+            src="/slack_logo.svg"
+          >
+          chat
+        </v-btn>
+        <v-btn
           class="font-weight-bold"
           flat
           to="/activity"
@@ -52,9 +63,12 @@
               >
             </v-avatar>
           </v-btn>
-          <v-list>
+          <v-list
+            dark
+            class="profile-list"
+          >
             <v-list-tile :to="`/${user.slug}`">
-              my profile
+              profile
             </v-list-tile>
             <v-list-tile @click="signOut">
               <v-list-tile-title>sign out</v-list-tile-title>
@@ -77,6 +91,7 @@
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
+    <app-subheader v-if="user" />
     <v-content>
       <v-container>
         <nuxt />
@@ -99,8 +114,13 @@
 
 <script>
 import CheckInNotification from '~/components/CheckInNotification'
+import AppSubheader from '~/components/AppSubheader.vue'
+
 export default {
-    components: { CheckInNotification },
+    components: {
+        CheckInNotification,
+        AppSubheader
+    },
     data() {
         return {
             drawer: true,
@@ -134,6 +154,11 @@ export default {
 .toolbar__logo {
   width: 230px;
   margin-top: 5px;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.toolbar__logo:hover {
+    opacity: 0.8;
 }
 
 .toolbar__logo--small {
@@ -146,6 +171,14 @@ export default {
   height: 20px;
   min-height: 20px;
   font-size: 12px;
+}
+
+.slack-logo {
+    width 60px
+}
+
+.profile-list {
+    background-color #354851 !important
 }
 
 @media (max-width: 768px) {

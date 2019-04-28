@@ -2,7 +2,7 @@
   <div>
     <v-card
       v-if="visible"
-      color=""
+      color="transparent"
       class="mb-2"
       flat
     >
@@ -30,8 +30,8 @@
         </v-btn>
         <v-btn
           :loading="loading"
-          color="primary"
-          flat
+          color="secondary"
+          depressed
           @click="postTrack"
         >
           post

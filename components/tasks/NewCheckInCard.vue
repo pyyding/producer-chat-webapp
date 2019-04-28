@@ -1,7 +1,7 @@
 <template>
   <v-card
     v-if="visible"
-    color
+    color="transparent"
     flat
     class="mb-2"
   >
@@ -10,7 +10,7 @@
         <v-layout column>
           <v-text-field
             v-model="newCheckInText"
-            placeholder="Add a note (optional)"
+            placeholder="finished a beat, a remix or practiced an instrument? (optional)"
             @keyup.native.enter="post"
           />
         </v-layout>
@@ -27,11 +27,11 @@
       </v-btn>
       <v-btn
         :loading="loading"
-        color="primary"
-        flat
+        color="secondary"
+        depressed
         @click="post"
       >
-        check in
+        submit
       </v-btn>
     </v-card-actions>
   </v-card>

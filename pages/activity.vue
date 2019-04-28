@@ -5,38 +5,41 @@
         md7
         sm7
       >
-        <v-btn
-          v-if="user"
-          color="primary"
-          depressed
-          @click="showNewCheckInCard"
-        >
-          ✅ check in
-        </v-btn>
-        <v-btn
-          v-if="user"
-          color=""
-          flat
-          @click="showPostTrackForm()"
-        >
-          🎹 post a track
-        </v-btn>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex
-        md7
-        sm7
-      >
         <v-layout column>
+          <v-layout
+            v-if="user"
+            column
+            class="buttons-row"
+          >
+            <v-flex
+              md7
+              sm7
+            >
+              <v-btn
+                class="checkin-button"
+                dark
+                @click="showNewCheckInCard"
+              >
+                check in
+              </v-btn>
+              <v-btn
+                v-if="user"
+                color=""
+                flat
+                @click="showPostTrackForm()"
+              >
+                🎹 post a track
+              </v-btn>
+            </v-flex>
+            <track-form ref="trackForm" />
+            <new-check-in-card ref="newCheckInCard" />
+          </v-layout>
           <v-progress-circular
             v-if="posts.length === 0"
             class="loadingSpinner"
             indeterminate
             color="primary"
           />
-          <track-form ref="trackForm" />
-          <new-check-in-card ref="newCheckInCard" />
           <div
             v-for="post in posts"
             :key="post.createdAt.seconds"
@@ -114,11 +117,18 @@ export default {
 }
 </script>
 
-<style>
-.loadingSpinner {
-    margin-top: 50px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+<style lang="stylus" scoped>
+.loadingSpinner
+    margin-top 50px
+    display block
+    margin-left auto
+    margin-right auto
+
+.checkin-button
+    background-image: linear-gradient(to right, #008ce4 0%, #6d98ad 69%)
+
+.buttons-row
+    border 2px solid #0000000a
+    border-radius 5px
+    margin-bottom 21px
 </style>
