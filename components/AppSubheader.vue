@@ -4,7 +4,7 @@
     <app-subheader-property
       key-text="streak"
       :value="`🔥 ${user.streak}`"
-      tooltip-text="check-in daily to earn a streak."
+      tooltip-text="check in daily to earn a streak"
     />
     <app-subheader-property
       key-text="tracks"

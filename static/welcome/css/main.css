@@ -1500,8 +1500,7 @@ button.button {
       margin-top: 15px;
       margin-bottom: 15px;
       text-align: center; }
-      .form__button .button {
-        width: 100%; } }
+  }
   .state-show-spinner .form__button .spinner {
     transform: translateY(-50%) translateX(0);
     opacity: 1; }

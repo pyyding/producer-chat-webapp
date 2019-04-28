@@ -1,7 +1,7 @@
 {
     "name": "producer-chat-webapp4",
     "version": "1.0.0",
-    "description": "Producer Chat is a community for aspiring bedroom producers that turns making music into a daily habit.",
+    "description": "Connect with indie producers and form a daily habit of making music.",
     "author": "kaspar püüding",
     "private": true,
     "scripts": {
