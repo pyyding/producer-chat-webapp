@@ -38,6 +38,9 @@ export const actions = {
                 console.error(error)
             })
     },
+    loginAnonymously() {
+        fb.firebase.auth().signInAnonymously()
+    },
     signOut({ commit }) {
         fb.firebase
             .auth()
@@ -56,6 +59,7 @@ export const actions = {
                     .get()
                     .then(secondSnapshot => {
                         const user = buildUser(secondSnapshot.docs[0])
+                        if (!user) return
                         commit('setUser', user)
                     })
             }, 5000)
