@@ -70,6 +70,13 @@
             <v-list-tile :to="`/${user.slug}`">
               profile
             </v-list-tile>
+            <v-list-tile
+              v-if="user.cancelURL"
+              target="_blank"
+              :href="`${user.cancelURL}`"
+            >
+              cancel subscription
+            </v-list-tile>
             <v-list-tile @click="signOut">
               <v-list-tile-title>sign out</v-list-tile-title>
             </v-list-tile>
