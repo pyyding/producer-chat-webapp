@@ -109,7 +109,7 @@
       absolute
       app
     >
-      <span class="ml-4">Producer Chat &copy; 2018</span>
+      <span class="ml-4">Producer Chat &copy; 2019</span>
     </v-footer>
     <notifications
       group="notifications"
