@@ -25,6 +25,7 @@ export const actions = {
 
         for (const doc of tasksSnapshot.docs) {
             const task = doc.data()
+            task.id = doc.id
             task.text = task.text || 'checked in'
             const taskDate = task.createdAt.toDate().getDate()
             const match = posts.find(post => {

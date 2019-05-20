@@ -10,6 +10,9 @@ export const mutations = {
     setTasks(state, tasks) {
         state.tasks = tasks
     },
+    deleteTask(state, id) {
+        state.tasks = state.tasks.filter(task => task.id !== id)
+    },
     setStatus(state, task, status) {
         task.status = status
     },
@@ -71,12 +74,12 @@ export const actions = {
             doneAt: fb.serverTimestamp()
         })
     },
-    async deleteTask({ dispatch }, task) {
+    async deleteTask({ commit, dispatch }, task) {
         fb.db
             .collection('tasks')
             .doc(task.id)
             .delete()
-        dispatch('fetchTasks', task.user.id)
+        commit('deleteTask', task)
     }
 }
 

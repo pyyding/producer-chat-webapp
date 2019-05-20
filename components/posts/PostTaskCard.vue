@@ -19,7 +19,6 @@
         <nuxt-link :to="`/${post.user.slug || post.user.id}`">
           <strong>{{ post.user.displayName }}</strong>
         </nuxt-link>
-        completed {{ post.data.length === 1 ? 'a task' : 'tasks' }}
         <div class="caption grey--text">
           {{ post.dateString }}
         </div>
