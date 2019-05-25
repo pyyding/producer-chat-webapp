@@ -38,6 +38,16 @@ export const actions = {
                 console.error(error)
             })
     },
+
+    async loginWithGoogle({ dispatch }) {
+        const googleProvider = new fb.firebase.auth.GoogleAuthProvider()
+        const signInResponse = await fb.firebase
+            .auth()
+            .signInWithPopup(googleProvider)
+
+        const googleUser = signInResponse.user
+        dispatch('initUserWithEmail', googleUser.email)
+    },
     loginAnonymously() {
         fb.firebase.auth().signInAnonymously()
     },

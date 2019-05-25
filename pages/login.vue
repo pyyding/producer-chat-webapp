@@ -44,11 +44,32 @@
                   :loading="loading"
                   class="mt-5"
                   color="primary"
-                  style="width: 50px"
+                  style="max-width: 170px"
                   depressed
                   @click="authWithEmail"
                 >
-                  sign in
+                  sign in with email
+                </v-btn>
+                <v-spacer />
+              </v-flex>
+              <v-flex
+                v-if="!showCheckEmailLabel && !showRedirecting"
+                class="d-flex"
+              >
+                <v-spacer />
+                <v-btn
+                  :loading="loading"
+                  class="mt-2"
+                  style="max-width: 170px"
+                  depressed
+                  @click="authWithGoogle"
+                >
+                  <img
+                    src="~/assets/btn_google_light_normal_ios.svg"
+                    alt="google"
+                    class="google-login__img"
+                  >
+                  sign in with Google
                 </v-btn>
                 <v-spacer />
               </v-flex>
@@ -81,7 +102,7 @@
                 <v-spacer />
                 <div>
                   <v-progress-circular
-                    class="loadingSpinner"
+                    class="loading-spinner"
                     indeterminate
                     color="primary"
                   />
@@ -169,6 +190,9 @@ export default {
                     this.errorVisible = true
                     this.loading = false
                 })
+        },
+        authWithGoogle: function() {
+            this.$store.dispatch('auth/loginWithGoogle')
         }
     }
 }
@@ -179,7 +203,12 @@ export default {
   max-width: 350px;
 }
 
-.loadingSpinner {
+.loading-spinner {
     margin-bottom: 20px;
+}
+
+.google-login__img {
+    width: 20px;
+    margin-right: 10px;
 }
 </style>
